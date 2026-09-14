@@ -157,3 +157,14 @@ This milestone completes the extended reviewable demo, not a production school d
   credential without copying plaintext; credential injection requires a fresh turn
   because this turn's command snapshot predates credential entry. Build/deploy and
   test text plus recorded audio only after protected wiring is verified.
+
+### Protected provider verification — 2026-09-14
+
+- Fresh-turn gateway execution confirmed protected key injection and proxy environment
+  availability without printing their values.
+- Gemini 3.5 Flash text probe through Node fetch failed with `CERT_HAS_EXPIRED`;
+  Python urllib also failed at transport. No Gemini response or key validity verified.
+- Do not disable TLS verification or copy secrets into the repo/systemd environment.
+- Blocker: inspect and repair the expired certificate in the protected egress TLS path,
+  then retry text/audio probes and verify durable protected deployment wiring.
+- Existing public preview remains unchanged with AI disabled.
