@@ -40,6 +40,9 @@ export function navFor(p: Persona): NavItem[] {
         { href: "/portal/principal/assessments", label: "Assessments", icon: "tasks" },
         { href: "/portal/principal/attendance", label: "Attendance", icon: "calendar" },
         { href: "/portal/principal/rankings", label: "Rankings", icon: "progress" },
+        { href: "/portal/principal/announcements", label: "Announcements", icon: "megaphone" },
+        { href: "/portal/principal/fees", label: "Fees", icon: "tasks" },
+        { href: "/portal/principal/automations", label: "Automations", icon: "planner" },
         { href: "/portal/principal/audit", label: "Audit log", icon: "rules" },
         { href: "/portal/principal/access", label: "Access locks", icon: "rules" },
       ];
@@ -77,6 +80,7 @@ export function navFor(p: Persona): NavItem[] {
         { href: "/portal/learn/progress", label: "Progress", icon: "progress" },
         { href: "/portal/learn/tasks", label: "Tasks", icon: "tasks" },
         { href: "/portal/learn/inbox", label: "Inbox", icon: "inbox", badge: inboxBadge(p) },
+        { href: "/portal/learn/study-plan", label: "Study plan", icon: "planner" },
         { href: "/portal/learn/ranking", label: "My ranking", icon: "insight" },
         { href: "/portal/learn/leaderboard", label: "Leaderboard", icon: "drill" },
         { href: "/portal/learn/timetable", label: "Timetable", icon: "calendar" },

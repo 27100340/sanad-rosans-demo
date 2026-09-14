@@ -1,33 +1,13 @@
 import { AlertTriangle, Award, CheckCircle2, ListChecks } from "lucide-react";
-import { TaskList, type TaskRowData } from "@/components/learn/task-list";
+import { TaskList } from "@/components/learn/task-list";
+import { taskRow } from "@/components/learn/task-rows";
 import { Denied, isLearner } from "@/components/teach/guard";
-import { fmtDay } from "@/components/teach/helpers";
-import { PageHeader, Stat } from "@/components/ui/primitives";
+import { LinkButton, PageHeader, Stat } from "@/components/ui/primitives";
 import { getViewer } from "@/lib/auth/viewer";
-import { studentById, teacherById } from "@/lib/data/mock/people";
-import { spaceById } from "@/lib/data/mock/spaces";
+import { studentById } from "@/lib/data/mock/people";
 import { tasksForStudent } from "@/lib/data/mock/tasks";
-import { isOverdue, pointsEarned, type Task } from "@/lib/domain/tasks";
+import { isOverdue, pointsEarned } from "@/lib/domain/tasks";
 import { todayISO } from "@/lib/utils";
-
-function toRow(t: Task, today: string): TaskRowData {
-  return {
-    id: t.id,
-    kind: t.kind,
-    title: t.title,
-    body: t.body,
-    subject: t.spaceId ? (spaceById.get(t.spaceId)?.subject ?? "") : "",
-    teacherName: teacherById.get(t.teacherId)?.name ?? "",
-    dueLabel: fmtDay(t.dueAt),
-    overdue: isOverdue(t, today),
-    points: t.points,
-    status: t.status,
-    mandatory: t.mandatory,
-    activityType: t.activityType,
-    expectedMinutes: t.expectedMinutes,
-    resourceUrl: t.resourceUrl,
-  };
-}
 
 export default async function LearnTasksPage() {
   const viewer = await getViewer();
@@ -44,7 +24,7 @@ export default async function LearnTasksPage() {
 
   return (
     <>
-      <PageHeader eyebrow="Tasks" title="Tasks and challenges" description="Set by your teachers. Start a task, finish it, and the points count towards your effort score." />
+      <PageHeader eyebrow="Tasks" title="Tasks and challenges" description="Set by your teachers and your study plan. Start a task, finish it, and the points count towards your effort score." actions={<LinkButton href="/portal/learn/study-plan" variant="soft">My study plan</LinkButton>} />
 
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6">
         <Stat label="To do" value={open} icon={<ListChecks size={18} />} tone={open ? "accent" : "ok"} />
@@ -53,7 +33,7 @@ export default async function LearnTasksPage() {
         <Stat label="Points" value={earned} trend={`of ${offered} offered`} icon={<Award size={18} />} tone="gold" />
       </div>
 
-      <TaskList rows={tasks.map((t) => toRow(t, today))} />
+      <TaskList rows={tasks.map((t) => taskRow(t, today))} />
     </>
   );
 }

@@ -22,6 +22,8 @@ export interface Task {
   expectedMinutes: number;
   resourceUrl?: string;
   spaceId?: string;
+  topic?: string; // syllabus code the task targets
+  generatedKey?: string; // "auto-plan:<monday>" / "auto-daily:<date>" for study-plan tasks
   createdAt: string; // ISO datetime
   doneAt?: string;
 }
