@@ -71,7 +71,8 @@ export async function POST(req: Request) {
   const paper = mode === "past-paper" ? listPapers().find((p) => p.code === body.paperCode && p.paperKey === body.paperKey) : undefined;
   if (mode === "past-paper" && !paper) return Response.json({ error: "Pick a paper to allocate." }, { status: 400 });
   const picked = Array.isArray(body.questionIds) ? body.questionIds.filter((id): id is string => typeof id === "string") : [];
-  const questions = paper ? [] : picked.length ? picked.map((id) => questionById.get(id)).filter((q): q is NonNullable<typeof q> => Boolean(q) && q.subjectId === subjectIdForSpace(space)) : assembleQuestions(subjectIdForSpace(space), topicCodes, mode);
+  const subjectId = subjectIdForSpace(space);
+  const questions = paper ? [] : picked.length ? picked.map((id) => questionById.get(id)).filter((q): q is NonNullable<typeof q> => q !== undefined && q.subjectId === subjectId) : assembleQuestions(subjectId, topicCodes, mode);
   if (!paper && !questions.length) return Response.json({ error: "The bank has no questions for those topics yet." }, { status: 400 });
 
   const durationMin = mode === "quiz" ? undefined : paper ? paper.durationMin : Math.max(5, Math.min(180, Number(body.durationMin) || 25));

@@ -20,6 +20,13 @@ export function lastDayLabels(count: number): string[] {
   });
 }
 
+/** "Today · 07:45", "Yesterday · 16:30", else "12 Sep · 09:05" from an ISO datetime. */
+export function relativeStamp(isoDateTime: string): string {
+  const day = relativeDay(isoDateTime.slice(0, 10));
+  const time = isoDateTime.length > 15 ? isoDateTime.slice(11, 16) : "";
+  return time ? `${day} · ${time}` : day;
+}
+
 /** Drops honorifics so a teacher fits in a timetable cell: "Ms. Hina Raza" -> "Hina Raza". */
 export function shortName(name: string): string {
   return name.replace(/^(Ms\.|Mr\.|Mrs\.|Dr\.|Qari|Hafiz|Ustadh)\s+/i, "");

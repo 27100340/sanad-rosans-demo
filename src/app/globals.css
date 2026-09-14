@@ -152,3 +152,12 @@
 
 /* Exam guard: a 1 s black-out when a screenshot / print key-combo is pressed (see use-exam-guard.ts). */
 html.el-blackout body { visibility: hidden; }
+
+/* Printing a report: only the page content, on white, one report per sheet. */
+@media print {
+  .app-shell > aside, .app-shell > header, .app-shell > nav, .print-hide { display: none !important; }
+  .app-shell > main { padding: 0 !important; margin: 0 !important; }
+  .app-shell { background: white; }
+  .card { box-shadow: none !important; border-color: #ccc; }
+  .print-page { break-after: page; }
+}

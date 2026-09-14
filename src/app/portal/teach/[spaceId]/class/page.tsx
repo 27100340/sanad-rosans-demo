@@ -2,12 +2,16 @@ import { AlertTriangle, Percent, UserMinus, Users } from "lucide-react";
 import { ATTENDANCE_WARN, RECENT_MARKS, RosterTable, type RosterRow } from "@/components/attend/roster-table";
 import { branchRiskRows } from "@/components/principal/risk";
 import { Denied, teacherSpace } from "@/components/teach/guard";
+import { TaskForm } from "@/components/teach/task-form";
 import { PageHeader, SectionTitle, Stat } from "@/components/ui/primitives";
 import { getViewer } from "@/lib/auth/viewer";
 import { attendancePctFor, lessonsForClass, marksForStudent } from "@/lib/data/mock/attendance";
 import { classById, studentsInClass } from "@/lib/data/mock/people";
 import { masteryFor } from "@/lib/data/mock/tests";
 import type { RiskLevel, SubjectSpace } from "@/lib/domain/types";
+import { daysAgoISO } from "@/lib/utils";
+
+const DEFAULT_DUE_DAYS = 3;
 
 function mean(values: number[]): number | null {
   return values.length ? Math.round(values.reduce((a, b) => a + b, 0) / values.length) : null;
@@ -62,6 +66,11 @@ export default async function ClassRosterPage({ params }: { params: Promise<{ sp
       <section>
         <SectionTitle title="Roster" hint="Lowest attendance first. Recent register shows the last eight marks in this class, oldest to newest." />
         <RosterTable rows={rows} />
+      </section>
+
+      <section>
+        <SectionTitle title="Set a task or challenge" hint="Goes to the whole class or one student; it appears in their Tasks and they are notified." />
+        <TaskForm spaceId={space.id} classId={space.classId} students={rows.map((r) => ({ id: r.studentId, name: r.name })).sort((a, b) => a.name.localeCompare(b.name))} defaultDue={daysAgoISO(-DEFAULT_DUE_DAYS)} />
       </section>
     </>
   );

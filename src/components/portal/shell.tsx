@@ -64,7 +64,8 @@ export function PortalShell({
                 )}
               >
                 <Icon size={16} className={active ? "text-accent" : "text-ink-3"} />
-                {item.label}
+                <span className="min-w-0 flex-1 truncate">{item.label}</span>
+                {item.badge ? <span className="chip-accent num shrink-0">{item.badge}</span> : null}
               </Link>
             );
           })}
@@ -105,7 +106,10 @@ export function PortalShell({
           const active = isActive(item.href);
           return (
             <Link key={item.href} href={item.href} className={cn("flex flex-1 flex-col items-center gap-1 py-2 text-2xs", active ? "text-accent" : "text-ink-3")}>
-              <Icon size={18} />
+              <span className="relative">
+                <Icon size={18} />
+                {item.badge ? <span className="absolute -right-1.5 -top-1 h-2 w-2 rounded-full bg-accent" aria-label={`${item.badge} unread`} /> : null}
+              </span>
               <span className="truncate px-1">{item.label}</span>
             </Link>
           );

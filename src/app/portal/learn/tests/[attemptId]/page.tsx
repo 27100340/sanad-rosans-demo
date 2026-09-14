@@ -2,11 +2,12 @@ import { EmptyState, PageHeader } from "@/components/ui/primitives";
 import { getViewer } from "@/lib/auth/viewer";
 import { studentById } from "@/lib/data/mock/people";
 import { spaceById } from "@/lib/data/mock/spaces";
+import { getSession } from "@/lib/data/mock/proctor";
 import { allocationsForStudent, attemptById, questionsOf, testById } from "@/lib/data/mock/tests";
 import type { Attempt, Question } from "@/lib/domain/assessment";
 import { forStudent, secondsLeft } from "@/lib/domain/assessment";
 import { Denied, isLearner } from "@/components/teach/guard";
-import { Runner } from "@/components/assess/runner";
+import { Runner, type ProctorSnapshot } from "@/components/assess/runner";
 import { ResultView, type ResultRow } from "@/components/assess/result-view";
 
 function correctAnswerOf(q: Question): string {
@@ -56,14 +57,20 @@ export default async function AttemptPage({ params }: { params: Promise<{ attemp
   const status = allocationsForStudent(student.id).find((a) => a.testId === test.id)?.status;
 
   if (!attempt.submittedAt) {
+    // The runner only needs the session's state, never its events or stills.
+    const session = getSession(attempt.id);
+    const proctor: ProctorSnapshot | null = session ? { status: session.status, lockedReason: session.lockedReason, unlockRequest: session.unlockRequest, unlock: session.unlock } : null;
     return (
       <>
         <PageHeader eyebrow={`Test · ${subject}`} title={test.title} description={test.durationMin ? `${test.durationMin} minutes. Your answers save as you go.` : "Untimed. Your answers save as you go."} />
         <Runner
           attemptId={attempt.id}
+          testId={test.id}
           title={test.title}
           subject={subject}
           durationMin={test.durationMin}
+          guardMode={test.guardMode ?? (test.proctored ? "strict" : "off")}
+          proctor={proctor}
           questions={questions.map(forStudent)}
           initialAnswers={attempt.answers}
           initialSecondsLeft={secondsLeft(attempt, test.durationMin, new Date())}

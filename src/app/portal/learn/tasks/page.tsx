@@ -1,0 +1,59 @@
+import { AlertTriangle, Award, CheckCircle2, ListChecks } from "lucide-react";
+import { TaskList, type TaskRowData } from "@/components/learn/task-list";
+import { Denied, isLearner } from "@/components/teach/guard";
+import { fmtDay } from "@/components/teach/helpers";
+import { PageHeader, Stat } from "@/components/ui/primitives";
+import { getViewer } from "@/lib/auth/viewer";
+import { studentById, teacherById } from "@/lib/data/mock/people";
+import { spaceById } from "@/lib/data/mock/spaces";
+import { tasksForStudent } from "@/lib/data/mock/tasks";
+import { isOverdue, pointsEarned, type Task } from "@/lib/domain/tasks";
+import { todayISO } from "@/lib/utils";
+
+function toRow(t: Task, today: string): TaskRowData {
+  return {
+    id: t.id,
+    kind: t.kind,
+    title: t.title,
+    body: t.body,
+    subject: t.spaceId ? (spaceById.get(t.spaceId)?.subject ?? "") : "",
+    teacherName: teacherById.get(t.teacherId)?.name ?? "",
+    dueLabel: fmtDay(t.dueAt),
+    overdue: isOverdue(t, today),
+    points: t.points,
+    status: t.status,
+    mandatory: t.mandatory,
+    activityType: t.activityType,
+    expectedMinutes: t.expectedMinutes,
+    resourceUrl: t.resourceUrl,
+  };
+}
+
+export default async function LearnTasksPage() {
+  const viewer = await getViewer();
+  const student = isLearner(viewer) && viewer.studentId ? studentById.get(viewer.studentId) : undefined;
+  if (!student) return <Denied />;
+
+  const today = todayISO();
+  const tasks = tasksForStudent(student.id);
+  const open = tasks.filter((t) => t.status !== "done").length;
+  const overdue = tasks.filter((t) => isOverdue(t, today)).length;
+  const done = tasks.length - open;
+  const earned = pointsEarned(tasks);
+  const offered = tasks.reduce((a, t) => a + t.points, 0);
+
+  return (
+    <>
+      <PageHeader eyebrow="Tasks" title="Tasks and challenges" description="Set by your teachers. Start a task, finish it, and the points count towards your effort score." />
+
+      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6">
+        <Stat label="To do" value={open} icon={<ListChecks size={18} />} tone={open ? "accent" : "ok"} />
+        <Stat label="Overdue" value={overdue} icon={<AlertTriangle size={18} />} tone={overdue ? "danger" : "ok"} />
+        <Stat label="Done" value={done} trend={`of ${tasks.length} set`} icon={<CheckCircle2 size={18} />} tone="ok" />
+        <Stat label="Points" value={earned} trend={`of ${offered} offered`} icon={<Award size={18} />} tone="gold" />
+      </div>
+
+      <TaskList rows={tasks.map((t) => toRow(t, today))} />
+    </>
+  );
+}

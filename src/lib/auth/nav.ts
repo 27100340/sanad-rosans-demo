@@ -1,5 +1,6 @@
 import type { Persona } from "./personas";
 import { classById } from "@/lib/data/mock/people";
+import { unreadCount } from "@/lib/data/mock/notify";
 import { spacesForTeacher } from "@/lib/data/repo";
 
 const PHONE_BAR_SLOTS = 5;
@@ -8,6 +9,14 @@ export interface NavItem {
   href: string;
   label: string;
   icon: "home" | "ask" | "branches" | "alert" | "users" | "inbox" | "calendar" | "book" | "tasks" | "insight" | "rules" | "planner" | "tutor" | "progress" | "mic" | "map" | "drill" | "family" | "megaphone" | "hifz";
+  /** Unread count shown next to the label; omitted when zero. */
+  badge?: number;
+}
+
+/** Notifications are keyed by the person id the messages API uses for this seat. */
+function inboxBadge(p: Persona): number | undefined {
+  const n = unreadCount(p.studentId ?? p.guardianId ?? p.personId);
+  return n > 0 ? n : undefined;
 }
 
 export function navFor(p: Persona): NavItem[] {
@@ -39,7 +48,7 @@ export function navFor(p: Persona): NavItem[] {
       return [
         { href: "/portal/teach", label: "My spaces", icon: "book" },
         { href: "/portal/teach/attendance", label: "Attendance", icon: "calendar" },
-        { href: "/portal/teach/messages", label: "Messages", icon: "inbox" },
+        { href: "/portal/teach/messages", label: "Messages", icon: "inbox", badge: inboxBadge(p) },
         { href: "/portal/teach/timetable", label: "Timetable", icon: "calendar" },
         ...owned,
       ];
@@ -64,13 +73,13 @@ export function navFor(p: Persona): NavItem[] {
         { href: "/portal/learn/papers", label: "Past papers", icon: "book" },
         { href: "/portal/learn/progress", label: "Progress", icon: "progress" },
         { href: "/portal/learn/tasks", label: "Tasks", icon: "tasks" },
-        { href: "/portal/learn/inbox", label: "Inbox", icon: "inbox" },
+        { href: "/portal/learn/inbox", label: "Inbox", icon: "inbox", badge: inboxBadge(p) },
       ];
     case "parent":
       return [
         { href: "/portal/family", label: "Tonight's brief", icon: "family" },
         { href: "/portal/family/children", label: "My children", icon: "users" },
-        { href: "/portal/family/messages", label: "Messages", icon: "inbox" },
+        { href: "/portal/family/messages", label: "Messages", icon: "inbox", badge: inboxBadge(p) },
         { href: "/portal/family/reports", label: "Reports", icon: "progress" },
       ];
     default:
