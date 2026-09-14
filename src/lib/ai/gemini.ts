@@ -6,8 +6,8 @@
 
 // Pinned. Never use `*-latest` aliases: they resolve to thinking models that
 // blow serverless budgets (lesson recorded in the reference project).
-export const FAST_MODEL = "gemini-3.1-flash-lite";
-export const AUDIO_MODEL = "gemini-3.1-flash-lite";
+export const FAST_MODEL = "gemini-3.5-flash";
+export const AUDIO_MODEL = "gemini-3.5-flash";
 
 const SLOW_ALIASES = ["gemini-flash-latest", "gemini-pro-latest"];
 

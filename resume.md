@@ -140,3 +140,20 @@ Next work, in order:
 5. Production hosting/domain, backups, monitoring and school-approved data handling.
 
 This milestone completes the extended reviewable demo, not a production school deployment.
+
+### Gemini 3.5 Flash configuration — 2026-09-14
+
+- JB requested Gemini 3.5 Flash for existing text AI and recorded Hifz audio.
+- Updated both model constants in `src/lib/ai/gemini.ts`; retained existing REST
+  record-and-submit flow, app-controlled tools and financial permissions.
+- Updated `docs/HIFZ-AI-COSTS.md`: previous Flash-Lite pricing is superseded.
+- No credential copied from chat, committed, or logged. Protected store was empty.
+- Live deployment activation and real text/audio checks remain blocked on protected
+  credential entry. Public preview remains AI-disabled until securely configured.
+- Verification: typecheck, 35/35 unit tests and provider-policy check passed.
+- Protected `GEMINI_API_KEY` entry is now stored (value hidden), with egress allowed
+  to `generativelanguage.googleapis.com`. No live API request has been verified.
+- Next turn: inspect gateway proxy/protected deployment support and connect the stored
+  credential without copying plaintext; credential injection requires a fresh turn
+  because this turn's command snapshot predates credential entry. Build/deploy and
+  test text plus recorded audio only after protected wiring is verified.
