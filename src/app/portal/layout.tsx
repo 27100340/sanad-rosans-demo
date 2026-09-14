@@ -13,7 +13,7 @@ export default async function PortalLayout({ children }: { children: ReactNode }
   // A lock keeps the seat signed in but shows the message instead of any portal activity.
   const restriction = viewerRestriction(viewer);
   return (
-    <PortalShell nav={restriction ? [] : navFor(viewer)} personaId={viewer.id} personaLabel={viewer.label} roleLine={roleLine} aiLive={aiIsLive()}>
+    <PortalShell nav={restriction ? [] : navFor(viewer)} personaId={viewer.id} personaLabel={viewer.label} role={viewer.role} roleLine={roleLine} aiLive={aiIsLive()}>
       {restriction ? <AccessBlocked restriction={restriction} /> : children}
     </PortalShell>
   );

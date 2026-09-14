@@ -1,5 +1,5 @@
 import { LockKeyhole } from "lucide-react";
-import { canSeePrincipal, SeatDenied } from "@/components/leadership/seat-guard";
+import { canSeeBranchStaff, SeatDenied } from "@/components/leadership/seat-guard";
 import { StudentDetailView } from "@/components/students/student-detail";
 import { EmptyState, LinkButton, PageHeader } from "@/components/ui/primitives";
 import { getViewer } from "@/lib/auth/viewer";
@@ -9,7 +9,7 @@ import { studentDetail } from "@/lib/data/student-detail";
 export default async function PrincipalStudentPage({ params }: { params: Promise<{ studentId: string }> }) {
   const { studentId } = await params;
   const viewer = await getViewer();
-  if (!canSeePrincipal(viewer)) return <SeatDenied home={viewer.home} />;
+  if (!canSeeBranchStaff(viewer)) return <SeatDenied home={viewer.home} />;
 
   const d = studentDetail(studentId);
   if (!d || (viewer.branchId && d.student.branchId !== viewer.branchId)) {

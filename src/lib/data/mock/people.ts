@@ -10,6 +10,7 @@ export const LEADERS: Person[] = [
   { id: "p-principal-gulberg", name: "Mrs. Saima Qureshi", role: "principal", branchId: "gulberg", title: "Principal, Gulberg", avatarTone: "accent" },
   { id: "p-principal-lakecity", name: "Mr. Faisal Mirza", role: "principal", branchId: "lakecity", title: "Principal, Lake City", avatarTone: "accent" },
   { id: "p-principal-paragon", name: "Mrs. Rabia Sheikh", role: "principal", branchId: "paragon", title: "Principal, Paragon City", avatarTone: "accent" },
+  { id: "p-coordinator-gulberg", name: "Mr. Adeel Hussain", role: "coordinator", branchId: "gulberg", title: "Senior Coordinator, Gulberg", avatarTone: "info" },
 ];
 
 export const TEACHERS: Teacher[] = [

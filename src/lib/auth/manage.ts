@@ -11,10 +11,10 @@ export function mayUseClass(viewer: Persona, classId: string): boolean {
   return false;
 }
 
-/** Who may act on a student's record: the chairman anywhere, a principal in their branch, a teacher in their classes. */
+/** Who may act on a student's record: the chairman anywhere, a principal or coordinator in their branch, a teacher in their classes. */
 export function mayManage(viewer: Persona, student: Student): boolean {
   if (viewer.role === "chairman") return true;
-  if (viewer.role === "principal") return viewer.branchId === student.branchId;
+  if (viewer.role === "principal" || viewer.role === "coordinator") return viewer.branchId === student.branchId;
   if (viewer.role === "teacher") return spacesForTeacher(viewer.personId).some((s) => s.classId === student.classId);
   return false;
 }

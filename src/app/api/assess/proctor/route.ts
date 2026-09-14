@@ -1,8 +1,9 @@
 /**
  * Proctor sessions. Student: start (POST action "start"), post forensic
- * events, store a violation snapshot, request an unlock. Teacher: read a
- * session or its snapshot (GET), unlock (PATCH). Locked sessions freeze until
- * the owning teacher unlocks them.
+ * events, store a violation snapshot, request an unlock. Teacher: list every
+ * session across their spaces (GET ?list=1), read one session or its snapshot
+ * (GET), unlock (PATCH). Locked sessions freeze until the owning teacher
+ * unlocks them.
  */
 import { getViewer } from "@/lib/auth/viewer";
 import type { Persona } from "@/lib/auth/personas";
@@ -12,6 +13,7 @@ import { attemptById, testById } from "@/lib/data/mock/tests";
 import { appendEvents, getSession, requestUnlock, saveSnapshot, SNAPSHOTS, startSession, unlockSession } from "@/lib/data/mock/proctor";
 import type { GuardEventType, ProctorEvent } from "@/lib/domain/proctor";
 import { audit, notify } from "@/lib/data/mock/notify";
+import { proctorRowsForTeacher } from "@/lib/data/proctor-list";
 
 function ownsAttempt(viewer: Persona, attemptId: string | undefined): "student" | "teacher" | null {
   const attempt = attemptId ? attemptById.get(attemptId) : undefined;
@@ -80,6 +82,10 @@ export async function POST(req: Request) {
 export async function GET(req: Request) {
   const viewer = await getViewer();
   const url = new URL(req.url);
+  if (url.searchParams.get("list") === "1") {
+    if (viewer.role !== "teacher") return Response.json({ error: "forbidden" }, { status: 403 });
+    return Response.json({ sessions: proctorRowsForTeacher(viewer.personId) });
+  }
   const attemptId = url.searchParams.get("attemptId") ?? undefined;
   const who = ownsAttempt(viewer, attemptId);
   if (!who || !attemptId) return Response.json({ error: "forbidden" }, { status: 403 });

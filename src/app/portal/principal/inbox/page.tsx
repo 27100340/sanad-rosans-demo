@@ -1,4 +1,4 @@
-import { canSeePrincipal, SeatDenied } from "@/components/leadership/seat-guard";
+import { canSeeBranchStaff, SeatDenied } from "@/components/leadership/seat-guard";
 import { InboxGroups, type InboxRow } from "@/components/principal/inbox-groups";
 import { AiPill, PageHeader } from "@/components/ui/primitives";
 import { aiIsLive } from "@/lib/ai/gemini";
@@ -27,7 +27,7 @@ function inboxRows(branchId: BranchId): InboxRow[] {
 
 export default async function InboxPage() {
   const viewer = await getViewer();
-  if (!canSeePrincipal(viewer)) return <SeatDenied home={viewer.home} />;
+  if (!canSeeBranchStaff(viewer)) return <SeatDenied home={viewer.home} />;
   const branchId = viewer.branchId ?? DEMO_BRANCH;
   const rows = inboxRows(branchId);
   const urgent = rows.filter((r) => r.triage === "urgent").length;

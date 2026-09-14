@@ -9,7 +9,32 @@ import { singleton } from "../store";
 
 const MAX_SNAPSHOT_BYTES = 1_500_000;
 
-export const SESSIONS: Map<string, ProctorSession> = singleton("proctorSessions", () => new Map());
+/** Two sittings of the strict O Level mock so the teacher's console has something to show: one locked with an unlock request, one submitted clean. */
+function seedSessions(): Map<string, ProctorSession> {
+  const h = 3_600_000;
+  const now = Date.now();
+  const locked: ProctorSession = {
+    ...newSession({ attemptId: "att-daniyal-mock", studentId: "s-daniyal-butt", testId: "t-olmaths-mock-1", mode: "strict", cameraConsent: true }, now - 26 * h),
+    status: "locked",
+    lockedReason: "Left full screen",
+    endedAt: now - 26 * h + 14 * 60_000,
+    events: [
+      { type: "headturn", reason: "Looked away for 6 s", terminal: false, at: now - 26 * h + 5 * 60_000, source: "camera" },
+      { type: "blur", reason: "Window lost focus", terminal: false, at: now - 26 * h + 11 * 60_000, source: "guard" },
+      { type: "fullscreen_exit", reason: "Left full screen", terminal: true, at: now - 26 * h + 14 * 60_000, source: "guard" },
+    ],
+    unlockRequest: { at: now - 25 * h, note: "The power went and the laptop restarted. The invigilator saw it." },
+  };
+  const clean: ProctorSession = {
+    ...newSession({ attemptId: "att-hafsa-mock", studentId: "s-hafsa-tariq", testId: "t-olmaths-mock-1", mode: "strict", cameraConsent: true }, now - 27 * h),
+    status: "submitted",
+    endedAt: now - 27 * h + 38 * 60_000,
+    events: [{ type: "headturn", reason: "Looked away for 4 s", terminal: false, at: now - 27 * h + 20 * 60_000, source: "camera" }],
+  };
+  return new Map([[locked.attemptId, locked], [clean.attemptId, clean]]);
+}
+
+export const SESSIONS: Map<string, ProctorSession> = singleton("proctorSessions", seedSessions);
 export const SNAPSHOTS: Map<string, string> = singleton("proctorSnapshots", () => new Map());
 
 export function getSession(attemptId: string): ProctorSession | undefined {

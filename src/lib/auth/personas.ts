@@ -21,6 +21,7 @@ export interface Persona {
 export const PERSONAS: Persona[] = [
   { id: "chairman", personId: "p-chairman", label: "Chairman", role: "chairman", branchId: null, home: "/portal/leadership", blurb: "Sees all three campuses live and asks the school questions." },
   { id: "principal-gulberg", personId: "p-principal-gulberg", label: "Principal, Gulberg", role: "principal", branchId: "gulberg", home: "/portal/principal", blurb: "Runs one campus: at-risk students, teachers, parents, timetable." },
+  { id: "coordinator-gulberg", personId: "p-coordinator-gulberg", label: "Mr. Adeel Hussain · Coordinator", role: "coordinator", branchId: "gulberg", home: "/portal/coordinator", blurb: "Runs the Senior section day to day: registers, parents, timetable." },
   { id: "teacher-maths", personId: "t-hina-raza", label: "Ms. Hina Raza · Maths", role: "teacher", branchId: "gulberg", home: "/portal/teach", blurb: "Owns the Grade 8-B and 7-A Mathematics spaces and their AI tutor rules.", spaceId: "gulberg-g8b-maths" },
   { id: "ustadh", personId: "t-qari-abdul-rehman", label: "Qari Abdul Rehman · Hifz", role: "ustadh", branchId: "gulberg", home: "/portal/hifz/ustadh", blurb: "Leads Halaqa 2; sees every student's memorisation map." },
   { id: "student-ahmed", personId: "s-ahmed-hassan", label: "Ahmed Hassan · Grade 8-B", role: "student", branchId: "gulberg", home: "/portal/learn", blurb: "Learns with a tutor that follows his teacher's rules.", studentId: "s-ahmed-hassan" },

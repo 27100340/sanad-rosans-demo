@@ -45,7 +45,7 @@ export default async function TeacherMessagesPage({ searchParams }: { searchPara
         <div className="space-y-6 lg:col-span-3">
           <section>
             <SectionTitle title="Compose" hint="Students see it in their Inbox; guardians in the family portal." />
-            <ComposeMessage classes={classes} defaultStudentId={defaultStudentId ?? ""} />
+            <ComposeMessage classes={classes} defaultStudentId={defaultStudentId ?? ""} teacherName={personName(viewer.personId)} />
           </section>
           <section>
             <SectionTitle title="Sent" hint={`Your last ${SENT_LIMIT} sends, from the audit log.`} />

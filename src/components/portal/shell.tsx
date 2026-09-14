@@ -14,6 +14,7 @@ import { AiPill } from "@/components/ui/primitives";
 import { NotificationBell } from "./notification-bell";
 import { PersonaSwitcher } from "./persona-switcher";
 import { PresenceBeacon } from "./presence-beacon";
+import { Tour } from "./tour";
 
 const ICONS: Record<NavItem["icon"], React.ComponentType<{ size?: number; className?: string }>> = {
   home: Home, ask: Sparkles, branches: Building2, alert: AlertTriangle, users: Users, inbox: Inbox, calendar: CalendarDays,
@@ -25,6 +26,7 @@ export function PortalShell({
   nav,
   personaId,
   personaLabel,
+  role,
   roleLine,
   aiLive,
   children,
@@ -32,6 +34,7 @@ export function PortalShell({
   nav: NavItem[];
   personaId: string;
   personaLabel: string;
+  role: string;
   roleLine: string;
   aiLive: boolean;
   children: ReactNode;
@@ -95,6 +98,7 @@ export function PortalShell({
           <div className="flex items-center gap-2">
             <AiPill live={aiLive} />
             <NotificationBell inboxHref={inboxHref} />
+            <Tour role={role} />
             <Link href="/portal/settings" className={cn("btn-outline btn-sm px-2.5", pathname === "/portal/settings" && "text-accent")} aria-label="Settings" title="Profile and settings">
               <Settings size={14} />
             </Link>

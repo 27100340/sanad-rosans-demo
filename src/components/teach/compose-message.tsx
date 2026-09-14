@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { AlertTriangle, Send } from "lucide-react";
+import { MAIL_TEMPLATES, fillTemplate } from "@/lib/data/mock/mail-templates";
 
 export interface ComposeClass {
   id: string;
@@ -22,7 +23,7 @@ interface SendOut {
 const API = "/api/messages";
 
 /** Teacher notice to a class or one student. A show-cause notice always reaches guardians and queues an email. */
-export function ComposeMessage({ classes, defaultStudentId = "" }: { classes: ComposeClass[]; defaultStudentId?: string }) {
+export function ComposeMessage({ classes, defaultStudentId = "", teacherName = "Your teacher" }: { classes: ComposeClass[]; defaultStudentId?: string; teacherName?: string }) {
   const router = useRouter();
   const preset = classes.find((c) => c.students.some((s) => s.id === defaultStudentId));
   const [classId, setClassId] = useState(preset?.id ?? classes[0]?.id ?? "");
@@ -30,6 +31,8 @@ export function ComposeMessage({ classes, defaultStudentId = "" }: { classes: Co
   const [kind, setKind] = useState<Kind>("message");
   const [toStudents, setToStudents] = useState(true);
   const [toGuardians, setToGuardians] = useState(false);
+  const [alsoEmail, setAlsoEmail] = useState(false);
+  const [templateId, setTemplateId] = useState("");
   const [subject, setSubject] = useState("");
   const [body, setBody] = useState("");
   const [busy, setBusy] = useState(false);
@@ -39,11 +42,26 @@ export function ComposeMessage({ classes, defaultStudentId = "" }: { classes: Co
   const klass = classes.find((c) => c.id === classId);
   const showCause = kind === "show-cause";
   const guardians = showCause || toGuardians;
+  const email = showCause || alsoEmail;
   const canSend = subject.trim().length >= 3 && body.trim().length >= 3 && Boolean(classId) && (toStudents || guardians);
 
   const pickClass = (id: string) => {
     setClassId(id);
     setStudentId("");
+  };
+
+  const applyTemplate = (id: string) => {
+    setTemplateId(id);
+    const template = MAIL_TEMPLATES.find((t) => t.id === id);
+    if (!template) return;
+    const student = klass?.students.find((s) => s.id === studentId);
+    const vars = {
+      name: student ? student.name.split(/\s+/)[0] : "Parent",
+      class: klass?.name ?? "the class",
+      teacher: teacherName,
+    };
+    setSubject(fillTemplate(template.subject, vars));
+    setBody(fillTemplate(template.body, vars));
   };
 
   const send = async () => {
@@ -54,7 +72,7 @@ export function ComposeMessage({ classes, defaultStudentId = "" }: { classes: Co
       const res = await fetch(API, {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ target: studentId ? { studentId } : { classId }, toStudents, toGuardians: guardians, kind, subject: subject.trim(), body: body.trim() }),
+        body: JSON.stringify({ target: studentId ? { studentId } : { classId }, toStudents, toGuardians: guardians, kind, email, subject: subject.trim(), body: body.trim() }),
       });
       const out = (await res.json().catch(() => ({}))) as SendOut;
       if (!res.ok) {
@@ -65,6 +83,7 @@ export function ComposeMessage({ classes, defaultStudentId = "" }: { classes: Co
       setSent(`Sent to ${parts.join(" and ")}${out.emails ? `; ${out.emails} email${out.emails === 1 ? "" : "s"} queued` : ""}.`);
       setSubject("");
       setBody("");
+      setTemplateId("");
       router.refresh();
     } catch {
       setError("Could not reach the server.");
@@ -104,6 +123,17 @@ export function ComposeMessage({ classes, defaultStudentId = "" }: { classes: Co
       </div>
 
       <div>
+        <label className="label" htmlFor="msg-template">Template</label>
+        <select id="msg-template" className="input" value={templateId} onChange={(e) => applyTemplate(e.target.value)}>
+          <option value="">Start from blank</option>
+          {MAIL_TEMPLATES.map((t) => (
+            <option key={t.id} value={t.id}>{t.name}</option>
+          ))}
+        </select>
+        <p className="help">Picking a template fills the subject and message; edit them before sending.</p>
+      </div>
+
+      <div>
         <p className="label">Type</p>
         <div className="flex flex-wrap gap-2">
           <button type="button" className={kind === "message" ? "btn-primary btn-sm" : "btn-outline btn-sm"} onClick={() => setKind("message")}>Message</button>
@@ -120,6 +150,9 @@ export function ComposeMessage({ classes, defaultStudentId = "" }: { classes: Co
         </label>
         <label className="inline-flex items-center gap-2">
           <input type="checkbox" checked={guardians} disabled={showCause} onChange={(e) => setToGuardians(e.target.checked)} /> Guardians
+        </label>
+        <label className="inline-flex items-center gap-2">
+          <input type="checkbox" checked={email} disabled={showCause || !guardians} onChange={(e) => setAlsoEmail(e.target.checked)} /> Also email guardians
         </label>
       </div>
 

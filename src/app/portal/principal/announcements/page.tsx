@@ -1,5 +1,5 @@
 import { AnnouncementsClient, type AnnouncementRow } from "@/components/leadership/announcements-client";
-import { canSeePrincipal, SeatDenied } from "@/components/leadership/seat-guard";
+import { canSeeBranchStaff, SeatDenied } from "@/components/leadership/seat-guard";
 import { PageHeader } from "@/components/ui/primitives";
 import { getViewer } from "@/lib/auth/viewer";
 import { branchName, type BranchId } from "@/lib/config/school";
@@ -10,7 +10,7 @@ const DEMO_BRANCH: BranchId = "gulberg";
 
 export default async function PrincipalAnnouncementsPage() {
   const viewer = await getViewer();
-  if (!canSeePrincipal(viewer)) return <SeatDenied home={viewer.home} />;
+  if (!canSeeBranchStaff(viewer)) return <SeatDenied home={viewer.home} />;
   const branchId = viewer.branchId ?? DEMO_BRANCH;
   const rows: AnnouncementRow[] = announcementsFor(branchId).map((a) => ({ ...a, authorName: personName(a.authorId) }));
   return (

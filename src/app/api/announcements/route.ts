@@ -1,7 +1,8 @@
 /**
  * Publish an announcement. The chairman may address every campus or one;
- * a principal only their own. Delivery is in-app to students, guardians and
- * teaching staff in scope, with a queued push per person; audited.
+ * a principal or section coordinator only their own. Delivery is in-app to
+ * students, guardians and teaching staff in scope, with a queued push per
+ * person; audited.
  */
 import { getViewer } from "@/lib/auth/viewer";
 import { school, type BranchId } from "@/lib/config/school";
@@ -12,14 +13,15 @@ import { todayISO } from "@/lib/utils";
 
 export async function POST(req: Request) {
   const viewer = await getViewer();
-  if (viewer.role !== "chairman" && viewer.role !== "principal") return Response.json({ error: "forbidden" }, { status: 403 });
+  const branchOnly = viewer.role === "principal" || viewer.role === "coordinator";
+  if (viewer.role !== "chairman" && !branchOnly) return Response.json({ error: "forbidden" }, { status: 403 });
   const body = (await req.json().catch(() => ({}))) as { title?: string; body?: string; scope?: string; audience?: { students?: boolean; guardians?: boolean; staff?: boolean }; email?: boolean };
   const title = (body.title ?? "").trim().slice(0, 140);
   const text = (body.body ?? "").trim().slice(0, 2000);
   if (title.length < 3 || text.length < 3) return Response.json({ error: "Add a title and a message." }, { status: 400 });
   const branchIds = school.branches.map((b) => b.id as string);
   const scope: "school" | BranchId = body.scope === "school" ? "school" : branchIds.includes(body.scope ?? "") ? (body.scope as BranchId) : (viewer.branchId ?? "school");
-  if (viewer.role === "principal" && scope !== viewer.branchId) return Response.json({ error: "You can only announce to your own campus." }, { status: 403 });
+  if (branchOnly && scope !== viewer.branchId) return Response.json({ error: "You can only announce to your own campus." }, { status: 403 });
 
   const a = addAnnouncement({ scope, authorId: viewer.personId, date: todayISO(), title, body: text });
   const audience = { students: body.audience?.students !== false, guardians: body.audience?.guardians !== false, staff: body.audience?.staff !== false };

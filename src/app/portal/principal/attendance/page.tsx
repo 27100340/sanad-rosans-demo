@@ -1,7 +1,7 @@
 import { CalendarCheck, ClipboardCheck, Percent, UserX } from "lucide-react";
 import { LESSON_STATUS } from "@/components/attend/lesson-list";
 import { ATTENDANCE_DANGER, attendanceClass } from "@/components/attend/roster-table";
-import { canSeePrincipal, SeatDenied } from "@/components/leadership/seat-guard";
+import { canSeeBranchStaff, SeatDenied } from "@/components/leadership/seat-guard";
 import { fmtDay } from "@/components/teach/helpers";
 import { Avatar, Chip, PageHeader, SectionTitle, Stat } from "@/components/ui/primitives";
 import { getViewer } from "@/lib/auth/viewer";
@@ -87,7 +87,7 @@ function ClassRegister({ name, lessons }: { name: string; lessons: Lesson[] }) {
 
 export default async function PrincipalAttendancePage() {
   const viewer = await getViewer();
-  if (!canSeePrincipal(viewer)) return <SeatDenied home={viewer.home} />;
+  if (!canSeeBranchStaff(viewer)) return <SeatDenied home={viewer.home} />;
   const branchId = viewer.branchId ?? DEMO_BRANCH;
   const today = todayISO();
 

@@ -1,5 +1,5 @@
 import { AlertTriangle, ClipboardList, LockKeyhole, Users } from "lucide-react";
-import { canSeePrincipal, SeatDenied } from "@/components/leadership/seat-guard";
+import { canSeeBranchStaff, SeatDenied } from "@/components/leadership/seat-guard";
 import { StudentsConsole } from "@/components/students/students-console";
 import { PageHeader, Stat } from "@/components/ui/primitives";
 import { getViewer } from "@/lib/auth/viewer";
@@ -11,7 +11,7 @@ const DEMO_BRANCH: BranchId = "gulberg";
 
 export default async function PrincipalStudentsPage() {
   const viewer = await getViewer();
-  if (!canSeePrincipal(viewer)) return <SeatDenied home={viewer.home} />;
+  if (!canSeeBranchStaff(viewer)) return <SeatDenied home={viewer.home} />;
   const branchId = viewer.branchId ?? DEMO_BRANCH;
   const classes = classesForBranch(branchId, true);
   const rows = consoleRows(branchId, classes.map((c) => c.id));

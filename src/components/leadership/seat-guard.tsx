@@ -10,6 +10,11 @@ export function canSeePrincipal(viewer: Persona): boolean {
   return viewer.role === "chairman" || viewer.role === "principal";
 }
 
+/** Day-to-day branch operations: the principal's own screens, shared with the section coordinator. */
+export function canSeeBranchStaff(viewer: Persona): boolean {
+  return canSeePrincipal(viewer) || viewer.role === "coordinator";
+}
+
 export function SeatDenied({ home }: { home: string }) {
   return (
     <EmptyState

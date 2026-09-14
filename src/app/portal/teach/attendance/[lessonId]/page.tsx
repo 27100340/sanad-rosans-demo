@@ -1,5 +1,6 @@
 import { LESSON_STATUS } from "@/components/attend/lesson-list";
 import { Register, type RegisterRow } from "@/components/attend/register";
+import { VoiceRegister } from "@/components/attend/voice-register";
 import { canSeePrincipal } from "@/components/leadership/seat-guard";
 import { Denied } from "@/components/teach/guard";
 import { fmtDay } from "@/components/teach/helpers";
@@ -38,6 +39,12 @@ export default async function RegisterPage({ params }: { params: Promise<{ lesso
           </>
         }
       />
+      {owns && lesson.status === "open" ? (
+        <div className="space-y-2">
+          <VoiceRegister lessonId={lesson.id} roster={rows.map((r) => ({ studentId: r.studentId, name: r.name }))} />
+          <p className="text-xs text-ink-3">Speech recognition runs in your browser on this device; nothing is uploaded.</p>
+        </div>
+      ) : null}
       <Register lessonId={lesson.id} status={lesson.status} rows={rows} canEdit={owns} />
     </>
   );

@@ -46,6 +46,15 @@ export function navFor(p: Persona): NavItem[] {
         { href: "/portal/principal/audit", label: "Audit log", icon: "rules" },
         { href: "/portal/principal/access", label: "Access locks", icon: "rules" },
       ];
+    case "coordinator":
+      return [
+        { href: "/portal/coordinator", label: "Desk", icon: "home" },
+        { href: "/portal/principal/attendance", label: "Daily attendance", icon: "calendar" },
+        { href: "/portal/principal/students", label: "Students", icon: "users" },
+        { href: "/portal/principal/timetable", label: "Timetable", icon: "calendar" },
+        { href: "/portal/principal/announcements", label: "Announcements", icon: "megaphone" },
+        { href: "/portal/principal/inbox", label: "Parent inbox", icon: "inbox" },
+      ];
     case "teacher": {
       const owned = spacesForTeacher(p.personId)
         .slice(0, PHONE_BAR_SLOTS - 1)
@@ -57,6 +66,8 @@ export function navFor(p: Persona): NavItem[] {
         { href: "/portal/teach/messages", label: "Messages", icon: "inbox", badge: inboxBadge(p) },
         { href: "/portal/teach/timetable", label: "Timetable", icon: "calendar" },
         { href: "/portal/teach/library", label: "Library", icon: "hifz" },
+        { href: "/portal/teach/proctoring", label: "Proctoring", icon: "rules" },
+        { href: "/portal/teach/analytics", label: "Analytics", icon: "insight" },
         ...owned,
       ];
     }

@@ -1,5 +1,5 @@
 import { shortName } from "@/components/leadership/format";
-import { canSeePrincipal, SeatDenied } from "@/components/leadership/seat-guard";
+import { canSeeBranchStaff, SeatDenied } from "@/components/leadership/seat-guard";
 import { TimetableGrid, type ClassOption, type TimetableCell } from "@/components/principal/timetable-grid";
 import { PageHeader } from "@/components/ui/primitives";
 import { getViewer } from "@/lib/auth/viewer";
@@ -12,7 +12,7 @@ const AVAILABLE_CLASS = "gulberg-g8b";
 
 export default async function TimetablePage() {
   const viewer = await getViewer();
-  if (!canSeePrincipal(viewer)) return <SeatDenied home={viewer.home} />;
+  if (!canSeeBranchStaff(viewer)) return <SeatDenied home={viewer.home} />;
   const branchId = viewer.branchId ?? DEMO_BRANCH;
   const classes: ClassOption[] = CLASSES.filter((c) => c.branchId === branchId).map((c) => ({ id: c.id, name: c.name, available: c.id === AVAILABLE_CLASS }));
   const cells: TimetableCell[] = TIMETABLE_G8B.map((e) => ({
