@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Avatar, Chip, EmptyState, Trend, type Tone } from "@/components/ui/primitives";
 import { ATTENDANCE_LABEL, type AttendanceStatus } from "@/lib/domain/attendance";
 import type { RiskLevel } from "@/lib/domain/types";
@@ -71,10 +72,10 @@ export function RosterTable({ rows }: { rows: RosterRow[] }) {
           {rows.map((r) => (
             <tr key={r.studentId}>
               <td>
-                <span className="inline-flex items-center gap-2.5">
+                <Link href={`/portal/teach/students/${r.studentId}`} className="inline-flex items-center gap-2.5 hover:text-accent">
                   <Avatar name={r.name} size="sm" tone={r.risk ? LEVEL_TONE[r.risk] : "accent"} />
                   <span className="whitespace-nowrap font-medium">{r.name}</span>
-                </span>
+                </Link>
               </td>
               <td className={cn("num text-right font-semibold", attendanceClass(r.attendance))}>{r.attendance}%</td>
               <td className="text-right">

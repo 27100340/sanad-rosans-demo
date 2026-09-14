@@ -22,10 +22,11 @@ interface SendOut {
 const API = "/api/messages";
 
 /** Teacher notice to a class or one student. A show-cause notice always reaches guardians and queues an email. */
-export function ComposeMessage({ classes }: { classes: ComposeClass[] }) {
+export function ComposeMessage({ classes, defaultStudentId = "" }: { classes: ComposeClass[]; defaultStudentId?: string }) {
   const router = useRouter();
-  const [classId, setClassId] = useState(classes[0]?.id ?? "");
-  const [studentId, setStudentId] = useState("");
+  const preset = classes.find((c) => c.students.some((s) => s.id === defaultStudentId));
+  const [classId, setClassId] = useState(preset?.id ?? classes[0]?.id ?? "");
+  const [studentId, setStudentId] = useState(preset ? defaultStudentId : "");
   const [kind, setKind] = useState<Kind>("message");
   const [toStudents, setToStudents] = useState(true);
   const [toGuardians, setToGuardians] = useState(false);

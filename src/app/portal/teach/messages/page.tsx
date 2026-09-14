@@ -20,9 +20,10 @@ function sentLine(e: AuditEntry): string {
   return `${who} · ${counts.join(", ")}`;
 }
 
-export default async function TeacherMessagesPage() {
+export default async function TeacherMessagesPage({ searchParams }: { searchParams: Promise<{ student?: string }> }) {
   const viewer = await getViewer();
   if (viewer.role !== "teacher") return <Denied />;
+  const { student: defaultStudentId } = await searchParams;
 
   const classIds = [...new Set(spacesForTeacher(viewer.personId).map((s) => s.classId))];
   const classes: ComposeClass[] = classIds.map((id) => ({ id, name: classById.get(id)?.name ?? id, students: studentsInClass(id).map((s) => ({ id: s.id, name: s.name })) }));
@@ -44,7 +45,7 @@ export default async function TeacherMessagesPage() {
         <div className="space-y-6 lg:col-span-3">
           <section>
             <SectionTitle title="Compose" hint="Students see it in their Inbox; guardians in the family portal." />
-            <ComposeMessage classes={classes} />
+            <ComposeMessage classes={classes} defaultStudentId={defaultStudentId ?? ""} />
           </section>
           <section>
             <SectionTitle title="Sent" hint={`Your last ${SENT_LIMIT} sends, from the audit log.`} />

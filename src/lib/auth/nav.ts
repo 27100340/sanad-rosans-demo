@@ -32,6 +32,7 @@ export function navFor(p: Persona): NavItem[] {
       return [
         { href: "/portal/principal", label: "Branch", icon: "home" },
         { href: "/portal/principal/at-risk", label: "At-risk students", icon: "alert" },
+        { href: "/portal/principal/students", label: "Students", icon: "users" },
         { href: "/portal/principal/teachers", label: "Teachers", icon: "users" },
         { href: "/portal/principal/inbox", label: "Parent inbox", icon: "inbox" },
         { href: "/portal/principal/timetable", label: "Timetable", icon: "calendar" },
@@ -40,6 +41,7 @@ export function navFor(p: Persona): NavItem[] {
         { href: "/portal/principal/attendance", label: "Attendance", icon: "calendar" },
         { href: "/portal/principal/rankings", label: "Rankings", icon: "progress" },
         { href: "/portal/principal/audit", label: "Audit log", icon: "rules" },
+        { href: "/portal/principal/access", label: "Access locks", icon: "rules" },
       ];
     case "teacher": {
       const owned = spacesForTeacher(p.personId)
@@ -47,6 +49,7 @@ export function navFor(p: Persona): NavItem[] {
         .map((s): NavItem => ({ href: `/portal/teach/${s.id}`, label: `${s.subject} · ${classById.get(s.classId)?.name ?? s.classId}`, icon: "tasks" }));
       return [
         { href: "/portal/teach", label: "My spaces", icon: "book" },
+        { href: "/portal/teach/students", label: "Students", icon: "users" },
         { href: "/portal/teach/attendance", label: "Attendance", icon: "calendar" },
         { href: "/portal/teach/messages", label: "Messages", icon: "inbox", badge: inboxBadge(p) },
         { href: "/portal/teach/timetable", label: "Timetable", icon: "calendar" },
@@ -74,6 +77,9 @@ export function navFor(p: Persona): NavItem[] {
         { href: "/portal/learn/progress", label: "Progress", icon: "progress" },
         { href: "/portal/learn/tasks", label: "Tasks", icon: "tasks" },
         { href: "/portal/learn/inbox", label: "Inbox", icon: "inbox", badge: inboxBadge(p) },
+        { href: "/portal/learn/ranking", label: "My ranking", icon: "insight" },
+        { href: "/portal/learn/leaderboard", label: "Leaderboard", icon: "drill" },
+        { href: "/portal/learn/timetable", label: "Timetable", icon: "calendar" },
       ];
     case "parent":
       return [

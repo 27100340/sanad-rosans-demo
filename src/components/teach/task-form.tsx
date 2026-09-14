@@ -14,9 +14,9 @@ const API = "/api/tasks";
 const DEFAULT_POINTS: Record<TaskKind, number> = { task: 10, challenge: 25 };
 
 /** Hands a task or challenge to the whole class or one student; each student is notified and the send is audited. */
-export function TaskForm({ spaceId, classId, students, defaultDue }: { spaceId: string; classId: string; students: { id: string; name: string }[]; defaultDue: string }) {
+export function TaskForm({ spaceId, classId, students, defaultDue, defaultStudentId = "" }: { spaceId: string; classId: string; students: { id: string; name: string }[]; defaultDue: string; defaultStudentId?: string }) {
   const router = useRouter();
-  const [studentId, setStudentId] = useState("");
+  const [studentId, setStudentId] = useState(defaultStudentId);
   const [kind, setKind] = useState<TaskKind>("task");
   const [activityType, setActivityType] = useState<TaskActivityType>("study_material");
   const [title, setTitle] = useState("");
@@ -86,7 +86,7 @@ export function TaskForm({ spaceId, classId, students, defaultDue }: { spaceId: 
         <div>
           <label className="label" htmlFor="task-student">For</label>
           <select id="task-student" className="input" value={studentId} onChange={(e) => setStudentId(e.target.value)}>
-            <option value="">Whole class ({students.length})</option>
+            {students.length > 1 ? <option value="">Whole class ({students.length})</option> : null}
             {students.map((s) => (
               <option key={s.id} value={s.id}>{s.name}</option>
             ))}

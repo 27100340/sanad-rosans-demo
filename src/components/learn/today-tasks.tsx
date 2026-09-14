@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Chip } from "@/components/ui/primitives";
 import type { Tone } from "@/components/ui/primitives";
 import type { Student } from "@/lib/domain/types";
@@ -40,7 +41,7 @@ export function TodayTasks({ tasks }: { tasks: TaskRow[] }) {
         return (
           <div key={t.id} className="flex items-center gap-3 p-4">
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-medium text-ink">{t.title}</p>
+              <Link href={`/portal/learn/assignments/${t.id}`} className="block truncate text-sm font-medium text-ink hover:text-accent">{t.title}</Link>
               <p className="mt-0.5 text-xs text-ink-3">
                 {t.subject} · due {fmtDay(t.dueDate)}
               </p>
