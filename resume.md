@@ -27,8 +27,8 @@ a working preview link; a defensible Hifz AI cost estimate.
 - [x] Teaching: early years, primary, lower secondary and O Level learning pathways.
 - [x] Assistant: shared UI, authorized navigation and explicit tool execution.
 - [x] Hifz: distinguish unavailable audio analysis from simulated practice; document AI costs.
-- [ ] Typecheck, tests, build, desktop/mobile workflow verification.
-- [ ] Push reviewable branch and publish verified demo URL.
+- [x] Typecheck, tests, build, desktop/mobile workflow verification.
+- [x] Push reviewable branch and publish verified demo URL.
 
 ## Handover rules
 
@@ -97,3 +97,46 @@ and teacher-validated recitation accuracy. Demo personas are not a security boun
   implemented workflows, seeded content and school-dependent production requirements.
 - Git author configured from the verified connected GitHub account (`Syedjabran`), not
   the prior developer's identity.
+
+### Final verification and partner pickup
+
+- Implementation commit: `3ef172c`, pushed and verified on remote branch
+  `feat/sanad-complete-school-demo`. Partner main remains unchanged.
+- Preview: https://sanad.169-58-80-16.sslip.io — HTTPS 200; Chromium loaded
+  “Sanad · Rosans Islamic School” with no page errors on 2026-09-14.
+- Fresh verification: `npm run typecheck` passed; `npm test` passed 35/35;
+  `node scripts/check-ai-provider-policy.mjs` passed.
+- All 6 Playwright workflows passed (desktop and 390px mobile). Covers finance approval
+  separation/repeat-payment rejection/export, HR acknowledgement, lesson publication and
+  learner observations, assistant confirmation/role restrictions, and truthful Hifz failure.
+- Browser workflow mutations ran against an isolated production-build process on port 3215,
+  not the public demo service. Build had passed in the preceding implementation milestone;
+  this final pass changed documentation only, so no rebuild was necessary.
+- Google pricing and audio-tokenisation references rechecked; documented cost assumptions
+  still match. Actual transcription quality and usage costs remain unmeasured.
+
+Partner pickup:
+
+```sh
+git fetch origin
+git switch --track origin/feat/sanad-complete-school-demo
+npm ci
+npm run typecheck
+npm test
+npm run build
+npm run dev
+```
+
+If the branch already exists locally, switch to it and use `git pull --ff-only`.
+For browser checks, start a separate fresh `next start` instance on port 3215, then run
+`SANAD_TEST_URL=http://127.0.0.1:3215 npm run test:browser`. Tests mutate demo records;
+restart that isolated instance before rerunning. Do not test writes against a shared preview.
+
+Next work, in order:
+1. Partner review of this branch and school sign-off on module coverage/curricula.
+2. Durable database, authentication and branch-scoped access enforcement before real records.
+3. Transactional finance/audit trails and agreed payment/payroll integrations.
+4. Teacher-labelled Hifz recording pilot and measured provider usage with protected credentials.
+5. Production hosting/domain, backups, monitoring and school-approved data handling.
+
+This milestone completes the extended reviewable demo, not a production school deployment.
