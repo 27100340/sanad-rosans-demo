@@ -1,0 +1,3552 @@
+[
+{
+"id": "pp-4024-s24_11-q1",
+"code": "4024",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "4024/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 1,
+"type": "structured",
+"marks": 2,
+"img": [
+"/papers/4024/s24_11/q1.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/s24_11/ms-q1.png"
+],
+"msRows": [
+"1(a) A and T 1",
+"1(b) N 1"
+],
+"ref": "4024/11/S/2024 Q1",
+"insertImg": []
+},
+{
+"id": "pp-4024-s24_11-q2",
+"code": "4024",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "4024/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 2,
+"type": "structured",
+"marks": 2,
+"img": [
+"/papers/4024/s24_11/q2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/s24_11/ms-q2.png"
+],
+"msRows": [
+"2 65 2 M1 for [0].065"
+],
+"ref": "4024/11/S/2024 Q2",
+"insertImg": []
+},
+{
+"id": "pp-4024-s24_11-q3",
+"code": "4024",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "4024/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 3,
+"type": "structured",
+"marks": 3,
+"img": [
+"/papers/4024/s24_11/q3.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/s24_11/ms-q3.png"
+],
+"msRows": [
+"3(a) [0].006 oe 1",
+"3(b) 6 1",
+"3(c) 32 1"
+],
+"ref": "4024/11/S/2024 Q3",
+"insertImg": []
+},
+{
+"id": "pp-4024-s24_11-q4",
+"code": "4024",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "4024/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 4,
+"type": "structured",
+"marks": 3,
+"img": [
+"/papers/4024/s24_11/q4.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/s24_11/ms-q4.png"
+],
+"msRows": [
+"4(a) Acceptable triangle with intersecting arcs 2 B1 for acceptable vertex clearly indicated",
+"4(b) Their angle BAC 1 FT their angle BAC ± 2º"
+],
+"ref": "4024/11/S/2024 Q4",
+"insertImg": []
+},
+{
+"id": "pp-4024-s24_11-q5",
+"code": "4024",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "4024/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 5,
+"type": "structured",
+"marks": 2,
+"img": [
+"/papers/4024/s24_11/q5.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/s24_11/ms-q5.png"
+],
+"msRows": [
+"5(a) 8 inserted in the table 1",
+"5(b) 9 1"
+],
+"ref": "4024/11/S/2024 Q5",
+"insertImg": []
+},
+{
+"id": "pp-4024-s24_11-q6",
+"code": "4024",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "4024/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 6,
+"type": "structured",
+"marks": 3,
+"img": [
+"/papers/4024/s24_11/q6.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/s24_11/ms-q6.png"
+],
+"msRows": [
+"6(a) 5r + 10s or 5(r + 2s) Final answer 2 B1 for 5r + ks or 10s + kr in answer",
+"6(b) 7x + 5y Final answer 1"
+],
+"ref": "4024/11/S/2024 Q6",
+"insertImg": []
+},
+{
+"id": "pp-4024-s24_11-q7",
+"code": "4024",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "4024/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 7,
+"type": "structured",
+"marks": 3,
+"img": [
+"/papers/4024/s24_11/q7.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/s24_11/ms-q7.png"
+],
+"msRows": [
+"7 162 3 B2 for [exterior] 72 or [interior] 108 seen"
+],
+"ref": "4024/11/S/2024 Q7",
+"insertImg": []
+},
+{
+"id": "pp-4024-s24_11-q8",
+"code": "4024",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "4024/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 8,
+"type": "structured",
+"marks": 2,
+"img": [
+"/papers/4024/s24_11/q8.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/s24_11/ms-q8.png"
+],
+"msRows": [
+"8 4120 2"
+],
+"ref": "4024/11/S/2024 Q8",
+"insertImg": []
+},
+{
+"id": "pp-4024-s24_11-q9",
+"code": "4024",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "4024/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 9,
+"type": "structured",
+"marks": 60,
+"img": [
+"/papers/4024/s24_11/q9.png",
+"/papers/4024/s24_11/q9-2.png",
+"/papers/4024/s24_11/q9-3.png",
+"/papers/4024/s24_11/q9-4.png",
+"/papers/4024/s24_11/q9-5.png",
+"/papers/4024/s24_11/q9-6.png",
+"/papers/4024/s24_11/q9-7.png",
+"/papers/4024/s24_11/q9-8.png",
+"/papers/4024/s24_11/q9-9.png",
+"/papers/4024/s24_11/q9-10.png",
+"/papers/4024/s24_11/q9-11.png",
+"/papers/4024/s24_11/q9-12.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/s24_11/ms-q9.png"
+],
+"msRows": [
+"9(a) 12 2 B1 for or 30 mins soi",
+"9(b) 2.5 oe 1"
+],
+"ref": "4024/11/S/2024 Q9",
+"insertImg": []
+},
+{
+"id": "pp-4024-s24_21-q1",
+"code": "4024",
+"paper": "21",
+"paperKey": "s24_21",
+"paperLabel": "4024/21 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 1,
+"type": "structured",
+"marks": 10,
+"img": [
+"/papers/4024/s24_21/q1.png",
+"/papers/4024/s24_21/q1-2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/s24_21/ms-q1.png"
+],
+"msRows": [
+"1(a)(i) 17 500 1",
+"1(a)(ii) 65[.00] nfww 2  100  4 ",
+"1(b) 94.1 or 94.13… 1",
+"1(c) 17 252 3 M1 for 16440×41 oe",
+"1(d)(i) 28 130 000 or 2.813 × 107 oe 1 ISW attempts to convert to or from standard",
+"1(d)(ii) 107 250 or 1.0725 × oe 2 ISW attempts to convert to or from standard"
+],
+"ref": "4024/21/S/2024 Q1",
+"insertImg": []
+},
+{
+"id": "pp-4024-s24_21-q2",
+"code": "4024",
+"paper": "21",
+"paperKey": "s24_21",
+"paperLabel": "4024/21 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 2,
+"type": "structured",
+"marks": 9,
+"img": [
+"/papers/4024/s24_21/q2.png",
+"/papers/4024/s24_21/q2-2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/s24_21/ms-q2.png"
+],
+"msRows": [
+"2(a)(i) Complete scatter diagram 2 B1 for 3 or 4 correct plots",
+"2(a)(ii) Negative 1",
+"2(a)(iii) Ruled line of best fit 1",
+"2(a)(iv) Reading their ruled line of best fit 1 FT from a ruled line with a negative gradient",
+"2(b)(i) 7.88 or 7.884… 3 B1 for correct midpoints soi",
+"2(b)(ii) 46 1"
+],
+"ref": "4024/21/S/2024 Q2",
+"insertImg": []
+},
+{
+"id": "pp-4024-s24_21-q3",
+"code": "4024",
+"paper": "21",
+"paperKey": "s24_21",
+"paperLabel": "4024/21 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 3,
+"type": "structured",
+"marks": 5,
+"img": [
+"/papers/4024/s24_21/q3.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/s24_21/ms-q3.png",
+"/papers/4024/s24_21/ms-q3-2.png"
+],
+"msRows": [
+"3(a) 104 2 B1 for angle QRP = 38 or angle QPR = 38",
+"3(b) angle AEB = angle CED [vertically] 3 B2 for two correct pairs of angles with correct"
+],
+"ref": "4024/21/S/2024 Q3",
+"insertImg": []
+},
+{
+"id": "pp-4024-s24_21-q4",
+"code": "4024",
+"paper": "21",
+"paperKey": "s24_21",
+"paperLabel": "4024/21 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 4,
+"type": "structured",
+"marks": 5,
+"img": [
+"/papers/4024/s24_21/q4.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/s24_21/ms-q4.png"
+],
+"msRows": [
+"4(a) 25 1",
+"4(b)(i) 2 B1 for correct answer seen and spoilt or",
+"4(b)(ii) 2 B1 for correct answer seen and spoilt"
+],
+"ref": "4024/21/S/2024 Q4",
+"insertImg": []
+},
+{
+"id": "pp-4024-s24_21-q5",
+"code": "4024",
+"paper": "21",
+"paperKey": "s24_21",
+"paperLabel": "4024/21 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 5,
+"type": "structured",
+"marks": 7,
+"img": [
+"/papers/4024/s24_21/q5.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/s24_21/ms-q5.png"
+],
+"msRows": [
+"5(a) 450 2 M1 for 0.5x + 125 = 350 or better",
+"5(b) 220 nfww 2 B1 for 3.5 used",
+"5(c) 477 3 B1 for 10k : 35k : 8k or [S =] 90"
+],
+"ref": "4024/21/S/2024 Q5",
+"insertImg": []
+},
+{
+"id": "pp-4024-s24_21-q6",
+"code": "4024",
+"paper": "21",
+"paperKey": "s24_21",
+"paperLabel": "4024/21 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 6,
+"type": "structured",
+"marks": 8,
+"img": [
+"/papers/4024/s24_21/q6.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/s24_21/ms-q6.png",
+"/papers/4024/s24_21/ms-q6-2.png"
+],
+"msRows": [
+"6(a) Triangle with vertices 2  1  k ",
+"6(b) Enlargement 3 B1 for each",
+"6(c) Triangle with vertices 3"
+],
+"ref": "4024/21/S/2024 Q6",
+"insertImg": []
+},
+{
+"id": "pp-4024-s24_21-q7",
+"code": "4024",
+"paper": "21",
+"paperKey": "s24_21",
+"paperLabel": "4024/21 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 7,
+"type": "structured",
+"marks": 10,
+"img": [
+"/papers/4024/s24_21/q7.png",
+"/papers/4024/s24_21/q7-2.png",
+"/papers/4024/s24_21/q7-3.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/s24_21/ms-q7.png"
+],
+"msRows": [
+"7(a) 8 2 M1 for 5 × 12 × h = 480 oe",
+"7(b)(i) 58[.0] or 57.99… nfww 3 8",
+"7(b)(ii) 7.17 or 7.171 to 7.172 5 1"
+],
+"ref": "4024/21/S/2024 Q7",
+"insertImg": []
+},
+{
+"id": "pp-4024-s24_21-q8",
+"code": "4024",
+"paper": "21",
+"paperKey": "s24_21",
+"paperLabel": "4024/21 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 8,
+"type": "structured",
+"marks": 11,
+"img": [
+"/papers/4024/s24_21/q8.png",
+"/papers/4024/s24_21/q8-2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/s24_21/ms-q8.png",
+"/papers/4024/s24_21/ms-q8-2.png"
+],
+"msRows": [
+"8(a)(i) 6.4 oe cao 1",
+"8(a)(ii) Correct smooth curve 3 B2FT for 5 or 6 points correctly plotted",
+"8(a)(iii)(a) 2x+3 = 2x×23 soi M1 May be done in stages by division by 2 three",
+"8(a)(iii)(b) y = 2.5 drawn M1",
+"8(b) a = 7 3 B1 for a = 7"
+],
+"ref": "4024/21/S/2024 Q8",
+"insertImg": []
+},
+{
+"id": "pp-4024-s24_21-q9",
+"code": "4024",
+"paper": "21",
+"paperKey": "s24_21",
+"paperLabel": "4024/21 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 9,
+"type": "structured",
+"marks": 35,
+"img": [
+"/papers/4024/s24_21/q9.png",
+"/papers/4024/s24_21/q9-2.png",
+"/papers/4024/s24_21/q9-3.png",
+"/papers/4024/s24_21/q9-4.png",
+"/papers/4024/s24_21/q9-5.png",
+"/papers/4024/s24_21/q9-6.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/s24_21/ms-q9.png"
+],
+"msRows": [
+"9(a) 287 1",
+"9(b) 211 or 210.5 to 210.6 4 B1 for angle CAB = 85 soi",
+"9(c) 40 5 If hours and minutes used, apply first scheme"
+],
+"ref": "4024/21/S/2024 Q9",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_1-q1",
+"code": "4024",
+"paper": "1",
+"paperKey": "sp25_1",
+"paperLabel": "4024/1 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 1,
+"type": "structured",
+"marks": 1,
+"img": [
+"/papers/4024/sp25_1/q1.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_1/ms-q1.png"
+],
+"msRows": [
+"1 2.705 cao 1"
+],
+"ref": "4024/1/SP2025 Q1",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_1-q2",
+"code": "4024",
+"paper": "1",
+"paperKey": "sp25_1",
+"paperLabel": "4024/1 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 2,
+"type": "structured",
+"marks": 1,
+"img": [
+"/papers/4024/sp25_1/q2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_1/ms-q2.png",
+"/papers/4024/sp25_1/ms-q2-2.png"
+],
+"msRows": [
+"2 13y final answer 1",
+"2 2 2 4"
+],
+"ref": "4024/1/SP2025 Q2",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_1-q3",
+"code": "4024",
+"paper": "1",
+"paperKey": "sp25_1",
+"paperLabel": "4024/1 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 3,
+"type": "structured",
+"marks": 3,
+"img": [
+"/papers/4024/sp25_1/q3.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_1/ms-q3.png",
+"/papers/4024/sp25_1/ms-q3-2.png",
+"/papers/4024/sp25_1/ms-q3-3.png",
+"/papers/4024/sp25_1/ms-q3-4.png"
+],
+"msRows": [
+"3(a) 9 1",
+"3(b) 25 1",
+"3(c) 8 1",
+"3 correct reasons associated with correct angles: B2 B1 for opposite angles of cyclic quadrilateral are supplementary",
+"3 1 1 1",
+"3 5 6 3 5 2"
+],
+"ref": "4024/1/SP2025 Q3",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_1-q4",
+"code": "4024",
+"paper": "1",
+"paperKey": "sp25_1",
+"paperLabel": "4024/1 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 4,
+"type": "structured",
+"marks": 4,
+"img": [
+"/papers/4024/sp25_1/q4.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_1/ms-q4.png"
+],
+"msRows": [
+"4(a) C positioned correctly with intersecting arcs seen 3 allow ±2 mm tolerance",
+"4(b) 123[°]–127[°] 1 FT their angle BAC ± 2°"
+],
+"ref": "4024/1/SP2025 Q4",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_1-q5",
+"code": "4024",
+"paper": "1",
+"paperKey": "sp25_1",
+"paperLabel": "4024/1 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 5,
+"type": "structured",
+"marks": 1,
+"img": [
+"/papers/4024/sp25_1/q5.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_1/ms-q5.png",
+"/papers/4024/sp25_1/ms-q5-2.png"
+],
+"msRows": [
+"5 1 1",
+"5 7 − ( 5 x + 2 )"
+],
+"ref": "4024/1/SP2025 Q5",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_1-q6",
+"code": "4024",
+"paper": "1",
+"paperKey": "sp25_1",
+"paperLabel": "4024/1 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 6,
+"type": "structured",
+"marks": 4,
+"img": [
+"/papers/4024/sp25_1/q6.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_1/ms-q6.png"
+],
+"msRows": [
+"6(a) 1",
+"6(b) 19 2 6"
+],
+"ref": "4024/1/SP2025 Q6",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_1-q7",
+"code": "4024",
+"paper": "1",
+"paperKey": "sp25_1",
+"paperLabel": "4024/1 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 7,
+"type": "structured",
+"marks": 2,
+"img": [
+"/papers/4024/sp25_1/q7.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_1/ms-q7.png"
+],
+"msRows": [
+"7 3a(4b – a) final answer B1 for answer 3(4ab – or a(12b – 3a)"
+],
+"ref": "4024/1/SP2025 Q7",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_1-q8",
+"code": "4024",
+"paper": "1",
+"paperKey": "sp25_1",
+"paperLabel": "4024/1 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 8,
+"type": "structured",
+"marks": 3,
+"img": [
+"/papers/4024/sp25_1/q8.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_1/ms-q8.png",
+"/papers/4024/sp25_1/ms-q8-2.png",
+"/papers/4024/sp25_1/ms-q8-3.png"
+],
+"msRows": [
+"8(a)(i) 70",
+"8(a)(ii) Large number of spins used oe 1",
+"8(b) 175 1 70",
+"8 3",
+"8 3 final answer B1 for 5 3 or 3 3"
+],
+"ref": "4024/1/SP2025 Q8",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_1-q9",
+"code": "4024",
+"paper": "1",
+"paperKey": "sp25_1",
+"paperLabel": "4024/1 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 9,
+"type": "structured",
+"marks": 7,
+"img": [
+"/papers/4024/sp25_1/q9.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_1/ms-q9.png",
+"/papers/4024/sp25_1/ms-q9-2.png"
+],
+"msRows": [
+"9",
+"9(a) 2 −",
+"9(b) 7 2 B1 for one correct",
+"9(c) (3, –1) 3 M1 for correct method to eliminate one variable"
+],
+"ref": "4024/1/SP2025 Q9",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_1-q10",
+"code": "4024",
+"paper": "1",
+"paperKey": "sp25_1",
+"paperLabel": "4024/1 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 10,
+"type": "structured",
+"marks": 12,
+"img": [
+"/papers/4024/sp25_1/q10.png",
+"/papers/4024/sp25_1/q10-2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_1/ms-q10.png"
+],
+"msRows": [
+"10(a) 160 2 1",
+"10(b) 4.8 2 FT 0.03 × their 160 correctly evaluated",
+"10(c) 1340 6 B3 for BC = 10",
+"10(d) 5360 2 FT 4 × their 1340 correctly evaluated"
+],
+"ref": "4024/1/SP2025 Q10",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_1-q11",
+"code": "4024",
+"paper": "1",
+"paperKey": "sp25_1",
+"paperLabel": "4024/1 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 11,
+"type": "structured",
+"marks": 14,
+"img": [
+"/papers/4024/sp25_1/q11.png",
+"/papers/4024/sp25_1/q11-2.png",
+"/papers/4024/sp25_1/q11-3.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_1/ms-q11.png",
+"/papers/4024/sp25_1/ms-q11-2.png"
+],
+"msRows": [
+"11(a) Pattern 4 correct 1",
+"11(b) 13 16 2 B1 for two values correct",
+"11(c)(i) 3n + 1 oe final answer 2 B1 for 3n + k oe seen",
+"11(c)(ii) oe final answer 2 B1 for quadratic expression in n",
+"11(d) 45 3 M1 for substitution of 10 into their and 3n + 1",
+"11(e) 800 4 B2 for k = 20"
+],
+"ref": "4024/1/SP2025 Q11",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_1-q12",
+"code": "4024",
+"paper": "1",
+"paperKey": "sp25_1",
+"paperLabel": "4024/1 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 12,
+"type": "structured",
+"marks": 2,
+"img": [
+"/papers/4024/sp25_1/q12.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_1/ms-q12.png"
+],
+"msRows": [
+"12 J N for one component correct"
+],
+"ref": "4024/1/SP2025 Q12",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_1-q13",
+"code": "4024",
+"paper": "1",
+"paperKey": "sp25_1",
+"paperLabel": "4024/1 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 13,
+"type": "structured",
+"marks": 3,
+"img": [
+"/papers/4024/sp25_1/q13.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_1/ms-q13.png"
+],
+"msRows": [
+"13 3"
+],
+"ref": "4024/1/SP2025 Q13",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_1-q14",
+"code": "4024",
+"paper": "1",
+"paperKey": "sp25_1",
+"paperLabel": "4024/1 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 14,
+"type": "structured",
+"marks": 5,
+"img": [
+"/papers/4024/sp25_1/q14.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_1/ms-q14.png"
+],
+"msRows": [
+"14 angle CBD = 18° B3 B1 for ∠BCD = 112°"
+],
+"ref": "4024/1/SP2025 Q14",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_1-q15",
+"code": "4024",
+"paper": "1",
+"paperKey": "sp25_1",
+"paperLabel": "4024/1 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 15,
+"type": "structured",
+"marks": 2,
+"img": [
+"/papers/4024/sp25_1/q15.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_1/ms-q15.png"
+],
+"msRows": [
+"15 2 B1 for 5–3 or better"
+],
+"ref": "4024/1/SP2025 Q15",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_1-q16",
+"code": "4024",
+"paper": "1",
+"paperKey": "sp25_1",
+"paperLabel": "4024/1 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 16,
+"type": "structured",
+"marks": 4,
+"img": [
+"/papers/4024/sp25_1/q16.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_1/ms-q16.png"
+],
+"msRows": [
+"16(a) 3 B2 for Venn diagram with 1 or 2 errors, omissions or repeats or",
+"16(b) 0 1 FT their Venn diagram"
+],
+"ref": "4024/1/SP2025 Q16",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_1-q17",
+"code": "4024",
+"paper": "1",
+"paperKey": "sp25_1",
+"paperLabel": "4024/1 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 17,
+"type": "structured",
+"marks": 4,
+"img": [
+"/papers/4024/sp25_1/q17.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_1/ms-q17.png"
+],
+"msRows": [
+"17(a) Correct histogram 3 B2 for 3 correct bars drawn",
+"17(b) The frequency densities are the same but the group widths are different 1 Accept equivalent explanations"
+],
+"ref": "4024/1/SP2025 Q17",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_1-q18",
+"code": "4024",
+"paper": "1",
+"paperKey": "sp25_1",
+"paperLabel": "4024/1 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 18,
+"type": "structured",
+"marks": 3,
+"img": [
+"/papers/4024/sp25_1/q18.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_1/ms-q18.png"
+],
+"msRows": [
+"18(a) (0, 8) 2 M1 for 3 × 20 + 5 oe",
+"18(b) y = 5 1"
+],
+"ref": "4024/1/SP2025 Q18",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_1-q19",
+"code": "4024",
+"paper": "1",
+"paperKey": "sp25_1",
+"paperLabel": "4024/1 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 19,
+"type": "structured",
+"marks": 7,
+"img": [
+"/papers/4024/sp25_1/q19.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_1/ms-q19.png"
+],
+"msRows": [
+"19(a) 17 1",
+"19(b) 25x2 + 20x – 1 final answer 3 M1 for (5x + 2)2 – 5",
+"19(c) 3"
+],
+"ref": "4024/1/SP2025 Q19",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_1-q20",
+"code": "4024",
+"paper": "1",
+"paperKey": "sp25_1",
+"paperLabel": "4024/1 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 20,
+"type": "structured",
+"marks": 4,
+"img": [
+"/papers/4024/sp25_1/q20.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_1/ms-q20.png"
+],
+"msRows": [
+"20(a) 2g – 2f or 2(g – f) final answer 1",
+"20(b) 3"
+],
+"ref": "4024/1/SP2025 Q20",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_1-q21",
+"code": "4024",
+"paper": "1",
+"paperKey": "sp25_1",
+"paperLabel": "4024/1 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 21,
+"type": "structured",
+"marks": 3,
+"img": [
+"/papers/4024/sp25_1/q21.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_1/ms-q21.png",
+"/papers/4024/sp25_1/ms-q21-2.png"
+],
+"msRows": [
+"21 3 7",
+"21 − − 3 B1 for 4(x + 2) – 5(3x – 1) oe isw"
+],
+"ref": "4024/1/SP2025 Q21",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_1-q22",
+"code": "4024",
+"paper": "1",
+"paperKey": "sp25_1",
+"paperLabel": "4024/1 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 22,
+"type": "structured",
+"marks": 3,
+"img": [
+"/papers/4024/sp25_1/q22.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_1/ms-q22.png"
+],
+"msRows": [
+"22 13r 1 360 − 100"
+],
+"ref": "4024/1/SP2025 Q22",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_1-q23",
+"code": "4024",
+"paper": "1",
+"paperKey": "sp25_1",
+"paperLabel": "4024/1 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 23,
+"type": "structured",
+"marks": 3,
+"img": [
+"/papers/4024/sp25_1/q23.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_1/ms-q23.png"
+],
+"msRows": [
+"23(a) (x – 3)2 – 28 2",
+"23(b) (3, –28) their completed square expression"
+],
+"ref": "4024/1/SP2025 Q23",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_1-q24",
+"code": "4024",
+"paper": "1",
+"paperKey": "sp25_1",
+"paperLabel": "4024/1 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 24,
+"type": "structured",
+"marks": 5,
+"img": [
+"/papers/4024/sp25_1/q24.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_1/ms-q24.png"
+],
+"msRows": [
+"24(a) 2",
+"24(b) ` j 3"
+],
+"ref": "4024/1/SP2025 Q24",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_2-q1",
+"code": "4024",
+"paper": "2",
+"paperKey": "sp25_2",
+"paperLabel": "4024/2 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 1,
+"type": "structured",
+"marks": 1,
+"img": [
+"/papers/4024/sp25_2/q1.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_2/ms-q1.png"
+],
+"msRows": [
+"1 80 1"
+],
+"ref": "4024/2/SP2025 Q1",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_2-q2",
+"code": "4024",
+"paper": "2",
+"paperKey": "sp25_2",
+"paperLabel": "4024/2 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 2,
+"type": "structured",
+"marks": 1,
+"img": [
+"/papers/4024/sp25_2/q2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_2/ms-q2.png"
+],
+"msRows": [
+"2 212 1"
+],
+"ref": "4024/2/SP2025 Q2",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_2-q3",
+"code": "4024",
+"paper": "2",
+"paperKey": "sp25_2",
+"paperLabel": "4024/2 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 3,
+"type": "structured",
+"marks": 2,
+"img": [
+"/papers/4024/sp25_2/q3.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_2/ms-q3.png"
+],
+"msRows": [
+"3(a) 10 [hours] 25 [minutes] 1",
+"3(b) 104 [minutes] 1"
+],
+"ref": "4024/2/SP2025 Q3",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_2-q4",
+"code": "4024",
+"paper": "2",
+"paperKey": "sp25_2",
+"paperLabel": "4024/2 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 4,
+"type": "structured",
+"marks": 3,
+"img": [
+"/papers/4024/sp25_2/q4.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_2/ms-q4.png",
+"/papers/4024/sp25_2/ms-q4-2.png"
+],
+"msRows": [
+"4(a) 28 [pens] 2 1500",
+"4(b) 16 [cents change] FT 1500 – 53 × their 28",
+"4 3 x"
+],
+"ref": "4024/2/SP2025 Q4",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_2-q5",
+"code": "4024",
+"paper": "2",
+"paperKey": "sp25_2",
+"paperLabel": "4024/2 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 5,
+"type": "structured",
+"marks": 4,
+"img": [
+"/papers/4024/sp25_2/q5.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_2/ms-q5.png",
+"/papers/4024/sp25_2/ms-q5-2.png"
+],
+"msRows": [
+"5(a) 216, 36, 108 2 B1 for one correct",
+"5(b) Correct labelled pie chart 2 angle tolerance ± 2°",
+"5 1 k"
+],
+"ref": "4024/2/SP2025 Q5",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_2-q6",
+"code": "4024",
+"paper": "2",
+"paperKey": "sp25_2",
+"paperLabel": "4024/2 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 6,
+"type": "structured",
+"marks": 1,
+"img": [
+"/papers/4024/sp25_2/q6.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_2/ms-q6.png"
+],
+"msRows": [
+"6 208 1"
+],
+"ref": "4024/2/SP2025 Q6",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_2-q7",
+"code": "4024",
+"paper": "2",
+"paperKey": "sp25_2",
+"paperLabel": "4024/2 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 7,
+"type": "structured",
+"marks": 2,
+"img": [
+"/papers/4024/sp25_2/q7.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_2/ms-q7.png"
+],
+"msRows": [
+"7 1.78 2 14 . 75"
+],
+"ref": "4024/2/SP2025 Q7",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_2-q8",
+"code": "4024",
+"paper": "2",
+"paperKey": "sp25_2",
+"paperLabel": "4024/2 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 8,
+"type": "structured",
+"marks": 4,
+"img": [
+"/papers/4024/sp25_2/q8.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_2/ms-q8.png"
+],
+"msRows": [
+"8 2x + 152 + x – 30 + 144 + 100 + 120 = 720 oe M2 M1 for (6 – 2) 180 oe"
+],
+"ref": "4024/2/SP2025 Q8",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_2-q9",
+"code": "4024",
+"paper": "2",
+"paperKey": "sp25_2",
+"paperLabel": "4024/2 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 9,
+"type": "structured",
+"marks": 4,
+"img": [
+"/papers/4024/sp25_2/q9.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_2/ms-q9.png"
+],
+"msRows": [
+"9(a) 12 1",
+"9(b) 8 1",
+"9(c) 5 1",
+"9(d) 1"
+],
+"ref": "4024/2/SP2025 Q9",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_2-q10",
+"code": "4024",
+"paper": "2",
+"paperKey": "sp25_2",
+"paperLabel": "4024/2 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 10,
+"type": "structured",
+"marks": 3,
+"img": [
+"/papers/4024/sp25_2/q10.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_2/ms-q10.png"
+],
+"msRows": [
+"10(a) 2 B1 for 2 correct",
+"10 9 9 9",
+"10(b) 12 1"
+],
+"ref": "4024/2/SP2025 Q10",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_2-q11",
+"code": "4024",
+"paper": "2",
+"paperKey": "sp25_2",
+"paperLabel": "4024/2 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 11,
+"type": "structured",
+"marks": 7,
+"img": [
+"/papers/4024/sp25_2/q11.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_2/ms-q11.png"
+],
+"msRows": [
+"11(a) 2510 or 2513.274... to 2513.6 4 M3 for 2500 × π × 22 × 0.08",
+"11(b) 16.8 or 16.755... to 16.7573 with correct conclusion, e.g. 16.8 is not an 3 M2 for 2 × π × 2 ÷ 0.75 oe"
+],
+"ref": "4024/2/SP2025 Q11",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_2-q12",
+"code": "4024",
+"paper": "2",
+"paperKey": "sp25_2",
+"paperLabel": "4024/2 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 12,
+"type": "structured",
+"marks": 2,
+"img": [
+"/papers/4024/sp25_2/q12.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_2/ms-q12.png"
+],
+"msRows": [
+"12 –2, –1, 0, 1 2"
+],
+"ref": "4024/2/SP2025 Q12",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_2-q13",
+"code": "4024",
+"paper": "2",
+"paperKey": "sp25_2",
+"paperLabel": "4024/2 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 13,
+"type": "structured",
+"marks": 3,
+"img": [
+"/papers/4024/sp25_2/q13.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_2/ms-q13.png"
+],
+"msRows": [
+"13(a) Tangent drawn at t = 2",
+"13(b) accelerating or increasing in speed oe 1"
+],
+"ref": "4024/2/SP2025 Q13",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_2-q14",
+"code": "4024",
+"paper": "2",
+"paperKey": "sp25_2",
+"paperLabel": "4024/2 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 14,
+"type": "structured",
+"marks": 4,
+"img": [
+"/papers/4024/sp25_2/q14.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_2/ms-q14.png"
+],
+"msRows": [
+"14 10.4[0] to 10.41 4 B1 for correct midpoints soi"
+],
+"ref": "4024/2/SP2025 Q14",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_2-q15",
+"code": "4024",
+"paper": "2",
+"paperKey": "sp25_2",
+"paperLabel": "4024/2 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 15,
+"type": "structured",
+"marks": 3,
+"img": [
+"/papers/4024/sp25_2/q15.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_2/ms-q15.png"
+],
+"msRows": [
+"15 Rotation 3 B1 for each"
+],
+"ref": "4024/2/SP2025 Q15",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_2-q16",
+"code": "4024",
+"paper": "2",
+"paperKey": "sp25_2",
+"paperLabel": "4024/2 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 16,
+"type": "structured",
+"marks": 3,
+"img": [
+"/papers/4024/sp25_2/q16.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_2/ms-q16.png"
+],
+"msRows": [
+"16(a) Correct sketch 1 Line with positive gradient and negative y intercept",
+"16(b) Correct sketch B1 for only one branch or attempt at correct shape"
+],
+"ref": "4024/2/SP2025 Q16",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_2-q17",
+"code": "4024",
+"paper": "2",
+"paperKey": "sp25_2",
+"paperLabel": "4024/2 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 17,
+"type": "structured",
+"marks": 3,
+"img": [
+"/papers/4024/sp25_2/q17.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_2/ms-q17.png"
+],
+"msRows": [
+"17 11 3 B2 for 10.2…"
+],
+"ref": "4024/2/SP2025 Q17",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_2-q18",
+"code": "4024",
+"paper": "2",
+"paperKey": "sp25_2",
+"paperLabel": "4024/2 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 18,
+"type": "structured",
+"marks": 3,
+"img": [
+"/papers/4024/sp25_2/q18.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_2/ms-q18.png"
+],
+"msRows": [
+"18 3"
+],
+"ref": "4024/2/SP2025 Q18",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_2-q19",
+"code": "4024",
+"paper": "2",
+"paperKey": "sp25_2",
+"paperLabel": "4024/2 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 19,
+"type": "structured",
+"marks": 7,
+"img": [
+"/papers/4024/sp25_2/q19.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_2/ms-q19.png"
+],
+"msRows": [
+"19(a) 787 or 787.39 to 787.4 3",
+"19(b) 107.33 to 107.43 4 B3 for 72.57 to 72.66..."
+],
+"ref": "4024/2/SP2025 Q19",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_2-q20",
+"code": "4024",
+"paper": "2",
+"paperKey": "sp25_2",
+"paperLabel": "4024/2 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 20,
+"type": "structured",
+"marks": 12,
+"img": [
+"/papers/4024/sp25_2/q20.png",
+"/papers/4024/sp25_2/q20-2.png",
+"/papers/4024/sp25_2/q20-3.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_2/ms-q20.png",
+"/papers/4024/sp25_2/ms-q20-2.png"
+],
+"msRows": [
+"20(a) 1",
+"20(b) 1",
+"20(c) 720 720 M1 FT their expressions in x",
+"20(d) B2",
+"20(e) 31 [m] 52 [s] to 31 [m] 55.1 [s] 3 B2 for 31.8 to 31.92 minutes"
+],
+"ref": "4024/2/SP2025 Q20",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_2-q21",
+"code": "4024",
+"paper": "2",
+"paperKey": "sp25_2",
+"paperLabel": "4024/2 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 21,
+"type": "structured",
+"marks": 10,
+"img": [
+"/papers/4024/sp25_2/q21.png",
+"/papers/4024/sp25_2/q21-2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_2/ms-q21.png",
+"/papers/4024/sp25_2/ms-q21-2.png"
+],
+"msRows": [
+"21(a) 2.0 and 8.0 2 B1 for each",
+"21(b) Correct smooth curve 4 B3FT for 9 or 8 correct plots",
+"21(c) M2"
+],
+"ref": "4024/2/SP2025 Q21",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_2-q22",
+"code": "4024",
+"paper": "2",
+"paperKey": "sp25_2",
+"paperLabel": "4024/2 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 22,
+"type": "structured",
+"marks": 3,
+"img": [
+"/papers/4024/sp25_2/q22.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_2/ms-q22.png"
+],
+"msRows": [
+"22 1.85 3 B1 for 14.65 soi"
+],
+"ref": "4024/2/SP2025 Q22",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_2-q23",
+"code": "4024",
+"paper": "2",
+"paperKey": "sp25_2",
+"paperLabel": "4024/2 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 23,
+"type": "structured",
+"marks": 3,
+"img": [
+"/papers/4024/sp25_2/q23.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_2/ms-q23.png"
+],
+"msRows": [
+"23 4x3 – 27x2 + 33x + 10 final answer 3 B2 for correct unsimplified expression"
+],
+"ref": "4024/2/SP2025 Q23",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_2-q24",
+"code": "4024",
+"paper": "2",
+"paperKey": "sp25_2",
+"paperLabel": "4024/2 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 24,
+"type": "structured",
+"marks": 7,
+"img": [
+"/papers/4024/sp25_2/q24.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_2/ms-q24.png"
+],
+"msRows": [
+"24(a) 2 1",
+"24(b) J N 2 J N 2 M2 M1 for = + oe",
+"24(c) 63.18 to 63.35 2"
+],
+"ref": "4024/2/SP2025 Q24",
+"insertImg": []
+},
+{
+"id": "pp-4024-sp25_2-q25",
+"code": "4024",
+"paper": "2",
+"paperKey": "sp25_2",
+"paperLabel": "4024/2 Specimen 2025",
+"series": "Specimen",
+"year": 2025,
+"qnum": 25,
+"type": "structured",
+"marks": 5,
+"img": [
+"/papers/4024/sp25_2/q25.png"
+],
+"answer": null,
+"msImg": [
+"/papers/4024/sp25_2/ms-q25.png"
+],
+"msRows": [
+"25 1390 or 1394.867... to 1395 5 1 1"
+],
+"ref": "4024/2/SP2025 Q25",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q1",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 1,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q1.png"
+],
+"answer": "C",
+"msImg": [],
+"msRows": [
+"1 C 1"
+],
+"ref": "5054/11/S/2024 Q1",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q2",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 2,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q2.png",
+"/papers/5054/s24_11/q2-2.png"
+],
+"answer": "B",
+"msImg": [],
+"msRows": [
+"2 B 1"
+],
+"ref": "5054/11/S/2024 Q2",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q3",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 3,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q3.png"
+],
+"answer": "A",
+"msImg": [],
+"msRows": [
+"3 A 1"
+],
+"ref": "5054/11/S/2024 Q3",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q4",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 4,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q4.png"
+],
+"answer": "A",
+"msImg": [],
+"msRows": [
+"4 A 1"
+],
+"ref": "5054/11/S/2024 Q4",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q5",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 5,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q5.png",
+"/papers/5054/s24_11/q5-2.png"
+],
+"answer": "C",
+"msImg": [],
+"msRows": [
+"5 C 1"
+],
+"ref": "5054/11/S/2024 Q5",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q6",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 6,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q6.png"
+],
+"answer": "D",
+"msImg": [],
+"msRows": [
+"6 D 1"
+],
+"ref": "5054/11/S/2024 Q6",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q7",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 7,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q7.png"
+],
+"answer": "D",
+"msImg": [],
+"msRows": [
+"7 D 1"
+],
+"ref": "5054/11/S/2024 Q7",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q8",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 8,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q8.png",
+"/papers/5054/s24_11/q8-2.png"
+],
+"answer": "A",
+"msImg": [],
+"msRows": [
+"8 A 1"
+],
+"ref": "5054/11/S/2024 Q8",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q9",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 9,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q9.png"
+],
+"answer": "C",
+"msImg": [],
+"msRows": [
+"9 C 1"
+],
+"ref": "5054/11/S/2024 Q9",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q10",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 10,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q10.png",
+"/papers/5054/s24_11/q10-2.png"
+],
+"answer": "B",
+"msImg": [],
+"msRows": [
+"10 B 1"
+],
+"ref": "5054/11/S/2024 Q10",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q11",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 11,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q11.png"
+],
+"answer": "C",
+"msImg": [],
+"msRows": [
+"11 C 1"
+],
+"ref": "5054/11/S/2024 Q11",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q12",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 12,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q12.png"
+],
+"answer": "C",
+"msImg": [],
+"msRows": [
+"12 C 1"
+],
+"ref": "5054/11/S/2024 Q12",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q13",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 13,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q13.png"
+],
+"answer": "D",
+"msImg": [],
+"msRows": [
+"13 D 1"
+],
+"ref": "5054/11/S/2024 Q13",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q14",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 14,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q14.png"
+],
+"answer": "D",
+"msImg": [],
+"msRows": [
+"14 D 1"
+],
+"ref": "5054/11/S/2024 Q14",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q15",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 15,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q15.png",
+"/papers/5054/s24_11/q15-2.png"
+],
+"answer": "A",
+"msImg": [],
+"msRows": [
+"15 A 1"
+],
+"ref": "5054/11/S/2024 Q15",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q16",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 16,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q16.png"
+],
+"answer": "C",
+"msImg": [],
+"msRows": [
+"16 C 1"
+],
+"ref": "5054/11/S/2024 Q16",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q17",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 17,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q17.png"
+],
+"answer": "B",
+"msImg": [],
+"msRows": [
+"17 B 1"
+],
+"ref": "5054/11/S/2024 Q17",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q18",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 18,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q18.png"
+],
+"answer": "D",
+"msImg": [],
+"msRows": [
+"18 D 1"
+],
+"ref": "5054/11/S/2024 Q18",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q19",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 19,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q19.png",
+"/papers/5054/s24_11/q19-2.png"
+],
+"answer": "D",
+"msImg": [],
+"msRows": [
+"19 D 1"
+],
+"ref": "5054/11/S/2024 Q19",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q20",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 20,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q20.png"
+],
+"answer": "C",
+"msImg": [],
+"msRows": [
+"20 C 1"
+],
+"ref": "5054/11/S/2024 Q20",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q21",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 21,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q21.png"
+],
+"answer": "D",
+"msImg": [],
+"msRows": [
+"21 D 1"
+],
+"ref": "5054/11/S/2024 Q21",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q22",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 22,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q22.png",
+"/papers/5054/s24_11/q22-2.png"
+],
+"answer": "B",
+"msImg": [],
+"msRows": [
+"22 B 1"
+],
+"ref": "5054/11/S/2024 Q22",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q23",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 23,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q23.png"
+],
+"answer": "B",
+"msImg": [],
+"msRows": [
+"23 B 1"
+],
+"ref": "5054/11/S/2024 Q23",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q24",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 24,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q24.png"
+],
+"answer": "A",
+"msImg": [],
+"msRows": [
+"24 A 1"
+],
+"ref": "5054/11/S/2024 Q24",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q25",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 25,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q25.png",
+"/papers/5054/s24_11/q25-2.png"
+],
+"answer": "B",
+"msImg": [],
+"msRows": [
+"25 B 1"
+],
+"ref": "5054/11/S/2024 Q25",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q26",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 26,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q26.png"
+],
+"answer": "B",
+"msImg": [],
+"msRows": [
+"26 B 1"
+],
+"ref": "5054/11/S/2024 Q26",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q27",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 27,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q27.png",
+"/papers/5054/s24_11/q27-2.png"
+],
+"answer": "A",
+"msImg": [],
+"msRows": [
+"27 A 1"
+],
+"ref": "5054/11/S/2024 Q27",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q28",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 28,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q28.png"
+],
+"answer": "B",
+"msImg": [],
+"msRows": [
+"28 B 1"
+],
+"ref": "5054/11/S/2024 Q28",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q29",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 29,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q29.png",
+"/papers/5054/s24_11/q29-2.png"
+],
+"answer": "C",
+"msImg": [],
+"msRows": [
+"29 C 1"
+],
+"ref": "5054/11/S/2024 Q29",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q30",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 30,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q30.png"
+],
+"answer": "B",
+"msImg": [],
+"msRows": [
+"30 B 1"
+],
+"ref": "5054/11/S/2024 Q30",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q31",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 31,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q31.png",
+"/papers/5054/s24_11/q31-2.png"
+],
+"answer": "B",
+"msImg": [],
+"msRows": [
+"31 B 1"
+],
+"ref": "5054/11/S/2024 Q31",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q32",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 32,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q32.png"
+],
+"answer": "B",
+"msImg": [],
+"msRows": [
+"32 B 1"
+],
+"ref": "5054/11/S/2024 Q32",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q33",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 33,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q33.png",
+"/papers/5054/s24_11/q33-2.png"
+],
+"answer": "D",
+"msImg": [],
+"msRows": [
+"33 D 1"
+],
+"ref": "5054/11/S/2024 Q33",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q34",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 34,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q34.png"
+],
+"answer": "D",
+"msImg": [],
+"msRows": [
+"34 D 1"
+],
+"ref": "5054/11/S/2024 Q34",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q35",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 35,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q35.png",
+"/papers/5054/s24_11/q35-2.png"
+],
+"answer": "C",
+"msImg": [],
+"msRows": [
+"35 C 1"
+],
+"ref": "5054/11/S/2024 Q35",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q36",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 36,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q36.png"
+],
+"answer": "B",
+"msImg": [],
+"msRows": [
+"36 B 1"
+],
+"ref": "5054/11/S/2024 Q36",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q37",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 37,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q37.png"
+],
+"answer": "D",
+"msImg": [],
+"msRows": [
+"37 D 1"
+],
+"ref": "5054/11/S/2024 Q37",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q38",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 38,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q38.png"
+],
+"answer": "C",
+"msImg": [],
+"msRows": [
+"38 C 1"
+],
+"ref": "5054/11/S/2024 Q38",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q39",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 39,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q39.png",
+"/papers/5054/s24_11/q39-2.png"
+],
+"answer": "B",
+"msImg": [],
+"msRows": [
+"39 B 1"
+],
+"ref": "5054/11/S/2024 Q39",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_11-q40",
+"code": "5054",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "5054/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 40,
+"type": "mcq",
+"marks": 1,
+"img": [
+"/papers/5054/s24_11/q40.png"
+],
+"answer": "B",
+"msImg": [],
+"msRows": [
+"40 B 1"
+],
+"ref": "5054/11/S/2024 Q40",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_21-q1",
+"code": "5054",
+"paper": "21",
+"paperKey": "s24_21",
+"paperLabel": "5054/21 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 1,
+"type": "structured",
+"marks": 10,
+"img": [
+"/papers/5054/s24_21/q1.png",
+"/papers/5054/s24_21/q1-2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/5054/s24_21/ms-q1.png"
+],
+"msRows": [
+"1(a)(i) P marked in region t = 00.8 s or in region 1.62.0 s B1",
+"1(a)(ii) tangent drawn at X B1",
+"1(b) vA < vC < vD < vB B1",
+"1(c) (work done by) gravity / weight / gravitational attraction B1",
+"1(d) arrow upwards at D B1"
+],
+"ref": "5054/21/S/2024 Q1",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_21-q2",
+"code": "5054",
+"paper": "21",
+"paperKey": "s24_21",
+"paperLabel": "5054/21 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 2,
+"type": "structured",
+"marks": 10,
+"img": [
+"/papers/5054/s24_21/q2.png",
+"/papers/5054/s24_21/q2-2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/5054/s24_21/ms-q2.png",
+"/papers/5054/s24_21/ms-q2-2.png"
+],
+"msRows": [
+"2(a)(i) particles hit piston / sides of container B1",
+"2(a)(ii) particles move faster / have higher kinetic energy / more momentum B1",
+"2(b) (force = ) P  A in any form numerical or algebraic with any pressure B1",
+"2(c)(i) (momentum =) mv in any form numerical or algebraic C1",
+"2(c)(ii) (time =) mv (-mu) / F C1"
+],
+"ref": "5054/21/S/2024 Q2",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_21-q3",
+"code": "5054",
+"paper": "21",
+"paperKey": "s24_21",
+"paperLabel": "5054/21 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 3,
+"type": "structured",
+"marks": 10,
+"img": [
+"/papers/5054/s24_21/q3.png",
+"/papers/5054/s24_21/q3-2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/5054/s24_21/ms-q3.png",
+"/papers/5054/s24_21/ms-q3-2.png"
+],
+"msRows": [
+"3(a) free / delocalised electrons or electrons move B1",
+"3(b)(i) 273 (K) B1",
+"3(b)(ii) latent heat (required) or (particles need) more potential energy / B1",
+"3(b)(iii) (Q =) mcT in any form C1",
+"3(b)(iv) (P = ) E / t in any form C1",
+"3(b)(v) (liquid) water has a higher specific heat capacity; water has stronger bonds B1"
+],
+"ref": "5054/21/S/2024 Q3",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_21-q4",
+"code": "5054",
+"paper": "21",
+"paperKey": "s24_21",
+"paperLabel": "5054/21 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 4,
+"type": "structured",
+"marks": 10,
+"img": [
+"/papers/5054/s24_21/q4.png",
+"/papers/5054/s24_21/q4-2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/5054/s24_21/ms-q4.png"
+],
+"msRows": [
+"4(a)(i) number of (complete) waves (passing a point) per second B1",
+"4(a)(ii) (V = ) f in any form C1",
+"4(a)(iii) ANY one from B1",
+"4(b)(i) longitudinal wave - oscillation backwards and forwards / in direction of travel of wave B1",
+"4(b)(ii) earthquake (waves) or other correct source which is a single source that generates both types of wave, e.g. lightning B1",
+"4(c) long wavelengths bend around hill and short wavelengths do not bend B1"
+],
+"ref": "5054/21/S/2024 Q4",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_21-q5",
+"code": "5054",
+"paper": "21",
+"paperKey": "s24_21",
+"paperLabel": "5054/21 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 5,
+"type": "structured",
+"marks": 11,
+"img": [
+"/papers/5054/s24_21/q5.png",
+"/papers/5054/s24_21/q5-2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/5054/s24_21/ms-q5.png",
+"/papers/5054/s24_21/ms-q5-2.png"
+],
+"msRows": [
+"5(a) correct symbol; B1",
+"5(b)(i) correct curvature B1",
+"5(b)(ii) (at higher current / voltage) temperature increases B1",
+"5(c) (I =) V / R in any form C1",
+"5(d)(i) any integer between and including 12 and 19 (A) B1",
+"5(d)(ii) fuse does not melt / blow or circuit does not shut down aaw B1",
+"5(d)(iii) when fuse melts nothing is live / electrocution not possible OR supply of voltage is cut OR voltage is supplied by live wire. B1"
+],
+"ref": "5054/21/S/2024 Q5",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_21-q6",
+"code": "5054",
+"paper": "21",
+"paperKey": "s24_21",
+"paperLabel": "5054/21 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 6,
+"type": "structured",
+"marks": 9,
+"img": [
+"/papers/5054/s24_21/q6.png",
+"/papers/5054/s24_21/q6-2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/5054/s24_21/ms-q6.png",
+"/papers/5054/s24_21/ms-q6-2.png"
+],
+"msRows": [
+"6(a)(i) turns faster / stronger force / more powerful (motor) / larger moment / larger turning effect B1",
+"6(a)(ii) correct current direction shown in coil and magnetic field left to right / N to S B1",
+"6(a)(iii) (field and current cause) force on left side or force on right side C1",
+"6(b)(i) circles close to and around each wire B1",
+"6(b)(ii) current in one wire causes magnetic field at the other B1"
+],
+"ref": "5054/21/S/2024 Q6",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_21-q7",
+"code": "5054",
+"paper": "21",
+"paperKey": "s24_21",
+"paperLabel": "5054/21 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 7,
+"type": "structured",
+"marks": 10,
+"img": [
+"/papers/5054/s24_21/q7.png",
+"/papers/5054/s24_21/q7-2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/5054/s24_21/ms-q7.png"
+],
+"msRows": [
+"7(a)(i) uranium-235 and uranium-238 B1",
+"7(a)(ii) thorium(-236) and uranium-238 B1",
+"7(a)(iii) thorium(-236) and protactinium(-236) B1",
+"7(b)(i) (radiation) that is natural / present without a source B1",
+"7(b)(ii) 400 B1",
+"7(b)(iii) any halving seen, e.g. 400→200 or 200→100 or 420→210 C1",
+"7(b)(iv) (emission / radioactivity is) random / fluctuates / varies B1",
+"7(c) irradiation and sterilisation both-radiation B1"
+],
+"ref": "5054/21/S/2024 Q7",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_21-q8",
+"code": "5054",
+"paper": "21",
+"paperKey": "s24_21",
+"paperLabel": "5054/21 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 8,
+"type": "structured",
+"marks": 10,
+"img": [
+"/papers/5054/s24_21/q8.png",
+"/papers/5054/s24_21/q8-2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/5054/s24_21/ms-q8.png"
+],
+"msRows": [
+"8(a) Venus on left of Sun on dashed line B1",
+"8(b)(i) smaller mass (of mercury) B1",
+"8(b)(ii) (mass =) 10 (kg) clearly seen C1",
+"8(c) a (large, natural) object that orbits a planet B1",
+"8(d) becomes a red giant / increase in size B1"
+],
+"ref": "5054/21/S/2024 Q8",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_41-q1",
+"code": "5054",
+"paper": "41",
+"paperKey": "s24_41",
+"paperLabel": "5054/41 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 1,
+"type": "structured",
+"marks": 10,
+"img": [
+"/papers/5054/s24_41/q1.png",
+"/papers/5054/s24_41/q1-2.png",
+"/papers/5054/s24_41/q1-3.png",
+"/papers/5054/s24_41/q1-4.png"
+],
+"answer": null,
+"msImg": [
+"/papers/5054/s24_41/ms-q1.png"
+],
+"msRows": [
+"1(a)(i) point A at 10.2 cm and B at 19.7 cm cao ; 1",
+"1(a)(ii) l = 9.5 (cm) and d = 1.6 (cm) ; 1",
+"1(a)(iii) 2.1(4) (cm3) ; 1",
+"1(b)(i) 27(.0) (cm3) cao ; 1",
+"1(b)(ii) (V2 value seen of 39 cm3 and) VT = 12(.0) cm3 ; 1",
+"1(b)(iii) average value of V correct from candidate’s answer to (b)(ii) (2.0 cm3) ; 1",
+"1(c) method 1, as the measuring cylinder can only measure to the nearest 0.5 cm3 /1.0 cm3 or measuring the diameter to the 1",
+"1(d) put beaker on balance and tare ; 1"
+],
+"ref": "5054/41/S/2024 Q1",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_41-q2",
+"code": "5054",
+"paper": "41",
+"paperKey": "s24_41",
+"paperLabel": "5054/41 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 2,
+"type": "structured",
+"marks": 10,
+"img": [
+"/papers/5054/s24_41/q2.png",
+"/papers/5054/s24_41/q2-2.png",
+"/papers/5054/s24_41/q2-3.png",
+"/papers/5054/s24_41/q2-4.png"
+],
+"answer": null,
+"msImg": [
+"/papers/5054/s24_41/ms-q2.png",
+"/papers/5054/s24_41/ms-q2-2.png"
+],
+"msRows": [
+"2(a)(i) =72(C) in the table ; 1",
+"2(a)(ii) to ensure an even temperature throughout the water owtte / heat is evenly spread / make sure temp is the same through the 1",
+"2(a)(iii) correct calculation from candidate readings (0.067) ; 1",
+"2(a)(iv) 0.03(333) 1",
+"2(a)(v) C1 greater than C2 because less drop in temperature as the temperature approaches room temperature owtte 1",
+"2(b)(i) 0.20 (C / s) ; 1",
+"2(b)(ii) C3 greater than C1 stated because more energy is lost to the colder surroundings/ iced water provides increased cooling 1",
+"2(b)(iii) different initial temperatures ; 1",
+"2(b)(iv) Any one from: 1"
+],
+"ref": "5054/41/S/2024 Q2",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_41-q3",
+"code": "5054",
+"paper": "41",
+"paperKey": "s24_41",
+"paperLabel": "5054/41 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 3,
+"type": "structured",
+"marks": 14,
+"img": [
+"/papers/5054/s24_41/q3.png",
+"/papers/5054/s24_41/q3-2.png",
+"/papers/5054/s24_41/q3-3.png",
+"/papers/5054/s24_41/q3-4.png"
+],
+"answer": null,
+"msImg": [
+"/papers/5054/s24_41/ms-q3.png",
+"/papers/5054/s24_41/ms-q3-2.png"
+],
+"msRows": [
+"3(a)(i) 4.8  0.1 cm 1",
+"3(a)(ii) 24(.0) cm 1",
+"3(a)(iii) 36(.0) cm 1",
+"3(b) Any two from: 2",
+"3(c)(i) u x v calculated correctly for each value of D ; 1",
+"3(c)(ii) axes labelled, quantity and unit ; 1",
+"3(c) values indicated, ⩾ ½ the line used 1",
+"3(d) yes and calculation showing f is within 10% of 15.0 cm 1"
+],
+"ref": "5054/41/S/2024 Q3",
+"insertImg": []
+},
+{
+"id": "pp-5054-s24_41-q4",
+"code": "5054",
+"paper": "41",
+"paperKey": "s24_41",
+"paperLabel": "5054/41 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 4,
+"type": "structured",
+"marks": 6,
+"img": [
+"/papers/5054/s24_41/q4.png",
+"/papers/5054/s24_41/q4-2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/5054/s24_41/ms-q4.png"
+],
+"msRows": [
+"4 diagram 1"
+],
+"ref": "5054/41/S/2024 Q4",
+"insertImg": []
+},
+{
+"id": "pp-5054-sp23_2-q1",
+"code": "5054",
+"paper": "2",
+"paperKey": "sp23_2",
+"paperLabel": "5054/2 Specimen 2023",
+"series": "Specimen",
+"year": 2023,
+"qnum": 1,
+"type": "structured",
+"marks": 11,
+"img": [
+"/papers/5054/sp23_2/q1.png",
+"/papers/5054/sp23_2/q1-2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/5054/sp23_2/ms-q1.png"
+],
+"msRows": [
+"1(a)(i) X marked anywhere on horizontal section B1",
+"1(a)(ii) weight / gravity B1",
+"1(b)(i) 0 or zero B1",
+"1(b)(ii) 4(.0) (N) B1",
+"1(b)(iii) due to increase in speed more air particles / molecules hitting rock",
+"1(c)(i) tangent drawn at 4.0 s M1",
+"1(c)(ii) (F =) ma in any form algebraic or numerical or candidate’s 1(c)(i) × 0.408 seen B1"
+],
+"ref": "5054/2/SP2023 Q1",
+"insertImg": []
+},
+{
+"id": "pp-5054-sp23_2-q2",
+"code": "5054",
+"paper": "2",
+"paperKey": "sp23_2",
+"paperLabel": "5054/2 Specimen 2023",
+"series": "Specimen",
+"year": 2023,
+"qnum": 2,
+"type": "structured",
+"marks": 8,
+"img": [
+"/papers/5054/sp23_2/q2.png",
+"/papers/5054/sp23_2/q2-2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/5054/sp23_2/ms-q2.png"
+],
+"msRows": [
+"2(a)(i) heat gained from burning fuel / combustion or friction between moving parts / with air / road or from (radiation of) Sun B1",
+"2(a)(ii) heat lost to air / surroundings or by convection (currents) or exhaust / hot gases / fumes or from exhaust or heat emitted (by B1",
+"2(b) (at start store of) chemical energy decreases B1",
+"2(c) 1 C1"
+],
+"ref": "5054/2/SP2023 Q2",
+"insertImg": []
+},
+{
+"id": "pp-5054-sp23_2-q3",
+"code": "5054",
+"paper": "2",
+"paperKey": "sp23_2",
+"paperLabel": "5054/2 Specimen 2023",
+"series": "Specimen",
+"year": 2023,
+"qnum": 3,
+"type": "structured",
+"marks": 7,
+"img": [
+"/papers/5054/sp23_2/q3.png",
+"/papers/5054/sp23_2/q3-2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/5054/sp23_2/ms-q3.png"
+],
+"msRows": [
+"3(a) they / particles hit (inside) wall B1",
+"3(b)(i) p1V1 = p2V2 in any form algebraic or numerical C1",
+"3(b)(ii) no gas / air / particles escape(s) B1",
+"3(c) graph showing decrease in volume with increase in pressure C1"
+],
+"ref": "5054/2/SP2023 Q3",
+"insertImg": []
+},
+{
+"id": "pp-5054-sp23_2-q4",
+"code": "5054",
+"paper": "2",
+"paperKey": "sp23_2",
+"paperLabel": "5054/2 Specimen 2023",
+"series": "Specimen",
+"year": 2023,
+"qnum": 4,
+"type": "structured",
+"marks": 6,
+"img": [
+"/papers/5054/sp23_2/q4.png"
+],
+"answer": null,
+"msImg": [
+"/papers/5054/sp23_2/ms-q4.png"
+],
+"msRows": [
+"4(a) geothermal B1",
+"4(b)(i) (E =) mcθ or 1000 × 4200 × 80 C1",
+"4(b)(ii) steam condenses or steam changes from gas to liquid B1"
+],
+"ref": "5054/2/SP2023 Q4",
+"insertImg": []
+},
+{
+"id": "pp-5054-sp23_2-q5",
+"code": "5054",
+"paper": "2",
+"paperKey": "sp23_2",
+"paperLabel": "5054/2 Specimen 2023",
+"series": "Specimen",
+"year": 2023,
+"qnum": 5,
+"type": "structured",
+"marks": 7,
+"img": [
+"/papers/5054/sp23_2/q5.png"
+],
+"answer": null,
+"msImg": [
+"/papers/5054/sp23_2/ms-q5.png"
+],
+"msRows": [
+"5(a) only electromagnetic and transverse underlined or circled B1",
+"5(b) J N C1",
+"5(c)(i) C1",
+"5(c)(ii) angle of incidence given as 57(°) (90° – their 5(b)) B1"
+],
+"ref": "5054/2/SP2023 Q5",
+"insertImg": []
+},
+{
+"id": "pp-5054-sp23_2-q6",
+"code": "5054",
+"paper": "2",
+"paperKey": "sp23_2",
+"paperLabel": "5054/2 Specimen 2023",
+"series": "Specimen",
+"year": 2023,
+"qnum": 6,
+"type": "structured",
+"marks": 6,
+"img": [
+"/papers/5054/sp23_2/q6.png",
+"/papers/5054/sp23_2/q6-2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/5054/sp23_2/ms-q6.png"
+],
+"msRows": [
+"6(a)(i) C1",
+"6(a)(ii) V 4 . 5 C1",
+"6(b)(i) increases and resistance of LDR decreases B1",
+"6(b)(ii) does not change and resistance / e.m.f. does not change / not affected by LDR B1"
+],
+"ref": "5054/2/SP2023 Q6",
+"insertImg": []
+},
+{
+"id": "pp-5054-sp23_2-q7",
+"code": "5054",
+"paper": "2",
+"paperKey": "sp23_2",
+"paperLabel": "5054/2 Specimen 2023",
+"series": "Specimen",
+"year": 2023,
+"qnum": 7,
+"type": "structured",
+"marks": 8,
+"img": [
+"/papers/5054/sp23_2/q7.png",
+"/papers/5054/sp23_2/q7-2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/5054/sp23_2/ms-q7.png"
+],
+"msRows": [
+"7(a)(i) force on PQ / wire or PQ / wire moves M1",
+"7(a)(ii) force / speed / acceleration greater B1",
+"7(b)(i) magnetic field / flux mentioned B1",
+"7(b)(ii) more turns stronger magnet move magnet faster",
+"7(b)(iii) (current in coil) produces magnetic field / poles B1"
+],
+"ref": "5054/2/SP2023 Q7",
+"insertImg": []
+},
+{
+"id": "pp-5054-sp23_2-q8",
+"code": "5054",
+"paper": "2",
+"paperKey": "sp23_2",
+"paperLabel": "5054/2 Specimen 2023",
+"series": "Specimen",
+"year": 2023,
+"qnum": 8,
+"type": "structured",
+"marks": 6,
+"img": [
+"/papers/5054/sp23_2/q8.png",
+"/papers/5054/sp23_2/q8-2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/5054/sp23_2/ms-q8.png"
+],
+"msRows": [
+"8(a)(i) 0.2(0) (kW h) B1",
+"8(a)(ii) P C1",
+"8(b) to stop the rest of the circuit / lamps / television being live / having high voltage / 230 V or to stop shock M1",
+"8(c) if one lamp fails the other still works B1"
+],
+"ref": "5054/2/SP2023 Q8",
+"insertImg": []
+},
+{
+"id": "pp-5054-sp23_2-q9",
+"code": "5054",
+"paper": "2",
+"paperKey": "sp23_2",
+"paperLabel": "5054/2 Specimen 2023",
+"series": "Specimen",
+"year": 2023,
+"qnum": 9,
+"type": "structured",
+"marks": 8,
+"img": [
+"/papers/5054/sp23_2/q9.png",
+"/papers/5054/sp23_2/q9-2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/5054/sp23_2/ms-q9.png"
+],
+"msRows": [
+"9(a) neutron absorbed by a nucleus of uranium B1",
+"9(b) less / fewer neutrons absorbed or more neutrons to cause fission B1",
+"9(c) on average only one of the neutrons produced by each fission goes on to cause another nucleus to fission / additional",
+"9(d) slows neutrons down B1"
+],
+"ref": "5054/2/SP2023 Q9",
+"insertImg": []
+},
+{
+"id": "pp-5054-sp23_2-q10",
+"code": "5054",
+"paper": "2",
+"paperKey": "sp23_2",
+"paperLabel": "5054/2 Specimen 2023",
+"series": "Specimen",
+"year": 2023,
+"qnum": 10,
+"type": "structured",
+"marks": 13,
+"img": [
+"/papers/5054/sp23_2/q10.png",
+"/papers/5054/sp23_2/q10-2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/5054/sp23_2/ms-q10.png"
+],
+"msRows": [
+"10(a) (collapse due to) gravity B1",
+"10(b) runs out of hydrogen or starts to fuse other elements B1",
+"10(c) 2πR seen (as the circumference) C1",
+"10(d)(i) Milky Way B1",
+"10(d)(ii) e.m. radiation / light shifted towards longer wavelength B1",
+"10(d)(iii) Q is faster than P because it has a larger redshift B1"
+],
+"ref": "5054/2/SP2023 Q10",
+"insertImg": []
+},
+{
+"id": "pp-1123-s24_11-q1",
+"code": "1123",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "1123/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 1,
+"type": "structured",
+"marks": 16,
+"img": [
+"/papers/1123/s24_11/q1.png",
+"/papers/1123/s24_11/q1-2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/1123/s24_11/ms-q1.png",
+"/papers/1123/s24_11/ms-q1-2.png",
+"/papers/1123/s24_11/ms-q1-3.png",
+"/papers/1123/s24_11/ms-q1-4.png",
+"/papers/1123/s24_11/ms-q1-5.png",
+"/papers/1123/s24_11/ms-q1-6.png"
+],
+"msRows": [
+"1(a) In paragraph 1, give one reason 1",
+"1(b) Using your own words, explain 2 For ‘tracing’ do NOT credit ideas of",
+"1(c) From paragraph 2, identify one 1",
+"1(d) From paragraph 3, give two things 2 Accept in either order",
+"1(e) Explain what the writer was 1 Allow canoe / boat / vessel",
+"1(f) In paragraph 4, how did the writer 3",
+"1(g)(i) During the night the writer realised 1",
+"1(g)(ii) What did he want to do to avoid 1 Do NOT credit ‘I / he pinned my",
+"1(h) Explain using your own words the 3",
+"1(h) Award up to 3 marks:",
+"1 1 Some awareness of opinion or attitude."
+],
+"insertImg": [
+"/papers/1123/s24_11/insert-1.png",
+"/papers/1123/s24_11/insert-2.png",
+"/papers/1123/s24_11/insert-3.png",
+"/papers/1123/s24_11/insert-4.png",
+"/papers/1123/s24_11/insert-5.png",
+"/papers/1123/s24_11/insert-6.png",
+"/papers/1123/s24_11/insert-7.png"
+],
+"ref": "1123/11/S/2024 Q1"
+},
+{
+"id": "pp-1123-s24_11-q2",
+"code": "1123",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "1123/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 2,
+"type": "structured",
+"marks": 9,
+"img": [
+"/papers/1123/s24_11/q2.png",
+"/papers/1123/s24_11/q2-2.png",
+"/papers/1123/s24_11/q2-3.png"
+],
+"answer": null,
+"msImg": [
+"/papers/1123/s24_11/ms-q2.png",
+"/papers/1123/s24_11/ms-q2-2.png",
+"/papers/1123/s24_11/ms-q2-3.png",
+"/papers/1123/s24_11/ms-q2-4.png",
+"/papers/1123/s24_11/ms-q2-5.png"
+],
+"msRows": [
+"2(a) Read this extract from the text: 1 Reward appropriate alternative",
+"2(b) Explain why the writer uses the 1",
+"2(c) What two impressions does the 2",
+"2(d) Read this sentence from the text:",
+"2(e) Identify one example of how the In the chosen example, allow slips in",
+"2(e) • towering great grey cliffs:",
+"2 2–3 • Generally relevant perspective offered."
+],
+"insertImg": [
+"/papers/1123/s24_11/insert-1.png",
+"/papers/1123/s24_11/insert-2.png",
+"/papers/1123/s24_11/insert-3.png",
+"/papers/1123/s24_11/insert-4.png",
+"/papers/1123/s24_11/insert-5.png",
+"/papers/1123/s24_11/insert-6.png",
+"/papers/1123/s24_11/insert-7.png"
+],
+"ref": "1123/11/S/2024 Q2"
+},
+{
+"id": "pp-1123-s24_11-q3",
+"code": "1123",
+"paper": "11",
+"paperKey": "s24_11",
+"paperLabel": "1123/11 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 3,
+"type": "structured",
+"marks": 25,
+"img": [
+"/papers/1123/s24_11/q3.png",
+"/papers/1123/s24_11/q3-2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/1123/s24_11/ms-q3.png",
+"/papers/1123/s24_11/ms-q3-2.png"
+],
+"msRows": [
+"3(a) Summarise the benefits and 20 P4: NOT: friends",
+"3(b) Imagine you are environmental campaigner Anna 5 Developments",
+"3 4–5 • Consistent and relevant perspective offered."
+],
+"insertImg": [
+"/papers/1123/s24_11/insert-1.png",
+"/papers/1123/s24_11/insert-2.png",
+"/papers/1123/s24_11/insert-3.png",
+"/papers/1123/s24_11/insert-4.png",
+"/papers/1123/s24_11/insert-5.png",
+"/papers/1123/s24_11/insert-6.png",
+"/papers/1123/s24_11/insert-7.png"
+],
+"ref": "1123/11/S/2024 Q3"
+},
+{
+"id": "pp-1123-s24_21-q1",
+"code": "1123",
+"paper": "21",
+"paperKey": "s24_21",
+"paperLabel": "1123/21 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 1,
+"type": "structured",
+"marks": 25,
+"img": [
+"/papers/1123/s24_21/q1-ctx1.png",
+"/papers/1123/s24_21/q1.png",
+"/papers/1123/s24_21/q1-2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/1123/s24_21/ms-q1.png",
+"/papers/1123/s24_21/ms-q1-2.png"
+],
+"msRows": [
+"1 Your school is considering a ban on homework. You decide to write a letter to 25",
+"1 Text B – in favour of homework",
+"1 1–2 • Attempts to identify a few relevant points from the text(s). (R5)"
+],
+"insertImg": [],
+"ref": "1123/21/S/2024 Q1"
+},
+{
+"id": "pp-1123-s24_21-q2",
+"code": "1123",
+"paper": "21",
+"paperKey": "s24_21",
+"paperLabel": "1123/21 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 2,
+"type": "structured",
+"marks": 25,
+"img": [
+"/papers/1123/s24_21/q2.png"
+],
+"answer": null,
+"msImg": [
+"/papers/1123/s24_21/ms-q2.png",
+"/papers/1123/s24_21/ms-q2-2.png"
+],
+"msRows": [
+"2 3–4 •",
+"2 EITHER 25"
+],
+"insertImg": [],
+"ref": "1123/21/S/2024 Q2"
+},
+{
+"id": "pp-1123-s24_21-q3",
+"code": "1123",
+"paper": "21",
+"paperKey": "s24_21",
+"paperLabel": "1123/21 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 3,
+"type": "structured",
+"marks": 25,
+"img": [
+"/papers/1123/s24_21/q3.png"
+],
+"answer": null,
+"msImg": [
+"/papers/1123/s24_21/ms-q3.png",
+"/papers/1123/s24_21/ms-q3-2.png"
+],
+"msRows": [
+"3 5–6 • Identifies sufficient relevant facts, ideas and opinions from the text(s). (R5)",
+"3 OR 25"
+],
+"insertImg": [],
+"ref": "1123/21/S/2024 Q3"
+},
+{
+"id": "pp-1123-s24_21-q4",
+"code": "1123",
+"paper": "21",
+"paperKey": "s24_21",
+"paperLabel": "1123/21 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 4,
+"type": "structured",
+"marks": 25,
+"img": [
+"/papers/1123/s24_21/q4.png"
+],
+"answer": null,
+"msImg": [
+"/papers/1123/s24_21/ms-q4.png",
+"/papers/1123/s24_21/ms-q4-2.png"
+],
+"msRows": [
+"4 7–8 • Selects a range of relevant facts, ideas and opinions from the text(s). (R5)",
+"4 OR 25"
+],
+"insertImg": [],
+"ref": "1123/21/S/2024 Q4"
+},
+{
+"id": "pp-1123-s24_21-q5",
+"code": "1123",
+"paper": "21",
+"paperKey": "s24_21",
+"paperLabel": "1123/21 May/June 2024",
+"series": "May/June",
+"year": 2024,
+"qnum": 5,
+"type": "structured",
+"marks": 25,
+"img": [
+"/papers/1123/s24_21/q5.png"
+],
+"answer": null,
+"msImg": [
+"/papers/1123/s24_21/ms-q5.png",
+"/papers/1123/s24_21/ms-q5-2.png"
+],
+"msRows": [
+"5 9–10 • Selects a wide range of relevant facts, ideas and opinions from the text(s).",
+"5 OR 25"
+],
+"insertImg": [],
+"ref": "1123/21/S/2024 Q5"
+}
+]

@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------ */
+/* Tokens — calm operations console. Warm off-white canvas, deep green  */
+/* ink, Rosans green accent, a restrained gold for Hifz milestones.     */
+/* RGB triplets so utilities keep alpha modifiers. `.theme-dark` flips  */
+/* the same variables for the rail, hero and dark cards.                */
+/* ------------------------------------------------------------------ */
+:root {
+  --canvas: 246 247 244;
+  --surface: 255 255 255;
+  --surface-2: 240 243 240;
+  --surface-3: 229 234 230;
+  --ink: 18 33 28;
+  --ink-2: 82 96 90;
+  --ink-3: 132 144 138;
+  --line: 227 231 227;
+  --line-strong: 190 200 194;
+  --accent: 15 92 70;
+  --accent-soft: 228 241 235;
+  --accent-deep: 9 64 48;
+  --gold: 184 137 43;
+  --gold-soft: 249 241 224;
+  --ok: 2 122 72;
+  --ok-soft: 224 243 233;
+  --warn: 181 71 8;
+  --warn-soft: 253 239 223;
+  --danger: 180 35 24;
+  --danger-soft: 252 230 228;
+  --info: 24 82 158;
+  --info-soft: 227 237 250;
+  --shadow-card: 0 1px 2px rgb(18 33 28 / 0.04), 0 12px 32px -24px rgb(18 33 28 / 0.18);
+  color-scheme: light;
+}
+
+.theme-dark {
+  --canvas: 12 27 22;
+  --surface: 17 36 30;
+  --surface-2: 24 46 39;
+  --surface-3: 33 58 50;
+  --ink: 240 244 241;
+  --ink-2: 178 194 186;
+  --ink-3: 126 146 137;
+  --line: 34 58 50;
+  --line-strong: 60 90 78;
+  --accent: 106 196 160;
+  --accent-soft: 24 60 48;
+  --accent-deep: 150 220 190;
+  --gold: 226 190 110;
+  --gold-soft: 52 44 24;
+  --ok: 92 208 150;
+  --ok-soft: 20 60 44;
+  --warn: 240 170 96;
+  --warn-soft: 66 44 22;
+  --danger: 240 120 110;
+  --danger-soft: 70 28 26;
+  --info: 130 176 240;
+  --info-soft: 26 44 72;
+  --shadow-card: 0 1px 0 rgb(255 255 255 / 0.03) inset, 0 10px 30px -18px rgb(0 0 0 / 0.6);
+  color-scheme: dark;
+  color: rgb(var(--ink));
+  background: rgb(var(--canvas));
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-canvas text-ink font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection { background: rgb(var(--accent) / 0.18); }
+  h1, h2, h3 { @apply font-display font-medium tracking-[-0.01em]; }
+  h4, h5, h6 { @apply font-sans font-semibold; }
+  .app-shell h2, .app-shell h3 { @apply font-sans font-semibold tracking-normal; }
+  :focus-visible { outline: 2px solid rgb(var(--accent)); outline-offset: 2px; border-radius: 4px; }
+  button, [role="button"] { cursor: pointer; }
+  .num, table td.num, .tabular { font-variant-numeric: tabular-nums; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-thumb { background: rgb(var(--line-strong) / 0.6); border-radius: 999px; border: 3px solid rgb(var(--canvas)); }
+  ::-webkit-scrollbar-track { background: transparent; }
+}
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-content px-5 sm:px-8; }
+  .eyebrow { @apply text-xs font-semibold uppercase tracking-[0.08em] text-accent; }
+  .eyebrow-gold { @apply text-xs font-semibold uppercase tracking-[0.08em] text-gold; }
+
+  .card { @apply rounded-2xl border border-line bg-surface; box-shadow: var(--shadow-card); }
+  .card-hover { @apply transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-px hover:border-line-strong; }
+  .card-quiet { @apply rounded-2xl border border-dashed border-line-strong/70 bg-surface/60; }
+  .divider { @apply border-t border-line; }
+  .rule-gold { @apply h-px w-12 bg-gold; }
+
+  .tile { @apply grid h-10 w-10 shrink-0 place-items-center rounded-xl; }
+  .tile-accent { @apply tile bg-accent-soft text-accent; }
+  .tile-gold { @apply tile bg-gold-soft text-gold; }
+  .tile-ok { @apply tile bg-ok-soft text-ok; }
+  .tile-warn { @apply tile bg-warn-soft text-warn; }
+  .tile-danger { @apply tile bg-danger-soft text-danger; }
+  .tile-info { @apply tile bg-info-soft text-info; }
+  .tile-neutral { @apply tile bg-surface-2 text-ink-2; }
+
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-primary { @apply btn bg-accent text-white hover:bg-accent-deep; }
+  .btn-soft { @apply btn bg-accent-soft text-accent hover:bg-accent/15; }
+  .btn-ghost { @apply btn text-ink-2 hover:bg-surface-2 hover:text-ink; }
+  .btn-outline { @apply btn border border-line-strong bg-surface text-ink hover:bg-surface-2; }
+  .btn-danger { @apply btn bg-danger-soft text-danger hover:bg-danger/15; }
+  .btn-gold { @apply btn bg-gold text-white hover:opacity-90; }
+  .btn-sm { @apply px-3 py-1.5 text-xs rounded-lg; }
+
+  .input { @apply w-full rounded-xl border border-line bg-surface px-3.5 py-2.5 text-sm text-ink placeholder:text-ink-3 focus:border-accent focus:outline-none focus:shadow-ring; }
+  .label { @apply mb-1.5 block text-xs font-medium text-ink-2; }
+  .help { @apply mt-1.5 text-xs text-ink-3; }
+
+  .chip { @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-2xs font-semibold; }
+  .chip-accent { @apply chip bg-accent-soft text-accent; }
+  .chip-ok { @apply chip bg-ok-soft text-ok; }
+  .chip-warn { @apply chip bg-warn-soft text-warn; }
+  .chip-danger { @apply chip bg-danger-soft text-danger; }
+  .chip-info { @apply chip bg-info-soft text-info; }
+  .chip-gold { @apply chip bg-gold-soft text-gold; }
+  .chip-neutral { @apply chip bg-surface-2 text-ink-2; }
+
+  .table { @apply w-full text-sm; }
+  .table th { @apply border-b border-line px-3 py-2 text-left text-2xs font-semibold uppercase tracking-wide text-ink-3; }
+  .table td { @apply border-b border-line/70 px-3 py-2.5 align-middle text-ink; }
+  .table tr:last-child td { @apply border-b-0; }
+
+  .skeleton { @apply animate-pulse-soft rounded-md bg-surface-3; }
+
+  .quran { @apply font-quran text-[1.9rem] leading-[2.1] text-ink; direction: rtl; }
+  .urdu { @apply font-urdu leading-[2]; direction: rtl; }
+
+  /* Recitation word states */
+  .w-ok { @apply text-ink; }
+  .w-sub { @apply rounded-md bg-warn-soft text-warn px-1; }
+  .w-miss { @apply rounded-md bg-danger-soft text-danger px-1 line-through decoration-danger/50; }
+  .w-ins { @apply rounded-md bg-info-soft text-info px-1; }
+
+  /* Islamic geometry backdrop, drawn with CSS only: an eight-point star lattice at low alpha. */
+  .geo {
+    background-image:
+      radial-gradient(circle at 1px 1px, rgb(var(--accent) / 0.10) 1px, transparent 1.5px),
+      linear-gradient(45deg, transparent 48%, rgb(var(--accent) / 0.05) 49%, rgb(var(--accent) / 0.05) 51%, transparent 52%),
+      linear-gradient(-45deg, transparent 48%, rgb(var(--accent) / 0.05) 49%, rgb(var(--accent) / 0.05) 51%, transparent 52%);
+    background-size: 28px 28px, 56px 56px, 56px 56px;
+  }
+}
+
+/* Exam guard: a 1 s black-out when a screenshot / print key-combo is pressed (see use-exam-guard.ts). */
+html.el-blackout body { visibility: hidden; }
