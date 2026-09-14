@@ -5,13 +5,15 @@ import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import {
   AlertTriangle, BookOpen, Building2, CalendarDays, ClipboardList, GraduationCap, Home, Inbox, Layers, LineChart,
-  Map, Megaphone, MessageSquareText, Mic, Repeat, ScrollText, Sparkles, Users, HeartHandshake, BookMarked,
+  Map, Megaphone, MessageSquareText, Mic, Repeat, ScrollText, Settings, Sparkles, Users, HeartHandshake, BookMarked,
 } from "lucide-react";
 import type { NavItem } from "@/lib/auth/nav";
 import { school } from "@/lib/config/school";
 import { cn } from "@/lib/utils";
 import { AiPill } from "@/components/ui/primitives";
+import { NotificationBell } from "./notification-bell";
 import { PersonaSwitcher } from "./persona-switcher";
+import { PresenceBeacon } from "./presence-beacon";
 
 const ICONS: Record<NavItem["icon"], React.ComponentType<{ size?: number; className?: string }>> = {
   home: Home, ask: Sparkles, branches: Building2, alert: AlertTriangle, users: Users, inbox: Inbox, calendar: CalendarDays,
@@ -36,9 +38,11 @@ export function PortalShell({
 }) {
   const pathname = usePathname();
   const isActive = (href: string) => (href.split("/").length <= 3 ? pathname === href : pathname === href || pathname.startsWith(href + "/"));
+  const inboxHref = nav.find((n) => n.icon === "inbox")?.href ?? "/portal";
 
   return (
     <div className="app-shell min-h-screen bg-canvas">
+      <PresenceBeacon />
       {/* Rail */}
       <aside className="theme-dark fixed inset-y-0 left-0 z-20 hidden w-60 flex-col border-r border-line bg-canvas md:flex">
         <Link href="/" className="flex items-center gap-3 px-5 py-5">
@@ -90,6 +94,10 @@ export function PortalShell({
           </p>
           <div className="flex items-center gap-2">
             <AiPill live={aiLive} />
+            <NotificationBell inboxHref={inboxHref} />
+            <Link href="/portal/settings" className={cn("btn-outline btn-sm px-2.5", pathname === "/portal/settings" && "text-accent")} aria-label="Settings" title="Profile and settings">
+              <Settings size={14} />
+            </Link>
             <PersonaSwitcher currentId={personaId} compact />
           </div>
         </div>

@@ -56,6 +56,7 @@ export function navFor(p: Persona): NavItem[] {
         { href: "/portal/teach/attendance", label: "Attendance", icon: "calendar" },
         { href: "/portal/teach/messages", label: "Messages", icon: "inbox", badge: inboxBadge(p) },
         { href: "/portal/teach/timetable", label: "Timetable", icon: "calendar" },
+        { href: "/portal/teach/library", label: "Library", icon: "hifz" },
         ...owned,
       ];
     }
@@ -81,6 +82,8 @@ export function navFor(p: Persona): NavItem[] {
         { href: "/portal/learn/tasks", label: "Tasks", icon: "tasks" },
         { href: "/portal/learn/inbox", label: "Inbox", icon: "inbox", badge: inboxBadge(p) },
         { href: "/portal/learn/study-plan", label: "Study plan", icon: "planner" },
+        { href: "/portal/learn/library", label: "Library", icon: "hifz" },
+        { href: "/portal/learn/resources", label: "Resources", icon: "book" },
         { href: "/portal/learn/ranking", label: "My ranking", icon: "insight" },
         { href: "/portal/learn/leaderboard", label: "Leaderboard", icon: "drill" },
         { href: "/portal/learn/timetable", label: "Timetable", icon: "calendar" },

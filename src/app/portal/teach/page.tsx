@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { ArrowRight, BookOpen } from "lucide-react";
+import { OnlineNow } from "@/components/portal/online-now";
 import { Card, Chip, EmptyState, KeyValue, PageHeader } from "@/components/ui/primitives";
 import { Denied } from "@/components/teach/guard";
 import { spaceStats } from "@/components/teach/space-stats";
 import { getViewer } from "@/lib/auth/viewer";
-import { classById } from "@/lib/data/mock/people";
+import { classById, studentsInClass } from "@/lib/data/mock/people";
 import { spacesForTeacher } from "@/lib/data/repo";
 
 export default async function MySpacesPage() {
@@ -58,6 +59,7 @@ export default async function MySpacesPage() {
       ) : (
         <EmptyState title="No spaces yet" body="Your principal assigns subjects to classes under Subjects; each assignment appears here." />
       )}
+      <OnlineNow personIds={[...new Set(spaces.map((s) => s.space.classId))].flatMap((c) => studentsInClass(c).map((s) => s.id))} hint="Students from your classes seen in the last 90 seconds." />
     </>
   );
 }
