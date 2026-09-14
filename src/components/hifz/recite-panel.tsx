@@ -39,11 +39,12 @@ export function RecitePanel(props: Props) {
     setFailure(null);
     try {
       const res = await fetch(CHECK_URL, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ surah, from: fromAyah, to: toAyah, unitKind: kind, unitId, ...body }) });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      setData((await res.json()) as CheckResponse);
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error ?? `HTTP ${res.status}`);
+      setData(json as CheckResponse);
       setPhase("result");
-    } catch {
-      setFailure("The checker did not respond. Try again or use Simulate attempt.");
+    } catch (e) {
+      setFailure(e instanceof Error ? e.message : "The checker did not respond. No assessment was made.");
       setPhase("idle");
     }
   }

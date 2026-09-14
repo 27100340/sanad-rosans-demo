@@ -21,7 +21,7 @@ export function teacherSpace(viewer: Persona, spaceId: string): SubjectSpace | n
 
 /** Any student on the academic (non-Hifz) track. Hifz students use the /portal/hifz seat. */
 export function isLearner(viewer: Persona): boolean {
-  return viewer.role === "student" && Boolean(viewer.studentId) && !viewer.home.startsWith("/portal/hifz");
+  return viewer.role === "student" && Boolean(viewer.studentId) && !viewer.home.startsWith("/portal/hifz") && viewer.home !== "/portal/learning";
 }
 
 

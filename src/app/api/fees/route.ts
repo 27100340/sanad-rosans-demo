@@ -8,12 +8,14 @@ import { INVOICES, isOverdue, markReminder, paidOf, recordPayment, statusOf, TER
 import { audit, notify, queueMail } from "@/lib/data/mock/notify";
 import { studentById } from "@/lib/data/mock/people";
 import { fmtInt, todayISO } from "@/lib/utils";
+import { viewerRestriction } from "@/lib/auth/access";
 
 const METHODS = ["bank", "cash", "card", "easypaisa"] as const;
 
 export async function POST(req: Request) {
   const viewer = await getViewer();
-  if (viewer.role !== "principal" && viewer.role !== "chairman") return Response.json({ error: "forbidden" }, { status: 403 });
+  if (viewerRestriction(viewer)) return Response.json({ error: "forbidden" }, { status: 403 });
+  if (!["principal", "chairman", "finance"].includes(viewer.role)) return Response.json({ error: "forbidden" }, { status: 403 });
   const body = (await req.json().catch(() => ({}))) as { action?: string; invoiceId?: string; amount?: number; method?: string };
   const inv = INVOICES.find((i) => i.id === body.invoiceId);
   if (!inv || (viewer.branchId && inv.branchId !== viewer.branchId)) return Response.json({ error: "unknown invoice" }, { status: 400 });
@@ -34,9 +36,9 @@ export async function POST(req: Request) {
   }
 
   if (body.action === "payment") {
-    const amount = Math.round(Number(body.amount));
+    const amount = Number(body.amount);
     const method = METHODS.includes(body.method as (typeof METHODS)[number]) ? (body.method as (typeof METHODS)[number]) : "bank";
-    if (!Number.isFinite(amount) || amount <= 0 || amount > outstanding) return Response.json({ error: `Enter an amount up to Rs ${fmtInt(outstanding)}.` }, { status: 400 });
+    if (!Number.isSafeInteger(amount) || amount <= 0 || amount > outstanding) return Response.json({ error: `Enter a whole PKR amount up to Rs ${fmtInt(outstanding)}.` }, { status: 400 });
     const p = recordPayment(inv, amount, method);
     notify({ personIds: [student.guardianId] }, { kind: "message", title: `Receipt ${p.ref}: Rs ${fmtInt(amount)} received`, body: `${TERM} fee for ${student.name}. ${statusOf(inv) === "paid" ? "Fully paid, thank you." : `Rs ${fmtInt(inv.amount - paidOf(inv))} remains.`}`, href: "/portal/family/children", fromId: viewer.personId });
     audit(viewer.personId, "fee.payment", "invoice", inv.id, { student: student.name, amount, method, ref: p.ref });

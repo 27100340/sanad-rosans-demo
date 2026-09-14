@@ -8,7 +8,10 @@ const SEATS = [
   { icon: Building2, title: "Leadership sees every campus", body: "Three branches on one screen. Attendance, fees, marks, risk. Ask a question in plain language and get the figures behind the answer." },
   { icon: Users, title: "Teachers own their subject", body: "A Subject Space per class with genuine resources, an AI marker that shows its evidence, and a tutor that follows the teacher's rules." },
   { icon: GraduationCap, title: "Students learn, not copy", body: "A Socratic tutor bound to the syllabus, in English or Urdu. It coaches toward the answer and never hands it over." },
-  { icon: Mic, title: "Hifz with a patient listener", body: "The child listens to an ayah, recites it back, and sees exactly which word slipped. Sabaq, sabqi and manzil scheduled automatically." },
+  { icon: Mic, title: "Hifz with a patient listener", body: "Listen, recite and review possible word differences with an ustadh. AI-assisted feedback supports sabaq, sabqi and manzil practice; it does not replace the teacher." },
+  { icon: Building2, title: "Finance with clear approvals", body: "Fees and receipts, supplier expenses, payroll and budgets. Independent approval and a traceable activity log." },
+  { icon: Users, title: "Teachers grow with evidence", body: "Transparent appraisal rubrics, observation evidence, development goals and the teacher's own response." },
+  { icon: GraduationCap, title: "Montessori to O Levels", body: "Play-based early learning, primary portfolios, guided secondary practice and O Level assessments. Each stage has its own teaching approach." },
   { icon: HeartHandshake, title: "Parents get tonight's brief", body: "One card, in their language: what happened today, and the single thing to do at home this evening." },
   { icon: ShieldCheck, title: "Values built in", body: "Every AI seat runs under a values guardrail, a tarbiyah log for character, and school-owned data with full audit." },
 ];
@@ -61,7 +64,7 @@ export default function Landing() {
                 “Lake City is your strongest campus this week. Gulberg Grade 8 Maths fell six points, and Paragon lost seven families, four of them over transport. Three decisions are waiting for you.”
               </p>
               <div className="mt-5 flex items-center gap-2 text-xs text-ink-3">
-                <Sparkles size={14} className="text-gold" /> Generated from live aggregates, figures cited, every question audited.
+                <Sparkles size={14} className="text-gold" /> Illustrative brief using fictional school data.
               </div>
             </div>
           </div>

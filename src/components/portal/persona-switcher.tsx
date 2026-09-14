@@ -29,16 +29,17 @@ export function PersonaSwitcher({ currentId, compact = false }: { currentId: str
         onClick={() => setOpen((o) => !o)}
         className={cn("btn-outline gap-2", compact ? "btn-sm" : "", pending && "opacity-60")}
         aria-haspopup="listbox"
+        aria-label={`Switch persona: ${current.label}`}
         aria-expanded={open}
       >
         <UserRound size={14} className="text-accent" />
-        <span className="max-w-[10rem] truncate">{current.label}</span>
-        <ChevronDown size={14} className="text-ink-3" />
+        <span className="hidden max-w-[10rem] truncate sm:inline">{current.label}</span>
+        <ChevronDown size={14} className="hidden text-ink-3 sm:block" />
       </button>
       {open ? (
         <>
           <button type="button" aria-label="Close" className="fixed inset-0 z-30 cursor-default" onClick={() => setOpen(false)} />
-          <ul role="listbox" className="absolute right-0 z-40 mt-2 w-80 overflow-hidden rounded-2xl border border-line bg-surface p-1.5 shadow-pop">
+          <ul role="listbox" className="absolute right-0 z-40 mt-2 max-h-[70dvh] w-80 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-2xl border border-line bg-surface p-1.5 shadow-pop">
             <li className="px-3 py-2 text-2xs font-semibold uppercase tracking-wide text-ink-3">View the school as</li>
             {PERSONAS.map((p) => (
               <li key={p.id}>

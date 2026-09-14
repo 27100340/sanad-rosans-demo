@@ -7,6 +7,7 @@
  * brings it back.
  */
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
 import { ArrowRight, Compass, X } from "lucide-react";
 
@@ -120,7 +121,7 @@ export function Tour({ role }: { role: string }) {
         <Compass size={14} />
       </button>
 
-      {open ? (
+      {open ? createPortal((
         <div className="fixed inset-0 z-40 grid place-items-center bg-ink/40 p-4 animate-fade-in" role="dialog" aria-modal="true" aria-label="Product tour">
           <button type="button" aria-label="Close the tour" className="absolute inset-0 cursor-default" onClick={close} />
           <div className="card relative z-10 w-full max-w-md space-y-4 p-5 shadow-pop">
@@ -170,7 +171,7 @@ export function Tour({ role }: { role: string }) {
             </div>
           </div>
         </div>
-      ) : null}
+      ), document.body) : null}
     </>
   );
 }

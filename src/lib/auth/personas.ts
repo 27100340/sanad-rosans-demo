@@ -19,6 +19,11 @@ export interface Persona {
 }
 
 export const PERSONAS: Persona[] = [
+  { id: "finance-gulberg", personId: "p-finance-gulberg", label: "Finance officer · Gulberg", role: "finance", branchId: "gulberg", home: "/portal/finance", blurb: "Records fees, expenses and payroll; leadership approves expenditure." },
+  { id: "teacher-primary", personId: "t-primary", label: "Ms. Mariam Ahmed · Primary", role: "teacher", branchId: "gulberg", home: "/portal/teaching", blurb: "Plans age-appropriate lessons and tracks learning evidence for Grades 1–6." },
+  { id: "teacher-montessori", personId: "t-montessori", label: "Ms. Amina Noor · Montessori", role: "teacher", branchId: "gulberg", home: "/portal/teaching", blurb: "Guides play-based learning and developmental observations." },
+  { id: "student-primary", personId: "s-primary-3", label: "Demo learner · Grade 3", role: "student", branchId: "gulberg", home: "/portal/learning", blurb: "Reads teacher-published activities with adult support.", studentId: "s-primary-3" },
+  { id: "parent-early", personId: "g-early", label: "Inaya's parent · Montessori", role: "parent", branchId: "gulberg", home: "/portal/learning", blurb: "Shares early learning activities and views observations.", guardianId: "g-early" },
   { id: "chairman", personId: "p-chairman", label: "Chairman", role: "chairman", branchId: null, home: "/portal/leadership", blurb: "Sees all three campuses live and asks the school questions." },
   { id: "principal-gulberg", personId: "p-principal-gulberg", label: "Principal, Gulberg", role: "principal", branchId: "gulberg", home: "/portal/principal", blurb: "Runs one campus: at-risk students, teachers, parents, timetable." },
   { id: "coordinator-gulberg", personId: "p-coordinator-gulberg", label: "Mr. Adeel Hussain · Coordinator", role: "coordinator", branchId: "gulberg", home: "/portal/coordinator", blurb: "Runs the Senior section day to day: registers, parents, timetable." },
@@ -34,7 +39,7 @@ export const PERSONA_COOKIE = "persona";
 export const DEFAULT_PERSONA = "chairman";
 
 export function findPersona(id: string | undefined | null): Persona {
-  return PERSONAS.find((p) => p.id === id) ?? PERSONAS[0];
+  return PERSONAS.find((p) => p.id === id) ?? PERSONAS.find(p => p.id === DEFAULT_PERSONA)!;
 }
 
 export function isLeadership(p: Persona): boolean {
