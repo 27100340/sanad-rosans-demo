@@ -141,6 +141,14 @@ Next work, in order:
 
 This milestone completes the extended reviewable demo, not a production school deployment.
 
+### Main-branch demo redeploy — 2026-09-14
+
+- GitHub pull request #1 was merged, so `main` now contains the extended school-demo
+  implementation (commit `9c83a21`); the old feature branch is no longer needed for pickup.
+- Fresh host install exposed a Next.js 16.3.5 Turbopack PostCSS module-resolution failure.
+  Updated the production build command to `next build --webpack`; the optimized build passed.
+- Restarted `sanad-demo.service`; the public HTTPS endpoint returned HTTP 200 after deploy.
+
 ### Gemini 3.5 Flash configuration — 2026-09-14
 
 - JB requested Gemini 3.5 Flash for existing text AI and recorded Hifz audio.

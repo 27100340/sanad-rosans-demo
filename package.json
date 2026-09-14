@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "prebuild": "node scripts/check-ai-provider-policy.mjs",
-    "build": "next build",
+    "build": "next build --webpack",
     "check:ai-policy": "node scripts/check-ai-provider-policy.mjs",
     "start": "next start",
     "typecheck": "tsc --noEmit",
