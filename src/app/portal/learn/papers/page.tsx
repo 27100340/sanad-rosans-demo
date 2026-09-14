@@ -1,7 +1,8 @@
 import { Award, CalendarDays, CheckCircle2, FileText } from "lucide-react";
 import { PageHeader, Stat } from "@/components/ui/primitives";
 import { getViewer } from "@/lib/auth/viewer";
-import { studentById } from "@/lib/data/mock/people";
+import { studentById, classById } from "@/lib/data/mock/people";
+import { stageFor } from "@/lib/domain/teaching";
 import { spacesForClass } from "@/lib/data/mock/spaces";
 import { paperAttemptsForStudent } from "@/lib/data/mock/papers";
 import { codeForSubject, listPapers } from "@/lib/data/pastpapers";
@@ -15,7 +16,7 @@ const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
 export default async function PapersPage() {
   const viewer = await getViewer();
   const student = isLearner(viewer) && viewer.studentId ? studentById.get(viewer.studentId) : undefined;
-  if (!student) return <Denied />;
+  if (!student || stageFor(classById.get(student.classId)!) !== "o-level") return <><PageHeader title="Classroom practice" description="O Level past papers are reserved for O Level learners. Use your teacher's topic tests and published activities."/><a className="btn-primary" href="/portal/learning">Open learning activities</a></>;
 
   const papers = listPapers();
   const ownCodes = [...new Set(spacesForClass(student.classId).map((s) => codeForSubject(subjectIdForSpace(s))).filter((c): c is string => Boolean(c)))];

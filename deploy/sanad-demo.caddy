@@ -1,0 +1,8 @@
+sanad.169-58-80-16.sslip.io {
+    encode zstd gzip
+    header X-Robots-Tag "noindex, nofollow"
+    request_body {
+        max_size 6MB
+    }
+    reverse_proxy 127.0.0.1:3214
+}

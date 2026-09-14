@@ -14,6 +14,8 @@ export const LEADERS: Person[] = [
 ];
 
 export const TEACHERS: Teacher[] = [
+  { id: "t-primary", name: "Ms. Mariam Ahmed", role: "teacher", branchId: "gulberg", subjects: ["Primary classroom"], spaceIds: [], markingBacklog: 0, weeklyPeriods: 24, avatarTone: "ok" },
+  { id: "t-montessori", name: "Ms. Amina Noor", role: "teacher", branchId: "gulberg", subjects: ["Early years"], spaceIds: [], markingBacklog: 0, weeklyPeriods: 20, avatarTone: "gold" },
   { id: "t-hina-raza", name: "Ms. Hina Raza", role: "teacher", branchId: "gulberg", subjects: ["Mathematics", "Mathematics D"], spaceIds: ["gulberg-g8b-maths", "gulberg-g7a-ls-maths", "gulberg-o1-ol-maths"], markingBacklog: 4, weeklyPeriods: 24, avatarTone: "accent" },
   { id: "t-sara-malik", name: "Ms. Sara Malik", role: "teacher", branchId: "gulberg", subjects: ["English Language"], spaceIds: ["gulberg-g8b-english", "gulberg-o1-ol-english"], markingBacklog: 11, weeklyPeriods: 26, avatarTone: "info" },
   { id: "t-usman-tariq", name: "Mr. Usman Tariq", role: "teacher", branchId: "gulberg", subjects: ["Science", "Physics"], spaceIds: ["gulberg-g8b-science", "gulberg-o1-ol-physics"], markingBacklog: 2, weeklyPeriods: 22, avatarTone: "ok" },
@@ -84,12 +86,18 @@ function seedStudents(seeds: StudentSeed[], branchId: "gulberg", classId: string
 }
 
 export const STUDENTS: Student[] = [
+  ...seedStudents([["s-early", "Inaya Ahmed", "f", 96, 0, 0, 0]], "gulberg", "gulberg-mont-a"),
+  ...[1,2,3,4,5,6].flatMap(year => seedStudents([[`s-primary-${year}`, `Demo Learner ${year}`, "f", 95, 1, 75, 3]], "gulberg", `gulberg-g${year}a`)),
   ...seedStudents(G8B, "gulberg", "gulberg-g8b"),
   ...seedStudents(HIFZ2, "gulberg", "gulberg-hifz2", true),
   ...seedStudents(O1, "gulberg", "gulberg-o1"),
 ];
 
 export const CLASSES: SchoolClass[] = [
+  { id: "gulberg-mont-a", branchId: "gulberg", section: "Montessori", name: "Montessori A", year: 0, classTeacherId: "t-montessori", studentIds: ["s-early"] },
+  ...[1,2,3,4,5,6].map(year => ({ id: `gulberg-g${year}a`, branchId: "gulberg" as const, section: "Junior" as const, name: `Grade ${year}-A`, year, classTeacherId: "t-primary", studentIds: [`s-primary-${year}`] })),
+  { id: "gulberg-o2", branchId: "gulberg", section: "Senior", name: "O Level 2", year: 11, classTeacherId: "t-sara-malik", studentIds: [] },
+  { id: "gulberg-o3", branchId: "gulberg", section: "Senior", name: "O Level 3", year: 12, classTeacherId: "t-sara-malik", studentIds: [] },
   { id: "gulberg-g8b", branchId: "gulberg", section: "Senior", name: "Grade 8-B", year: 8, classTeacherId: "t-hina-raza", studentIds: G8B.map((s) => s[0]) },
   { id: "gulberg-g7a", branchId: "gulberg", section: "Junior", name: "Grade 7-A", year: 7, classTeacherId: "t-sara-malik", studentIds: [] },
   { id: "gulberg-g9a", branchId: "gulberg", section: "Senior", name: "Grade 9-A", year: 9, classTeacherId: "t-usman-tariq", studentIds: [] },

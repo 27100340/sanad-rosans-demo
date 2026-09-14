@@ -6,8 +6,8 @@
 
 // Pinned. Never use `*-latest` aliases: they resolve to thinking models that
 // blow serverless budgets (lesson recorded in the reference project).
-export const FAST_MODEL = "gemini-3.1-flash-lite";
-export const AUDIO_MODEL = "gemini-3.1-flash";
+export const FAST_MODEL = "gemini-3.5-flash";
+export const AUDIO_MODEL = "gemini-3.5-flash";
 
 const SLOW_ALIASES = ["gemini-flash-latest", "gemini-pro-latest"];
 
@@ -31,13 +31,13 @@ export interface AskGeminiResult {
 }
 
 export function aiIsLive(): boolean {
-  return Boolean(process.env.GEMINI_API_KEY);
+  return process.env.SANAD_AI_ENABLED !== "false" && Boolean(process.env.GEMINI_API_KEY);
 }
 
 export async function askGemini(input: AskGeminiInput): Promise<AskGeminiResult> {
   const started = Date.now();
   const key = process.env.GEMINI_API_KEY;
-  if (!key) return { text: null, latencyMs: 0, live: false };
+  if (!key || !aiIsLive()) return { text: null, latencyMs: 0, live: false };
 
   const model = input.model ?? FAST_MODEL;
   if (SLOW_ALIASES.includes(model)) throw new Error(`Refusing slow alias ${model}`);
@@ -45,10 +45,10 @@ export async function askGemini(input: AskGeminiInput): Promise<AskGeminiResult>
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), input.timeoutMs ?? 12_000);
   try {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
     const res = await fetch(url, {
       method: "POST",
-      headers: { "content-type": "application/json" },
+      headers: { "content-type": "application/json", "x-goog-api-key": key },
       signal: controller.signal,
       body: JSON.stringify({
         systemInstruction: { parts: [{ text: input.system }] },

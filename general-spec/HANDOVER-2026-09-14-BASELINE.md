@@ -1,4 +1,7 @@
-# RESUME — Sanad / Minhaj (state as of 2026-09-14, night)
+# Historical handover — Sanad / Minhaj (state as of 2026-09-14, night)
+
+Preserved baseline. For current work read `../resume.md`. This file was moved to avoid
+`RESUME.md` / `resume.md` filename collisions on the partner's Windows checkout.
 
 Read this first when the user says "resume". Everything below is committed on `main` of
 `https://github.com/27100340/sanad-rosans-demo.git`; this file and `general-spec/` now live inside

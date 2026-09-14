@@ -2,6 +2,7 @@ import { getViewer } from "@/lib/auth/viewer";
 import { classById, studentById } from "@/lib/data/mock/people";
 import { spaceById } from "@/lib/data/mock/spaces";
 import { run, type TutorTurn } from "@/lib/ai/tutor";
+import { viewerRestriction } from "@/lib/auth/access";
 
 interface Body {
   spaceId?: string;
@@ -11,7 +12,7 @@ interface Body {
 export async function POST(req: Request) {
   const viewer = await getViewer();
   const student = viewer.role === "student" && viewer.studentId ? studentById.get(viewer.studentId) : undefined;
-  if (!student) return Response.json({ error: "forbidden" }, { status: 403 });
+  if (!student || viewerRestriction(viewer) || (classById.get(student.classId)?.year ?? 0) <= 6) return Response.json({ error: "Use guardian-supported learning activities for this stage." }, { status: 403 });
 
   const body = (await req.json().catch(() => ({}))) as Body;
   const space = body.spaceId ? spaceById.get(body.spaceId) : undefined;

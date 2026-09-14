@@ -14,6 +14,8 @@ import { aiIsLive } from "@/lib/ai/gemini";
 import { simulateTranscript, transcribeRecitation, type SimulatedVariant } from "@/lib/ai/recitation";
 import { MUTASHABIHAT, ZAID_UNITS } from "@/lib/data/mock/hifz";
 import { todayISO } from "@/lib/utils";
+import { getViewer } from "@/lib/auth/viewer";
+import { viewerRestriction } from "@/lib/auth/access";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -58,7 +60,8 @@ async function resolveTranscript(body: CheckBody): Promise<Resolved> {
   if (body.mode !== "simulated" && body.browserTranscript?.trim()) {
     return { transcript: body.browserTranscript, source: "browser-speech", notes: [], live };
   }
-  const variant: SimulatedVariant = body.mode === "simulated" ? (body.variant ?? "perfect") : "one-miss";
+  if (body.mode !== "simulated") throw new Error("The recording could not be transcribed. No score was created. Retry, ask your ustadh, or explicitly choose a simulated example.");
+  const variant: SimulatedVariant = body.variant ?? "perfect";
   return { transcript: simulateTranscript(simple, variant), source: "simulated", notes: [], live };
 }
 
@@ -76,16 +79,23 @@ function matchedPairs(result: RecitationResult): MutashabihPair[] {
 }
 
 export async function POST(req: Request) {
+  const viewer = await getViewer();
+  if (viewerRestriction(viewer) || !(viewer.role === "ustadh" || viewer.studentId === "s-zaid-hassan")) return NextResponse.json({ error: "This recitation tool is available to the Hifz seats." }, { status: 403 });
   let body: CheckBody;
   try {
     body = (await req.json()) as CheckBody;
   } catch {
     return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
   }
+  if (!body || typeof body !== "object" || !["audio", "browser", "simulated"].includes(body.mode) || ![body.surah, body.from, body.to].every(Number.isInteger) || body.from < 1 || body.to < body.from || body.to - body.from > 20) return NextResponse.json({ error: "Invalid recitation range or mode." }, { status: 400 });
+  if (body.variant && !["perfect", "one-miss", "one-sub"].includes(body.variant)) return NextResponse.json({ error: "Unknown simulated example." }, { status: 400 });
+  if (body.audioBase64 && (typeof body.audioBase64 !== "string" || body.audioBase64.length > 4_000_000)) return NextResponse.json({ error: "Recording too large; use a shorter clip." }, { status: 413 });
+  if (body.browserTranscript && (typeof body.browserTranscript !== "string" || body.browserTranscript.length > 6000)) return NextResponse.json({ error: "Transcript too long." }, { status: 400 });
   const canonical = canonicalText(body.surah, body.from, body.to);
   if (!canonical) return NextResponse.json({ error: "Range not in the bundled verse subset" }, { status: 404 });
 
-  const resolved = await resolveTranscript(body);
+  let resolved: Resolved;
+  try { resolved = await resolveTranscript(body); } catch(e) { return NextResponse.json({ error: e instanceof Error ? e.message : "Transcription unavailable" }, { status: 422 }); }
   const passThreshold = body.unitKind === "sabaq" || body.unitKind === undefined ? PASS_SABAQ : PASS_REVISION;
   const result = compareRecitation(canonical, resolved.transcript, {
     passThreshold,
@@ -97,7 +107,7 @@ export async function POST(req: Request) {
   });
 
   const existing = body.unitId ? ZAID_UNITS.find((u) => u.id === body.unitId) : undefined;
-  const unit = existing ? reviewUnit(existing, result.score, todayISO()) : null;
+  const unit = existing && resolved.source !== "simulated" ? reviewUnit(existing, result.score, todayISO()) : null;
 
   const response: CheckResponse = { result, unit, mutashabihat: matchedPairs(result), live: resolved.live };
   return NextResponse.json(response);

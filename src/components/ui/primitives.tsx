@@ -194,9 +194,9 @@ export function HeatCell({ value, label, size = "md" }: { value: number | null; 
 
 export function AiPill({ live }: { live: boolean }) {
   return (
-    <span className={cn("chip", live ? "chip-ok" : "chip-neutral")} title={live ? "Gemini is answering live" : "Scripted responses (no GEMINI_API_KEY set)"}>
+    <span className={cn("chip", live ? "chip-ok" : "chip-neutral")} title={live ? "Gemini is configured; individual requests may fall back" : "Scripted responses; live AI is disabled or not configured"}>
       <span className={cn("h-1.5 w-1.5 rounded-full", live ? "bg-ok" : "bg-ink-3")} />
-      AI {live ? "live" : "scripted"}
+      AI {live ? "configured" : "scripted"}
     </span>
   );
 }

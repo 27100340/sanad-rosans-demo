@@ -6,7 +6,9 @@
  * GET returns a sitting with everything revealed for answered questions.
  */
 import { getViewer } from "@/lib/auth/viewer";
-import { studentById } from "@/lib/data/mock/people";
+import { studentById, classById } from "@/lib/data/mock/people";
+import { stageFor } from "@/lib/domain/teaching";
+import { viewerRestriction } from "@/lib/auth/access";
 import { finishPaperAttempt, paperAttemptById, recordPaperAnswer, startPaperAttempt, storeScriptImage } from "@/lib/data/mock/papers";
 import { forStudentPaper, listPapers, paperQuestionById, questionsForPaper } from "@/lib/data/pastpapers";
 import { markPaperQuestion } from "@/lib/ai/assess";
@@ -18,7 +20,9 @@ const MAX_RESPONSE_CHARS = 3000;
 
 async function student() {
   const viewer = await getViewer();
-  return viewer.role === "student" && viewer.studentId ? studentById.get(viewer.studentId) : undefined;
+  const me = viewer.role === "student" && viewer.studentId ? studentById.get(viewer.studentId) : undefined;
+  const cls = me && classById.get(me.classId);
+  return me && !me.hifz && cls && stageFor(cls) === "o-level" && !viewerRestriction(viewer) ? me : undefined;
 }
 
 function reveal(questionId: string) {

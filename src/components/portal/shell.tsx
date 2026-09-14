@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 import type { ReactNode } from "react";
 import {
   AlertTriangle, BookOpen, Building2, CalendarDays, ClipboardList, GraduationCap, Home, Inbox, Layers, LineChart,
@@ -15,6 +16,7 @@ import { NotificationBell } from "./notification-bell";
 import { PersonaSwitcher } from "./persona-switcher";
 import { PresenceBeacon } from "./presence-beacon";
 import { Tour } from "./tour";
+import { SchoolAssistant } from "./assistant";
 
 const ICONS: Record<NavItem["icon"], React.ComponentType<{ size?: number; className?: string }>> = {
   home: Home, ask: Sparkles, branches: Building2, alert: AlertTriangle, users: Users, inbox: Inbox, calendar: CalendarDays,
@@ -40,6 +42,7 @@ export function PortalShell({
   children: ReactNode;
 }) {
   const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
   const isActive = (href: string) => (href.split("/").length <= 3 ? pathname === href : pathname === href || pathname.startsWith(href + "/"));
   const inboxHref = nav.find((n) => n.icon === "inbox")?.href ?? "/portal";
 
@@ -57,7 +60,7 @@ export function PortalShell({
             <span className="block text-2xs text-ink-3">{school.shortName}</span>
           </span>
         </Link>
-        <nav className="mt-2 flex-1 space-y-0.5 px-3">
+        <nav className="mt-2 min-h-0 flex-1 overflow-y-auto space-y-0.5 px-3">
           {nav.map((item) => {
             const Icon = ICONS[item.icon];
             const active = isActive(item.href);
@@ -108,12 +111,15 @@ export function PortalShell({
       </header>
 
       <main className="px-4 pb-24 pt-6 sm:px-8 md:pb-10 md:pl-[17rem]">
+        <p className="mx-auto mb-4 max-w-content text-xs text-ink-3">Demo workspace · fictional records · changes reset when the server restarts</p>
         <div className="mx-auto max-w-content space-y-8 animate-fade-in">{children}</div>
       </main>
 
       {/* Phone bottom bar */}
+      {nav.length > 0 && <SchoolAssistant role={role} personaId={personaId}/>}
+      {menuOpen && <div className="fixed inset-x-3 bottom-16 z-40 max-h-[70dvh] overflow-y-auto rounded-2xl border border-line bg-surface p-4 shadow-xl md:hidden" role="dialog" aria-label="All sections"><div className="mb-3 flex items-center justify-between"><h2 className="font-semibold">All sections</h2><button className="btn-outline btn-sm" onClick={() => setMenuOpen(false)}>Close</button></div>{nav.map(item => <Link key={item.href} href={item.href} onClick={() => setMenuOpen(false)} className="block rounded-xl p-3 text-sm hover:bg-canvas">{item.label}</Link>)}</div>}
       <nav className="fixed inset-x-0 bottom-0 z-20 flex border-t border-line bg-surface md:hidden">
-        {nav.slice(0, 5).map((item) => {
+        {nav.slice(0, 4).map((item) => {
           const Icon = ICONS[item.icon];
           const active = isActive(item.href);
           return (
@@ -126,6 +132,7 @@ export function PortalShell({
             </Link>
           );
         })}
+        {nav.length > 4 && <button className="flex flex-1 flex-col items-center gap-1 py-2 text-2xs text-ink-3" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen}><Layers size={18}/><span>More</span></button>}
       </nav>
     </div>
   );

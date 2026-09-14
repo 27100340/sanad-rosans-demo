@@ -14,7 +14,7 @@ const LEDGER_LIMIT = 12;
 
 export default async function FeesPage() {
   const viewer = await getViewer();
-  if (!canSeePrincipal(viewer)) return <SeatDenied home={viewer.home} />;
+  if (!canSeePrincipal(viewer) && viewer.role !== "finance") return <SeatDenied home={viewer.home} />;
   const branchId = viewer.branchId ?? DEMO_BRANCH;
   const today = todayISO();
 
