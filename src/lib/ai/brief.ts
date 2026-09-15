@@ -1,10 +1,11 @@
 /**
  * Parent Brief. Facts are assembled from mock records (attendance, one line
- * per subject, Hifz status, one action for tonight). Gemini writes the
+ * per subject, Hifz status, one action for tonight). Groq writes the
  * narrative in the chosen language; the fallback is a slot-filled template in
  * English and a genuine Urdu-script template.
  */
-import { askGemini, parseKeyLines, VALUES_GUARDRAIL } from "./gemini";
+import { parseKeyLines, VALUES_GUARDRAIL } from "./gemini";
+import { askGroq } from "./groq";
 import { school } from "@/lib/config/school";
 import { classById, studentById, teacherById } from "@/lib/data/mock/people";
 import { ASSIGNMENTS, spacesForClass } from "@/lib/data/mock/spaces";
@@ -133,9 +134,12 @@ export async function run(input: BriefInput): Promise<BriefOutput> {
     VALUES_GUARDRAIL,
     languageLine,
     "Use only the facts given; never invent marks, events or names. Keep every line under 25 words.",
-    "Output ONLY these lines: HEADLINE: <one sentence>, then one LINE: per fact (attendance first), then ACTION: <the one action for tonight, rewritten naturally>.",
+    `Output ONLY these lines, each beginning with its label in capitals:
+HEADLINE: <one sentence>
+LINE: <one fact> — repeat this label on its own line once per fact, attendance first
+ACTION: <the one action for tonight, rewritten naturally>`,
   ].join("\n\n");
-  const res = await askGemini({
+  const res = await askGroq({
     system,
     parts: [{ text: `FACTS:\n- Attendance: present today, ${facts.attendancePct}% this term\n${facts.subjectLines.map((l) => `- ${l}`).join("\n")}${facts.hifzLine ? `\n- ${facts.hifzLine}` : ""}\nACTION TONIGHT: ${ACTIONS[input.studentId]?.en ?? base.action}` }],
     temperature: 0.4,

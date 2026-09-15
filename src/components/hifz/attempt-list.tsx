@@ -5,7 +5,7 @@ import { Chip } from "@/components/ui/primitives";
 import { scoreTone } from "./derive";
 import { WordDiffView } from "./word-diff";
 
-const SOURCE_LABEL: Record<RecitationAttempt["source"], string> = { gemini: "Gemini audio", "browser-speech": "Browser speech", simulated: "Simulated" };
+const SOURCE_LABEL: Record<RecitationAttempt["source"], string> = { gemini: "Gemini audio", whisper: "Whisper audio", "browser-speech": "Browser speech", simulated: "Simulated" };
 
 /** Past attempts with the word diff re-derived from the stored transcript when it was not persisted. */
 export function AttemptList({ attempts }: { attempts: RecitationAttempt[] }) {

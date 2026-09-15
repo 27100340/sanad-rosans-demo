@@ -4,25 +4,61 @@
  * early-warning consumer agrees on what counts.
  *
  *   present / late / online  -> attended
- *   absent                   -> counts against attendance
+ *   absent / bunk            -> counts against attendance
  *   excused / leave / exempt -> removed from the denominator; never an absence
+ *
+ * "bunk" is deliberately separate from "absent": the child signed in and is
+ * somewhere on the premises but not in this period. It costs the same
+ * attendance percentage as an absence, but it is a supervision incident rather
+ * than a home matter, so the roll-ups surface it first and the register asks
+ * where the student was.
  */
 
 /** Order drives the tap-to-cycle order in the register and the summary row. */
-export const ATTENDANCE_STATUSES = ["present", "late", "online", "absent", "excused", "leave", "exempt"] as const;
+export const ATTENDANCE_STATUSES = ["present", "late", "online", "absent", "bunk", "excused", "leave", "exempt"] as const;
 export type AttendanceStatus = (typeof ATTENDANCE_STATUSES)[number];
 
 export const ATTENDED_STATUSES: readonly AttendanceStatus[] = ["present", "late", "online"];
 export const EXCLUDED_STATUSES: readonly AttendanceStatus[] = ["excused", "leave", "exempt"];
+/** Not attended and not authorised: the two that cost attendance. */
+export const UNAUTHORISED_STATUSES: readonly AttendanceStatus[] = ["absent", "bunk"];
 
 export const ATTENDANCE_LABEL: Record<AttendanceStatus, string> = {
   present: "Present",
   late: "Late",
   online: "Online",
   absent: "Absent",
+  bunk: "Bunk",
   excused: "Excused",
   leave: "Leave",
   exempt: "Exempt",
+};
+
+/**
+ * Single-letter register codes. They label the dense marking strip and double
+ * as its keyboard shortcuts, so every letter must stay unique.
+ */
+export const ATTENDANCE_CODE: Record<AttendanceStatus, string> = {
+  present: "P",
+  late: "L",
+  online: "O",
+  absent: "A",
+  bunk: "B",
+  excused: "E",
+  leave: "V",
+  exempt: "X",
+};
+
+/** One line each, shown in the register legend and given to the marking agent as vocabulary. */
+export const ATTENDANCE_HINT: Record<AttendanceStatus, string> = {
+  present: "In the room for this period.",
+  late: "Arrived after the register opened; still counts as attended.",
+  online: "Joined the period remotely.",
+  absent: "Not in school at all today, as far as this period knows.",
+  bunk: "In school but skipped this period. Counts against attendance and needs following up on site.",
+  excused: "Away with the school's permission; removed from the attendance denominator.",
+  leave: "Approved leave; removed from the attendance denominator.",
+  exempt: "Formally exempt from this period; an official reason is required.",
 };
 
 export const ATTENDANCE_NOTE_MAX = 500;
@@ -55,6 +91,7 @@ export interface AttendanceMark {
 const ALL = new Set<string>(ATTENDANCE_STATUSES);
 const ATTENDED = new Set<string>(ATTENDED_STATUSES);
 const EXCLUDED = new Set<string>(EXCLUDED_STATUSES);
+const UNAUTHORISED = new Set<string>(UNAUTHORISED_STATUSES);
 
 export function isAttendanceStatus(value: unknown): value is AttendanceStatus {
   return typeof value === "string" && ALL.has(value);
@@ -68,14 +105,32 @@ export function isExcludedFromAttendance(status: string): boolean {
   return EXCLUDED.has(status);
 }
 
+/** Absent or bunk: the marks a percentage is actually lost to. */
+export function isUnauthorised(status: string): boolean {
+  return UNAUTHORISED.has(status);
+}
+
+/**
+ * Anything a teacher or the office may still have to act on. Present and
+ * online need nobody; everything else earns a line in the exceptions list.
+ */
+export function isException(status: string): boolean {
+  return isAttendanceStatus(status) && status !== "present" && status !== "online";
+}
+
 /** An official reason is mandatory for a lesson exemption. */
 export function requiresReason(status: string): boolean {
   return status === "exempt";
 }
 
-/** A reason is kept only for these, so moving a student back to present cannot leave a stale reason. */
+/**
+ * A reason is kept only for these, so moving a student back to present cannot
+ * leave a stale reason. Bunk carries one because "where was he" is the whole
+ * point of the mark; unlike exempt it is not mandatory, since the teacher
+ * often does not know yet.
+ */
 export function allowsReason(status: string): boolean {
-  return status === "exempt" || status === "leave";
+  return status === "exempt" || status === "leave" || status === "bunk";
 }
 
 export function normaliseReason(note: unknown): string {

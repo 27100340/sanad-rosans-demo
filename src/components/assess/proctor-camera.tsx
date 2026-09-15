@@ -15,6 +15,12 @@ import type { GuardEvent } from "./use-exam-guard";
  * can't load). A single still JPEG snapshot is emitted to the parent on each
  * warning / violation for the teacher's forensic record.
  *
+ * VIDEO FIRST, ANALYSIS BEST-EFFORT: the preview is attached and played as soon
+ * as getUserMedia resolves and never waits on a model. If the models cannot load
+ * the video still shows and the UI says analysis is off — it must never claim a
+ * face is "in view" when nothing measured it, and it must never stand in a
+ * stock or simulated feed.
+ *
  * Escalation: a sustained malpractice signal raises an on-screen WARNING with
  * a soft beep + snapshot. TWO warnings → a SIREN + terminal event that cancels
  * & LOCKS the test (the student must justify to their teacher).
@@ -29,6 +35,12 @@ import type { GuardEvent } from "./use-exam-guard";
 
 export type CameraPhase = "preview" | "live" | "off";
 
+/** Why there is no live preview. "none" means the camera is running. */
+export type CameraBlock = "none" | "insecure" | "unsupported" | "policy" | "denied" | "nodevice" | "noframes" | "inuse" | "unknown";
+
+/** What the on-device analysis is doing. The video never waits on this. */
+export type AnalysisState = "loading" | "on" | "off";
+
 export interface CameraStatus {
   ready: boolean;
   faceOk: boolean;
@@ -38,6 +50,70 @@ export interface CameraStatus {
   calibrated: boolean;
   /** getUserMedia failed: the student denied access or has no camera. */
   blocked: boolean;
+  /** Why the preview is not running, so the UI can say something true instead of showing a dead box. */
+  block: CameraBlock;
+  /** Analysis is independent of the video: it may be off while the preview is live. */
+  analysis: AnalysisState;
+  /** The object detector is optional and loads after the face model, so it is reported separately rather than implied. */
+  objects: boolean;
+}
+
+/**
+ * One honest sentence per failure. `short` fits the narrow camera tile, `detail`
+ * is the full explanation for the gate. Nothing here ever implies the proctor is
+ * watching when it is not.
+ */
+export const CAMERA_BLOCK_COPY: Record<Exclude<CameraBlock, "none">, { short: string; detail: string }> = {
+  insecure: {
+    short: "Not a secure connection",
+    detail: "Browsers only release the camera on https:// or on localhost. This page was opened over plain http, so the camera cannot start here. Open the portal over https, or on the machine itself at localhost.",
+  },
+  unsupported: {
+    short: "No camera support",
+    detail: "This browser does not offer a camera to web pages, so the proctor cannot see you.",
+  },
+  policy: {
+    short: "Blocked by site policy",
+    detail: "This site's Permissions-Policy header switches the camera off, so the browser never even asks for access. An administrator has to allow the camera for this site.",
+  },
+  denied: {
+    short: "Access refused",
+    detail: "The browser refused camera access. Allow the camera for this site from the address-bar controls, then reload. If you were never shown a prompt, the site or a device policy is blocking it rather than you.",
+  },
+  nodevice: {
+    short: "No camera found",
+    detail: "No camera is attached to this device, or none matches what the proctor asked for.",
+  },
+  noframes: {
+    short: "No picture from the camera",
+    detail: "The camera was allowed but it is not sending any picture. Another application may be holding it, or it may be a virtual camera with nothing to show. Close anything else using the camera and reload.",
+  },
+  inuse: {
+    short: "Camera is busy",
+    detail: "Another application is already using the camera. Close it, then reload this page.",
+  },
+  unknown: {
+    short: "Camera unavailable",
+    detail: "The camera could not be started and the browser did not say why.",
+  },
+};
+
+/**
+ * Map a getUserMedia rejection onto one honest cause. Chrome reports a
+ * Permissions-Policy block as a NotAllowedError exactly like a person clicking
+ * "Block", so the message text is the only separator — and when it says nothing
+ * we fall back to "denied", whose copy names both possibilities rather than
+ * blaming the student for a server header.
+ */
+function classifyCameraError(err: unknown): Exclude<CameraBlock, "none"> {
+  const e = err as { name?: string; message?: string } | null;
+  const name = e?.name ?? "";
+  const msg = (e?.message ?? "").toLowerCase();
+  if (msg.includes("permissions policy") || msg.includes("permission policy") || msg.includes("feature policy")) return "policy";
+  if (name === "NotFoundError" || name === "DevicesNotFoundError" || name === "OverconstrainedError") return "nodevice";
+  if (name === "NotReadableError" || name === "TrackStartError" || name === "AbortError") return "inuse";
+  if (name === "NotAllowedError" || name === "PermissionDeniedError" || name === "SecurityError") return "denied";
+  return "unknown";
 }
 
 const MP_VERSION = "0.10.20";
@@ -73,6 +149,27 @@ const CALIBRATE_TIMEOUT_MS = 8000;
 const GPU_HEALTH_MS = 2600;
 const SIDEWAYS_THRESHOLD = 0.2;
 const UP_THRESHOLD = -0.22;
+// A CDN that hangs rather than failing would otherwise leave the proctor stuck
+// on "starting" forever, so the model load is bounded and then declared off.
+const MODEL_TIMEOUT_MS = 12_000;
+const FIRST_FRAME_TIMEOUT_MS = 6000;
+
+/** Reject once `ms` has passed so a hanging CDN degrades instead of hanging the proctor. */
+function withTimeout<T>(p: Promise<T>, ms: number): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    const id = setTimeout(() => reject(new Error("timeout")), ms);
+    p.then(
+      (v) => {
+        clearTimeout(id);
+        resolve(v);
+      },
+      (e) => {
+        clearTimeout(id);
+        reject(e);
+      },
+    );
+  });
+}
 
 // Load a remote ES module at runtime. Native dynamic import() is CSP-safe (it
 // needs the CDN origin in script-src, NOT 'unsafe-eval' like new Function/eval),
@@ -115,7 +212,7 @@ function tokenRgb(name: string, fallback: string): string {
   }
 }
 
-const INITIAL_STATUS: CameraStatus = { ready: false, faceOk: false, faces: 0, message: "Starting camera…", degraded: false, calibrated: false, blocked: false };
+const INITIAL_STATUS: CameraStatus = { ready: false, faceOk: false, faces: 0, message: "Starting camera…", degraded: false, calibrated: false, blocked: false, block: "none", analysis: "loading", objects: false };
 
 export function ProctorCamera({
   phase,
@@ -153,7 +250,7 @@ export function ProctorCamera({
   const recreatedRef = useRef(false); // one-time GPU→CPU recreate done
   const tsRef = useRef(0); // strictly-increasing detect timestamp
   const warningsRef = useRef(0);
-  const objectReadyRef = useRef(false);
+  const blockedRef = useRef(false); // getUserMedia never produced a stream
   const phaseRef = useRef(phase);
   phaseRef.current = phase;
 
@@ -337,14 +434,32 @@ export function ProctorCamera({
   // AUTOMATIC calibration — no button, no manual step. As soon as the camera is
   // on we watch for a stable face: first good detection locks the baseline and
   // approves the position. If the on-device model can't produce detections
-  // within ~8s (older device / broken GPU / blocked CDN), we approve under
-  // BASIC monitoring so nobody is ever stuck at the gate.
+  // within ~8s (older device / broken GPU / blocked CDN) we approve under BASIC
+  // monitoring — but ONLY while a real picture is arriving. With no stream there
+  // is no approval of any kind; that student is routed out through the explicit
+  // no-camera button instead, so nobody is stuck and nobody is told they were
+  // checked when they were not.
   useEffect(() => {
     if (phase !== "preview") return;
     let done = false;
-    const startedAt = Date.now();
+    let wasBlocked = false;
+    let startedAt = Date.now();
     const iv = setInterval(() => {
       if (done) return;
+      // A camera that never started is never "approved": the student takes the
+      // explicit no-camera route instead, so the record says the camera was off.
+      // Keep polling rather than stopping — a "no picture" block can lift once
+      // frames start arriving, and calibration has to be able to resume.
+      if (blockedRef.current) {
+        wasBlocked = true;
+        return;
+      }
+      // A block that lifted means the picture only just arrived: give the model
+      // its full window from now, not from before there was anything to look at.
+      if (wasBlocked) {
+        wasBlocked = false;
+        startedAt = Date.now();
+      }
       const pts = lastPointsRef.current;
       const fresh = Date.now() - lastFaceAtRef.current < FRESH_FACE_MS;
       if (modelReadyRef.current && pts.length >= CALIBRATE_MIN_POINTS && fresh) {
@@ -357,12 +472,18 @@ export function ProctorCamera({
       }
       const waited = Date.now() - startedAt;
       // Model finished but failed, or nothing detected after a fair wait → basic.
+      // THE HARD PRECONDITION: a picture must actually be arriving. This branch
+      // used to fire on elapsed time alone, so a student whose camera was denied
+      // — or who left the browser prompt sitting open past the timeout — was told
+      // their position was "Approved · basic monitoring" with no stream at all.
+      // Approval may be downgraded to basic monitoring; it may never be invented.
+      if (!videoRef.current?.videoWidth) return;
       if ((modelDoneRef.current && !modelReadyRef.current && waited > CALIBRATE_FAIL_GRACE_MS) || waited > CALIBRATE_TIMEOUT_MS) {
         done = true;
         clearInterval(iv);
         baselineRef.current = null;
         warningsRef.current = 0;
-        push({ calibrated: true, degraded: !modelReadyRef.current, message: modelReadyRef.current ? "Camera approved" : "Approved · basic monitoring" });
+        push({ calibrated: true, degraded: !modelReadyRef.current, message: modelReadyRef.current ? "Camera approved" : "Approved · camera only, no analysis" });
       }
     }, CALIBRATE_POLL_MS);
     return () => clearInterval(iv);
@@ -402,12 +523,48 @@ export function ProctorCamera({
     })();
   }, [makeFace]);
 
+  /**
+   * Attach the stream and start playing. The element also carries `autoPlay`, so
+   * a rejected play() (an interrupted load, a browser that refuses the
+   * programmatic call) is not the only route to a visible frame, and the
+   * element's onLoadedMetadata retries once it genuinely has data.
+   */
+  const attachStream = useCallback((stream: MediaStream) => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.srcObject !== stream) v.srcObject = stream;
+    void v.play().catch(() => undefined);
+  }, []);
+
+  const onVideoReady = useCallback(() => {
+    void videoRef.current?.play().catch(() => undefined);
+  }, []);
+
   // ---- camera + models lifecycle (one stream for the whole preview → live run) ----
   const running = phase !== "off";
   useEffect(() => {
     if (!running) return;
     let alive = true;
+
+    const fail = (block: Exclude<CameraBlock, "none">, detail: string) => {
+      blockedRef.current = true;
+      push({ ready: false, degraded: true, blocked: true, block, analysis: "off", message: CAMERA_BLOCK_COPY[block].short });
+      emit("camera_off", detail, false);
+    };
+
     (async () => {
+      // getUserMedia exists only in a secure context, so test that FIRST: over
+      // plain http on a LAN address `navigator.mediaDevices` is simply undefined,
+      // and a bare "camera blocked" would send the student hunting for a prompt
+      // their browser is never going to show.
+      if (!window.isSecureContext) {
+        fail("insecure", "The page is not on a secure origin, so the browser will not release the camera.");
+        return;
+      }
+      if (!navigator.mediaDevices?.getUserMedia) {
+        fail("unsupported", "This browser exposes no camera API.");
+        return;
+      }
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user", width: { ideal: 640 }, height: { ideal: 480 } }, audio: false });
         if (!alive) {
@@ -415,37 +572,35 @@ export function ProctorCamera({
           return;
         }
         streamRef.current = stream;
-        const v = videoRef.current;
-        if (v) {
-          v.srcObject = stream;
-          await v.play().catch(() => undefined);
-        }
-        push({ ready: true, blocked: false, message: "Camera on — centre your face and hold still." });
-      } catch {
-        push({ ready: false, degraded: true, blocked: true, message: "Camera blocked. Allow camera access to sit the test." });
-        emit("camera_off", "Camera access was denied or unavailable.", false);
+        blockedRef.current = false;
+        attachStream(stream);
+        push({ ready: true, blocked: false, block: "none", message: "Camera on — centre your face and hold still." });
+      } catch (err) {
+        if (!alive) return;
+        const block = classifyCameraError(err);
+        fail(block, CAMERA_BLOCK_COPY[block].detail);
         return;
       }
       try {
-        const vision = await dynImport(MP_MODULE);
-        const fileset = await vision.FilesetResolver.forVisionTasks(MP_WASM);
+        const vision = await withTimeout(dynImport(MP_MODULE), MODEL_TIMEOUT_MS);
+        const fileset = await withTimeout(vision.FilesetResolver.forVisionTasks(MP_WASM), MODEL_TIMEOUT_MS);
         visionRef.current = vision;
         filesetRef.current = fileset;
         // GPU (WebGL) is fastest but on many tablets/browsers it CREATES fine yet
         // never produces results — fall back to CPU on throw, and a runtime
         // health-check below recreates on CPU if GPU yields no detections.
         try {
-          faceRef.current = await makeFace("GPU");
+          faceRef.current = await withTimeout(makeFace("GPU"), MODEL_TIMEOUT_MS);
           faceDelegateRef.current = "GPU";
         } catch {
-          faceRef.current = await makeFace("CPU");
+          faceRef.current = await withTimeout(makeFace("CPU"), MODEL_TIMEOUT_MS);
           faceDelegateRef.current = "CPU";
         }
         if (!alive) return;
         modelReadyRef.current = true;
         modelDoneRef.current = true;
         camOnAtRef.current = Date.now();
-        push({ degraded: false, message: "Proctor ready — centre your face and hold still." });
+        push({ degraded: false, analysis: "on", message: "Proctor ready — centre your face and hold still." });
         // Object detector is optional. Load on CPU (running two GPU tasks at once
         // can break FaceLandmarker inference), in the background, never blocking.
         (async () => {
@@ -456,9 +611,10 @@ export function ProctorCamera({
               scoreThreshold: 0.45,
               maxResults: 6,
             });
-            objectReadyRef.current = alive;
+            if (alive) push({ objects: true });
           } catch {
             objRef.current = null;
+            push({ objects: false });
           }
         })();
       } catch {
@@ -466,8 +622,10 @@ export function ProctorCamera({
         objRef.current = null;
         modelReadyRef.current = false;
         modelDoneRef.current = true;
-        push({ degraded: true, message: "Live camera on (basic monitoring)." });
-        emit("camera_degraded", "Advanced models unavailable — basic monitoring active.", false);
+        // The video keeps running; only the analysis is gone, and the status must
+        // say so rather than implying a face is being watched.
+        push({ degraded: true, analysis: "off", objects: false, message: "Live video · analysis unavailable." });
+        emit("camera_degraded", "The on-device analysis models could not load, so this sitting is recorded as camera-only basic monitoring.", false);
       }
     })();
     return () => {
@@ -485,11 +643,12 @@ export function ProctorCamera({
       }
       faceRef.current = null;
       objRef.current = null;
-      objectReadyRef.current = false;
       modelReadyRef.current = false;
       modelDoneRef.current = false;
+      blockedRef.current = false;
       streamRef.current?.getTracks().forEach((t) => t.stop());
       streamRef.current = null;
+      if (videoRef.current) videoRef.current.srcObject = null;
       try {
         audioRef.current?.close?.();
       } catch {
@@ -497,7 +656,24 @@ export function ProctorCamera({
       }
       audioRef.current = null;
     };
-  }, [running, push, emit, makeFace]);
+  }, [running, push, emit, makeFace, attachStream]);
+
+  // A granted stream that never delivers a frame (a virtual camera, a driver
+  // that hands back a dead track) is indistinguishable from a broken app, so
+  // name it instead of leaving a black rectangle on screen.
+  useEffect(() => {
+    if (!status.ready) return;
+    const id = setTimeout(() => {
+      if (videoRef.current?.videoWidth) return;
+      // Treat it as a block, not a warning: that surfaces the real reason AND
+      // the explicit no-camera route, so the student is never stranded at a gate
+      // they cannot pass. The scan loop lifts this again if frames do arrive.
+      blockedRef.current = true;
+      push({ ready: false, blocked: true, block: "noframes", degraded: true, analysis: "off", message: CAMERA_BLOCK_COPY.noframes.short });
+      emit("camera_off", CAMERA_BLOCK_COPY.noframes.detail, false);
+    }, FIRST_FRAME_TIMEOUT_MS);
+    return () => clearTimeout(id);
+  }, [status.ready, push, emit]);
 
   // ---- analysis + scan overlay ----
   useEffect(() => {
@@ -559,7 +735,7 @@ export function ProctorCamera({
       // nothing to measure — never fall through to head-pose math with an
       // empty array (nose would be undefined → crash → dead loop).
       if (points.length < 3) {
-        push({ faces: 1, faceOk: true, message: modelReadyRef.current ? "Scanning…" : "Camera live — preparing the proctor…" });
+        push({ faces: 1, faceOk: true, message: "Scanning…" });
         return;
       }
 
@@ -589,12 +765,19 @@ export function ProctorCamera({
       try {
         const v = videoRef.current, cv = overlayRef.current, now = performance.now();
         if (!v || !cv || !v.videoWidth) return;
+        // Frames are arriving, so any "no picture" block was wrong or has cleared.
+        // Only reachable with a live stream, so it can never lift a real denial.
+        if (blockedRef.current) {
+          blockedRef.current = false;
+          push({ ready: true, blocked: false, block: "none", degraded: !modelReadyRef.current, message: "Camera on — centre your face and hold still." });
+        }
         const W = (cv.width = cv.clientWidth), H = (cv.height = cv.clientHeight), ctx = cv.getContext("2d");
         if (!ctx) return;
         ctx.clearRect(0, 0, W, H);
         let points = lastPointsRef.current;
         let faces = points.length ? 1 : 0;
-        if (faceRef.current && now - lastFace > FACE_INTERVAL_MS) {
+        const analysing = Boolean(faceRef.current);
+        if (analysing && now - lastFace > FACE_INTERVAL_MS) {
           lastFace = now;
           healthCheckFace();
           try {
@@ -612,8 +795,6 @@ export function ProctorCamera({
           } catch {
             /* transient */
           }
-        } else if (!faceRef.current) {
-          faces = 1;
         }
         if (objRef.current && now - lastObj > OBJECT_INTERVAL_MS) {
           lastObj = now;
@@ -627,7 +808,20 @@ export function ProctorCamera({
             /* transient */
           }
         }
-        evaluate(faces, points);
+        if (analysing) {
+          evaluate(faces, points);
+        } else {
+          // No detector this frame. Report the camera for what it is instead of
+          // claiming a face nothing measured, and never escalate on a signal we
+          // do not have.
+          points = [];
+          push({
+            faces: 0,
+            faceOk: false,
+            analysis: modelDoneRef.current ? "off" : "loading",
+            message: modelDoneRef.current ? "Live video · analysis unavailable." : "Live video · starting the proctor…",
+          });
+        }
 
         // ---- scan overlay ----
         scanY = (scanY + 2.2) % H;
@@ -675,11 +869,20 @@ export function ProctorCamera({
 
   if (phase === "off") return null;
 
-  const statusTone: Tone = status.faces > 1 ? "danger" : status.faces === 0 && status.ready ? "warn" : status.faceOk ? "ok" : "warn";
-  const badgeLabel = status.faces > 1 ? "Multiple faces" : status.faces === 0 && status.ready ? "No face" : status.faceOk ? "In view" : "Starting";
+  // The badge describes what is actually known. With no analysis running there
+  // is no face verdict to report, so it says "Camera only" rather than "In view".
+  const noAnalysis = status.ready && status.analysis !== "on";
+  const statusTone: Tone = !status.ready ? (status.blocked ? "danger" : "warn") : status.faces > 1 ? "danger" : noAnalysis ? "info" : status.faces === 0 ? "warn" : status.faceOk ? "ok" : "warn";
+  const badgeLabel = !status.ready ? (status.blocked ? "Camera off" : "Starting") : status.faces > 1 ? "Multiple faces" : noAnalysis ? (status.analysis === "loading" ? "Camera only · loading" : "Camera only") : status.faces === 0 ? "No face" : status.faceOk ? "In view" : "Adjusting";
   const borderTone: Record<Tone, string> = { danger: "border-danger/70", warn: "border-warn/60", ok: "border-ok/70", accent: "border-accent/70", gold: "border-gold/70", info: "border-info/70", neutral: "border-line" };
   const finalWarning = warnBanner !== null && warnBanner.n >= MAX_CAMERA_WARNINGS;
-  const privacyTitle = objectReadyRef.current ? "On-device proctor with object scanning — nothing leaves your browser" : "On-device proctor — nothing leaves your browser";
+  const privacyTitle = status.blocked
+    ? CAMERA_BLOCK_COPY[status.block === "none" ? "unknown" : status.block].detail
+    : status.analysis !== "on"
+      ? "Live camera only — no face or object analysis is running. Nothing leaves your browser."
+      : status.objects
+        ? "On-device face and object analysis — nothing leaves your browser"
+        : "On-device face analysis — nothing leaves your browser";
 
   return (
     <>
@@ -704,10 +907,13 @@ export function ProctorCamera({
           <GripHorizontal size={11} /> Drag to move
         </div>
         <div className="relative aspect-[4/3] w-full bg-surface-3">
-          <video ref={videoRef} muted playsInline className="absolute inset-0 h-full w-full -scale-x-100 object-cover" />
+          {/* autoPlay is the belt to the explicit play()'s braces: a rejected
+              programmatic play must not be the difference between video and a
+              black box. muted keeps autoplay policy satisfied. */}
+          <video ref={videoRef} autoPlay muted playsInline onLoadedMetadata={onVideoReady} className="absolute inset-0 h-full w-full -scale-x-100 object-cover" />
           <canvas ref={overlayRef} className="absolute inset-0 h-full w-full -scale-x-100" />
           {!status.ready ? (
-            <div className="absolute inset-0 grid place-items-center bg-surface/80 px-2 text-center text-[10px] text-warn">
+            <div className={cn("absolute inset-0 grid place-items-center px-2 text-center text-[10px]", status.blocked ? "bg-surface text-danger" : "bg-surface/80 text-warn")}>
               <span>
                 {status.blocked ? <ShieldAlert size={16} className="mx-auto mb-1" /> : <Loader2 size={16} className="mx-auto mb-1 animate-spin" />}
                 {status.message}
@@ -719,7 +925,9 @@ export function ProctorCamera({
           <Chip tone={statusTone} className="w-fit">
             {badgeLabel}
           </Chip>
-          <p className="truncate text-[10px] leading-snug text-ink-2">{status.degraded && status.ready ? "Live · basic monitoring" : status.message}</p>
+          <p className="truncate text-[10px] leading-snug text-ink-2" title={status.message}>
+            {status.message}
+          </p>
         </div>
       </div>
     </>

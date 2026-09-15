@@ -1,4 +1,4 @@
-import { CalendarCheck, ClipboardList, Percent, UserX } from "lucide-react";
+import { CalendarCheck, ClipboardList, DoorOpen, Percent, UserX } from "lucide-react";
 import { LessonList, summaryLine, type LessonRow } from "@/components/attend/lesson-list";
 import { Denied } from "@/components/teach/guard";
 import { PageHeader, SectionTitle, Stat } from "@/components/ui/primitives";
@@ -44,17 +44,20 @@ export default async function TeacherAttendancePage() {
   const pending = todays.filter((l) => l.status !== "closed").length;
   const weekStart = weekStartISO();
   const weekPct = attendancePercent(all.filter((l) => l.status === "closed" && l.date >= weekStart).flatMap((l) => marksForLesson(l.id).map((m) => m.status)));
-  const absentToday = new Set(todays.flatMap((l) => marksForLesson(l.id).filter((m) => m.status === "absent").map((m) => m.studentId))).size;
+  const marksToday = todays.flatMap((l) => marksForLesson(l.id));
+  const absentToday = new Set(marksToday.filter((m) => m.status === "absent").map((m) => m.studentId)).size;
+  const bunkToday = new Set(marksToday.filter((m) => m.status === "bunk").map((m) => m.studentId)).size;
 
   return (
     <>
       <PageHeader eyebrow="Teacher" title="Attendance" description={`${todays.length} lesson${todays.length === 1 ? "" : "s"} today · ${pending} register${pending === 1 ? "" : "s"} still to close.`} />
 
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 lg:gap-6">
         <Stat label="Lessons today" value={todays.length} icon={<CalendarCheck size={18} />} tone="accent" />
         <Stat label="Registers open" value={pending} trend="not yet closed today" icon={<ClipboardList size={18} />} tone={pending ? "warn" : "ok"} />
         <Stat label="This week" value={weekPct === null ? "—" : `${weekPct}%`} trend="attendance across closed lessons" icon={<Percent size={18} />} tone="info" />
-        <Stat label="Absent today" value={absentToday} trend="students marked absent" icon={<UserX size={18} />} tone={absentToday ? "danger" : "ok"} />
+        <Stat label="Absent today" value={absentToday} trend="not in school at all" icon={<UserX size={18} />} tone={absentToday ? "danger" : "ok"} />
+        <Stat label="Bunked today" value={bunkToday} trend="in school, not in the room" icon={<DoorOpen size={18} />} tone={bunkToday ? "gold" : "ok"} />
       </div>
 
       <section>

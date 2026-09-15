@@ -40,8 +40,18 @@ test("principal finance, mobile navigation and read-only assistant", async ({
   ).toBeVisible();
   await page.getByRole("button", { name: "Assistant", exact: true }).click();
   await page.getByRole("button", { name: "Summarise finance" }).click();
+  // The reply is now model-written prose, so assert the deterministic parts:
+  // the tool that ran, and the demo disclaimer the UI always renders with it.
+  // The chip, not the prose: it is lowercased in the DOM and only uppercased by
+  // CSS, and a looser matcher also catches the model's sentence.
   await expect(
-    page.getByText(/Finance summary \(fictional records/),
+    page.getByText("tool result · finance summary", { exact: true }),
+  ).toBeVisible();
+  await expect(
+    // exact: the finance page's own description contains this sentence too.
+    page.getByText("Figures are fictional demonstration records.", {
+      exact: true,
+    }),
   ).toBeVisible();
   await page.getByRole("button", { name: "Close assistant" }).click();
   await page.setViewportSize({ width: 390, height: 844 });
@@ -224,7 +234,10 @@ test("assistant confirms draft tool and role boundaries hold", async ({
         },
       })
     ).status(),
-  ).toBe(400);
+    // 403, not 400: the assistant is staff-only, so a learner seat is refused
+    // before the payload is even considered. Same rejection shape as the
+    // finance/hr/papers assertions above.
+  ).toBe(403);
 });
 
 test("Hifz untranscribed audio is not simulated assessment", async ({

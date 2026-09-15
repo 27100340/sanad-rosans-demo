@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Camera, LockOpen, RefreshCw } from "lucide-react";
+import { Camera, CameraOff, ImageOff, LockOpen, RefreshCw } from "lucide-react";
 import { Avatar, Chip, EmptyState, type Tone } from "@/components/ui/primitives";
 import { GUARD_MODE } from "@/components/assess/labels";
 import type { ProctorRow } from "@/lib/data/proctor-list";
@@ -44,6 +44,70 @@ function eventChips(row: ProctorRow): { type: GuardEventType; count: number }[] 
     .map(([type, count]) => ({ type: type as GuardEventType, count: count ?? 0 }))
     .sort((a, b) => b.count - a.count)
     .slice(0, EVENT_CHIPS_MAX);
+}
+
+/**
+ * One captured still. Stills live in memory for the demo, so a request can 404
+ * after a server restart — that must read as "gone", never as the browser's
+ * broken-image glyph, which looks like a bug in the product.
+ */
+function Still({ attemptId, snapshot }: { attemptId: string; snapshot: ProctorRow["snapshots"][number] }) {
+  const [failed, setFailed] = useState(false);
+  const caption = snapshot.reason || "No reason recorded";
+  return (
+    <figure className="w-24">
+      {failed ? (
+        <span className="flex h-16 w-24 flex-col items-center justify-center gap-0.5 rounded-lg border border-dashed border-line bg-surface-2 text-2xs text-ink-3">
+          <ImageOff size={14} />
+          Not stored
+        </span>
+      ) : (
+        <img
+          loading="lazy"
+          src={`${API}?attemptId=${encodeURIComponent(attemptId)}&snapshot=${encodeURIComponent(snapshot.id)}`}
+          alt={`Camera still captured when: ${caption}`}
+          onError={() => setFailed(true)}
+          className="h-16 w-24 rounded-lg border border-line bg-surface-2 object-cover"
+        />
+      )}
+      <figcaption className="mt-1 truncate text-2xs text-ink-3" title={`${caption} · ${stamp(snapshot.at)}`}>
+        {caption}
+      </figcaption>
+    </figure>
+  );
+}
+
+/** Why a sitting has no stills. Always a real reason — an empty grid is not one. */
+function noStillsReason(row: ProctorRow): string {
+  if (row.mode !== "strict") return `${GUARD_MODE[row.mode].label} sittings are not camera-monitored, so no stills exist for this one.`;
+  if (!row.cameraConsent) return "This sitting ran without a camera, so nothing was captured. Only window and keyboard signals were recorded.";
+  if (row.events.camera > 0) return "The camera logged warnings for this sitting, but no still is held for them. Stills live in memory in this demo and are cleared whenever the server restarts.";
+  return "The camera was on and raised no warnings, so there was nothing to capture. A still is only taken at the moment a camera warning is raised.";
+}
+
+function ViolationStills({ row }: { row: ProctorRow }) {
+  const count = row.snapshots.length;
+  return (
+    <div>
+      <p className="label flex items-center gap-1.5">
+        {count ? <Camera size={12} /> : <CameraOff size={12} />} Violation stills
+      </p>
+      {count ? (
+        <>
+          <div className="flex flex-wrap gap-2">
+            {row.snapshots.map((s) => (
+              <Still key={s.id} attemptId={row.attemptId} snapshot={s} />
+            ))}
+          </div>
+          <p className="mt-1.5 text-2xs text-ink-3">
+            <span className="num">{count}</span> real capture{count === 1 ? "" : "s"} from the student&apos;s own camera, taken at the moment each warning was raised. Nothing else was recorded.
+          </p>
+        </>
+      ) : (
+        <p className="card-quiet mt-1 px-3 py-2 text-xs text-ink-3">{noStillsReason(row)}</p>
+      )}
+    </div>
+  );
 }
 
 /** Teacher's live view of every proctored sitting in their spaces, with the unlock decision. */
@@ -149,28 +213,7 @@ export function ProctorConsole({ sessions }: { sessions: ProctorRow[] }) {
                   </p>
                 ) : null}
 
-                {row.snapshots.length ? (
-                  <div>
-                    <p className="label flex items-center gap-1.5">
-                      <Camera size={12} /> Violation stills
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {row.snapshots.map((s) => (
-                        <figure key={s.id} className="w-24">
-                          <img
-                            loading="lazy"
-                            src={`${API}?attemptId=${encodeURIComponent(row.attemptId)}&snapshot=${encodeURIComponent(s.id)}`}
-                            alt={s.reason || "Violation still"}
-                            className="h-16 w-24 rounded-lg border border-line object-cover"
-                          />
-                          <figcaption className="mt-1 truncate text-2xs text-ink-3" title={s.reason}>
-                            {s.reason || "No reason"}
-                          </figcaption>
-                        </figure>
-                      ))}
-                    </div>
-                  </div>
-                ) : null}
+                <ViolationStills row={row} />
 
                 {row.status === "locked" ? (
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-center">

@@ -3,7 +3,9 @@
  * the tutor cannot know more than the teacher allowed. Fallback is a scripted
  * Socratic exchange keyed on the demo question 3(x + 4) = 27.
  */
-import { askGemini, VALUES_GUARDRAIL } from "./gemini";
+import { VALUES_GUARDRAIL } from "./gemini";
+import { askGroq } from "./groq";
+import { stripLatex } from "./plain-maths";
 import type { SubjectSpace } from "@/lib/domain/types";
 import { school } from "@/lib/config/school";
 import { spaceById } from "@/lib/data/mock/spaces";
@@ -63,7 +65,7 @@ export function buildSystemPrompt(space: SubjectSpace, firstName: string, grade:
     `Tone: ${rules.tone}`,
     `FORBIDDEN:\n${rules.forbidden.map((f) => `- ${f}`).join("\n") || "- none"}`,
     `APPROVED RESOURCES you may cite by title (never invent others):\n${cite.join("\n")}`,
-    "Be Socratic: one question or one step at a time. Keep replies under 120 words. Plain text, no headings.",
+    "Be Socratic: one question or one step at a time. Keep replies under 120 words. Plain text, no headings. Write mathematics as plain text the chat can show, like x^2, 3(x + 4) or 12 / 5 — never LaTeX, and never the \\( \\) or $ $ delimiters around them.",
     "After your reply, add one final line exactly in the form `TAG: <kebab-case-misconception>` if the student's latest message shows a specific misconception, otherwise `TAG: none`.",
   ].join("\n\n");
 }
@@ -78,7 +80,7 @@ function parseReply(text: string): { reply: string; tag: string | null } {
     else kept.push(line);
   }
   if (tag === "none" || tag === "") tag = null;
-  return { reply: kept.join("\n").trim(), tag };
+  return { reply: stripLatex(kept.join("\n")).trim(), tag };
 }
 
 const URDU_RE = /[؀-ۿ]/;
@@ -152,7 +154,7 @@ export async function run(input: TutorInput): Promise<TutorOutput> {
   const space = spaceById.get(input.spaceId);
   if (!space) return fallback(input);
   const transcript = input.messages.slice(-12).map((m) => `${m.role === "student" ? "Student" : "Tutor"}: ${m.text}`).join("\n");
-  const res = await askGemini({
+  const res = await askGroq({
     system: buildSystemPrompt(space, input.firstName, input.grade),
     parts: [{ text: `TRANSCRIPT:\n${transcript}\n\nWrite the tutor's next reply.` }],
     temperature: 0.5,

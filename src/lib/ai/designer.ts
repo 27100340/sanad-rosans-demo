@@ -1,5 +1,5 @@
 /**
- * Assignment Designer. A teacher describes what they want in words; Gemini
+ * Assignment Designer. A teacher describes what they want in words; Groq
  * reasons over a summary of the real bank (topics, types, difficulty, marks)
  * and returns selection criteria, which are resolved to concrete questions.
  * Without a key, or on any failure, a keyword sniff of the brief produces the
@@ -8,7 +8,8 @@
 import type { Difficulty, Question, QuestionType, TestMode } from "@/lib/domain/assessment";
 import type { SubjectSpace } from "@/lib/domain/types";
 import { questionsForSubject } from "@/lib/data/mock/questions";
-import { askGemini, parseKeyLines, VALUES_GUARDRAIL } from "./gemini";
+import { parseKeyLines, VALUES_GUARDRAIL } from "./gemini";
+import { askGroq } from "./groq";
 import { subjectIdForSpace } from "./assess";
 
 export interface DesignInput {
@@ -122,7 +123,7 @@ export async function design(input: DesignInput): Promise<DesignOutput> {
     const byType = TYPES.map((ty) => `${ty}:${qs.filter((q) => q.type === ty).length}`).join(" ");
     return `- ${t.code} ${t.title}: ${qs.length} questions (${byType}; core ${qs.filter((q) => q.difficulty === "core").length}, extended ${qs.filter((q) => q.difficulty === "extended").length})`;
   }).join("\n");
-  const res = await askGemini({
+  const res = await askGroq({
     system: [
       `You design an assessment for ${input.space.subject} from a fixed question bank. You never write questions; you choose criteria.`,
       VALUES_GUARDRAIL,

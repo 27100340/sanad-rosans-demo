@@ -3,6 +3,7 @@ import { viewerRestriction } from "@/lib/auth/access";
 import { navFor } from "@/lib/auth/nav";
 import { getViewer } from "@/lib/auth/viewer";
 import { aiIsLive } from "@/lib/ai/gemini";
+import { groqIsLive } from "@/lib/ai/groq";
 import { branchName } from "@/lib/config/school";
 import { AccessBlocked } from "@/components/portal/access-blocked";
 import { PortalShell } from "@/components/portal/shell";
@@ -13,7 +14,7 @@ export default async function PortalLayout({ children }: { children: ReactNode }
   // A lock keeps the seat signed in but shows the message instead of any portal activity.
   const restriction = viewerRestriction(viewer);
   return (
-    <PortalShell nav={restriction ? [] : navFor(viewer)} personaId={viewer.id} personaLabel={viewer.label} role={viewer.role} roleLine={roleLine} aiLive={aiIsLive()}>
+    <PortalShell nav={restriction ? [] : navFor(viewer)} personaId={viewer.id} personaLabel={viewer.label} role={viewer.role} roleLine={roleLine} aiLive={aiIsLive() || groqIsLive()}>
       {restriction ? <AccessBlocked restriction={restriction} /> : children}
     </PortalShell>
   );

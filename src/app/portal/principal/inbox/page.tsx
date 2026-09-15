@@ -1,7 +1,7 @@
 import { canSeeBranchStaff, SeatDenied } from "@/components/leadership/seat-guard";
 import { InboxGroups, type InboxRow } from "@/components/principal/inbox-groups";
 import { AiPill, PageHeader } from "@/components/ui/primitives";
-import { aiIsLive } from "@/lib/ai/gemini";
+import { groqIsLive } from "@/lib/ai/groq";
 import { classifyMessage } from "@/lib/ai/triage";
 import { getViewer } from "@/lib/auth/viewer";
 import { branchName, type BranchId } from "@/lib/config/school";
@@ -33,7 +33,7 @@ export default async function InboxPage() {
   const urgent = rows.filter((r) => r.triage === "urgent").length;
   return (
     <div className="space-y-8 sm:space-y-10">
-      <PageHeader eyebrow={`Principal · ${branchName(branchId)}`} title="Parent inbox" description={`${rows.length} messages this week, ${urgent} urgent. Triage is automatic; every reply is yours to edit before it goes.`} actions={<AiPill live={aiIsLive()} />} />
+      <PageHeader eyebrow={`Principal · ${branchName(branchId)}`} title="Parent inbox" description={`${rows.length} messages this week, ${urgent} urgent. Triage is automatic; every reply is yours to edit before it goes.`} actions={<AiPill live={groqIsLive()} />} />
       <InboxGroups rows={rows} />
     </div>
   );

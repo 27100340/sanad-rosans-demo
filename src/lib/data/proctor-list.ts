@@ -19,6 +19,8 @@ export interface ProctorRow {
   studentId: string;
   studentName: string;
   mode: GuardMode;
+  /** False when the student went on without a camera, which is why a strict sitting can have no stills. */
+  cameraConsent: boolean;
   status: ProctorStatus;
   lockedReason: string | null;
   startedAt: number;
@@ -46,6 +48,7 @@ export function proctorRowsForTeacher(teacherId: string): ProctorRow[] {
         studentId: s.studentId,
         studentName: studentById.get(s.studentId)?.name ?? s.studentId,
         mode: s.mode,
+        cameraConsent: s.cameraConsent,
         status: s.status,
         lockedReason: s.lockedReason,
         startedAt: s.startedAt,

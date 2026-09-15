@@ -5,6 +5,10 @@
  * parallel, the browser's speech recognition (ar-SA) when it exists. Both are
  * feature-detected; permission denial surfaces as an inline message and
  * never throws out of the hook.
+ *
+ * The clip is decoded to 16kHz mono PCM before upload because the Live API
+ * transcribe model accepts nothing else. If decoding fails the original webm
+ * is sent instead and the server falls back to the REST audio path.
  */
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -38,10 +42,52 @@ const SPEECH_LANG = "ar-SA";
 const PREFERRED_MIME = "audio/webm;codecs=opus";
 const FALLBACK_MIME = "audio/webm";
 
+/** Must match the PCM constants in src/lib/ai/recitation.ts. */
+const PCM_MIME = "audio/pcm;rate=16000";
+const PCM_SAMPLE_RATE = 16000;
+const INT16_MAX = 32767;
+const B64_CHUNK = 0x8000; // keep String.fromCharCode off the argument limit
+const RECORDER_TIMESLICE_MS = 1000;
+
 function speechCtor(): SpeechRecognitionCtor | null {
   if (typeof window === "undefined") return null;
   const w = window as unknown as { SpeechRecognition?: SpeechRecognitionCtor; webkitSpeechRecognition?: SpeechRecognitionCtor };
   return w.SpeechRecognition ?? w.webkitSpeechRecognition ?? null;
+}
+
+function bytesToBase64(bytes: Uint8Array): string {
+  let binary = "";
+  for (let at = 0; at < bytes.length; at += B64_CHUNK) {
+    binary += String.fromCharCode(...bytes.subarray(at, at + B64_CHUNK));
+  }
+  return btoa(binary);
+}
+
+/** Decode any recorded container to mono 16kHz little-endian PCM16, base64. */
+async function blobToPcm16Base64(blob: Blob): Promise<string> {
+  const encoded = await blob.arrayBuffer();
+  const decodeCtx = new AudioContext();
+  let decoded: AudioBuffer;
+  try {
+    decoded = await decodeCtx.decodeAudioData(encoded);
+  } finally {
+    void decodeCtx.close();
+  }
+  // OfflineAudioContext does the resample and the mono downmix in one render.
+  const frames = Math.ceil(decoded.duration * PCM_SAMPLE_RATE);
+  const offline = new OfflineAudioContext(1, frames, PCM_SAMPLE_RATE);
+  const source = offline.createBufferSource();
+  source.buffer = decoded;
+  source.connect(offline.destination);
+  source.start();
+  const rendered = await offline.startRendering();
+  const samples = rendered.getChannelData(0);
+  const pcm = new Int16Array(samples.length);
+  for (let i = 0; i < samples.length; i += 1) {
+    const clamped = Math.max(-1, Math.min(1, samples[i]));
+    pcm[i] = Math.round(clamped * INT16_MAX);
+  }
+  return bytesToBase64(new Uint8Array(pcm.buffer));
 }
 
 function blobToBase64(blob: Blob): Promise<string> {
@@ -124,14 +170,26 @@ export function useRecorder(onStop: (payload: RecorderStopPayload) => void) {
         stream.getTracks().forEach((t) => t.stop());
         const blob = new Blob(chunksRef.current, { type: recorder.mimeType || FALLBACK_MIME });
         let audio: RecordedAudio | null = null;
-        try {
-          audio = blob.size > 0 ? { base64: await blobToBase64(blob), mimeType: blob.type } : null;
-        } catch {
-          audio = null;
+        if (blob.size > 0) {
+          try {
+            audio = { base64: await blobToPcm16Base64(blob), mimeType: PCM_MIME };
+          } catch {
+            // Decoding is the only part that can fail here; the raw clip still
+            // works through the server's REST audio path.
+            try {
+              audio = { base64: await blobToBase64(blob), mimeType: blob.type };
+            } catch {
+              audio = null;
+            }
+          }
         }
         onStopRef.current({ audio, browserTranscript: finalRef.current.trim() || interimRef.current });
       };
-      recorder.start();
+      // Collect a chunk every second rather than relying on one delivery at
+      // stop. With no timeslice `ondataavailable` fires exactly once, so a
+      // single missed event loses the whole recitation — which is how an empty
+      // blob reached the checker and got graded by the browser recogniser.
+      recorder.start(RECORDER_TIMESLICE_MS);
       recorderRef.current = recorder;
       startSpeech();
       setRecording(true);

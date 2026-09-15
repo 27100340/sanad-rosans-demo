@@ -91,11 +91,16 @@ export async function GET(req: Request) {
   if (!who || !attemptId) return Response.json({ error: "forbidden" }, { status: 403 });
   const snapshotId = url.searchParams.get("snapshot");
   if (snapshotId) {
-    if (who !== "teacher") return Response.json({ error: "forbidden" }, { status: 403 });
+    // An <img> src: answer with bytes or with a bodiless status, never a JSON
+    // body the browser would have to fail to decode.
+    if (who !== "teacher") return new Response(null, { status: 403 });
     const dataUrl = SNAPSHOTS.get(snapshotId);
-    if (!dataUrl || !snapshotId.startsWith(attemptId)) return Response.json({ error: "not found" }, { status: 404 });
-    const [, b64] = dataUrl.split(",", 2);
-    return new Response(Buffer.from(b64, "base64"), { headers: { "content-type": "image/jpeg", "cache-control": "private, no-store" } });
+    if (!dataUrl || !snapshotId.startsWith(attemptId)) return new Response(null, { status: 404 });
+    // The store accepts jpeg/png/webp, and the global nosniff header means a
+    // wrong content-type renders as a broken image, so take it from the data URL.
+    const match = /^data:(image\/[a-z+]+);base64,(.*)$/is.exec(dataUrl);
+    if (!match) return new Response(null, { status: 404 });
+    return new Response(Buffer.from(match[2], "base64"), { headers: { "content-type": match[1], "cache-control": "private, no-store" } });
   }
   const s = getSession(attemptId);
   if (!s) return Response.json({ session: null });

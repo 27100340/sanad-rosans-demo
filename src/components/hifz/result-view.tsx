@@ -11,6 +11,7 @@ import { DiffLegend, WordDiffView } from "./word-diff";
 
 const SOURCE_LABEL: Record<CheckResponse["result"]["source"], string> = {
   gemini: "Gemini audio",
+  whisper: "Whisper audio",
   "browser-speech": "Browser speech",
   simulated: "Simulated",
 };

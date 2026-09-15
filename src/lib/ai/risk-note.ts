@@ -3,7 +3,8 @@
  * writes the one-sentence explanation for the top students. The fallback
  * joins the rule reasons into a sentence.
  */
-import { askGemini, FAST_MODEL, parseKeyLines, VALUES_GUARDRAIL } from "./gemini";
+import { parseKeyLines, VALUES_GUARDRAIL } from "./gemini";
+import { askGroq } from "./groq";
 import { school } from "@/lib/config/school";
 import type { RiskFlag } from "@/lib/domain/types";
 
@@ -40,7 +41,7 @@ For each STUDENT block write exactly one line "NOTE: <one sentence>" in the same
   const blocks = inputs
     .map((i, n) => `STUDENT ${n + 1}: first_name=${i.firstName}; class=${i.className}; level=${i.flag.level}; score=${i.flag.score}; reasons=${i.flag.reasons.join(" | ")}; owner=${i.ownerName}`)
     .join("\n");
-  const res = await askGemini({ model: FAST_MODEL, system, parts: [{ text: blocks }], maxOutputTokens: 300, temperature: 0.3 });
+  const res = await askGroq({ system, parts: [{ text: blocks }], maxOutputTokens: 300, temperature: 0.3 });
   if (!res.text) return base;
   const parsed = parseKeyLines(res.text).NOTE;
   const notes = parsed === undefined ? [] : Array.isArray(parsed) ? parsed : [parsed];

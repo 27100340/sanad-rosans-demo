@@ -1,9 +1,10 @@
 /**
  * Ask the School. The model only ever sees pre-computed aggregates (never
  * raw PII). The rule-based matcher decides which figures and chart go with
- * the answer; Gemini, when live, writes the narrative from the same data.
+ * the answer; Groq, when live, writes the narrative from the same data.
  */
-import { askGemini, FAST_MODEL, VALUES_GUARDRAIL } from "./gemini";
+import { VALUES_GUARDRAIL } from "./gemini";
+import { askGroq } from "./groq";
 import { branchName, school, type BranchId } from "@/lib/config/school";
 import { TEACHERS } from "@/lib/data/mock/people";
 import { ATTENDANCE_TREND, BRANCH_STATS, ENROLMENT_MOVEMENT, SUBJECT_COMPARISON, schoolTotals } from "@/lib/data/mock/stats";
@@ -143,8 +144,7 @@ export async function run(question: string): Promise<AskAnswer> {
   const base = fallback(question);
   const system = `You are the leadership analyst for ${school.schoolName}. Seat: chairman. Language: English. ${VALUES_GUARDRAIL}
 Answer strictly from the AGGREGATES block. Write two short Markdown paragraphs: first the answer with the exact figures you used (bold the key numbers), then one line starting with "**What to do:**". If the question cannot be answered from the data, say which figure is missing and offer the closest question you can answer. Never invent numbers.`;
-  const res = await askGemini({
-    model: FAST_MODEL,
+  const res = await askGroq({
     system,
     parts: [{ text: `AGGREGATES:\n${JSON.stringify(aggregates())}\n\nQUESTION: ${question}` }],
     maxOutputTokens: 500,

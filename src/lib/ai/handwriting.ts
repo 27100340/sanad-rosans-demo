@@ -32,7 +32,7 @@ export async function transcribe(dataUrl: string, question: string): Promise<Tra
     parts: [{ text: `QUESTION: ${question.slice(0, 600)}` }, { inlineData: image }],
     temperature: 0.1,
     maxOutputTokens: 600,
-    timeoutMs: 20_000,
+    timeoutMs: 45_000,
   });
   if (!res.text || /^UNREADABLE/i.test(res.text.trim())) return res.live ? { text: "", live: true } : null;
   return { text: res.text.trim(), live: true };

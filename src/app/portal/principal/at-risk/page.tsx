@@ -2,7 +2,7 @@ import { canSeePrincipal, SeatDenied } from "@/components/leadership/seat-guard"
 import { branchRiskRows, TOP_NOTE_COUNT } from "@/components/principal/risk";
 import { RiskList, type RiskListRow } from "@/components/principal/risk-list";
 import { AiPill, EmptyState, PageHeader } from "@/components/ui/primitives";
-import { aiIsLive } from "@/lib/ai/gemini";
+import { groqIsLive } from "@/lib/ai/groq";
 import { run as riskNotes } from "@/lib/ai/risk-note";
 import { getViewer } from "@/lib/auth/viewer";
 import { branchName, type BranchId } from "@/lib/config/school";
@@ -24,7 +24,7 @@ export default async function AtRiskPage() {
         eyebrow={`Principal · ${branchName(branchId)}`}
         title="At-risk students"
         description={`${rows.length} students flagged by the early-warning engine, ${high} high. Scored on attendance, marks and Hifz revision; the note is written for the top ${TOP_NOTE_COUNT}.`}
-        actions={<AiPill live={aiIsLive()} />}
+        actions={<AiPill live={groqIsLive()} />}
       />
       {rows.length ? <RiskList rows={rows} /> : <EmptyState title="No students flagged" body="Every student in this branch is inside the attendance and marks bands." />}
     </div>

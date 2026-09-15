@@ -17,6 +17,8 @@ const STATUS_TONE: Record<AttendanceStatus, Tone> = {
   late: "warn",
   online: "info",
   absent: "danger",
+  // Distinct from absent on purpose: gold reads as "in school, unaccounted for".
+  bunk: "gold",
   excused: "neutral",
   leave: "neutral",
   exempt: "neutral",

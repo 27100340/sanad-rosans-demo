@@ -16,7 +16,7 @@ import { NotificationBell } from "./notification-bell";
 import { PersonaSwitcher } from "./persona-switcher";
 import { PresenceBeacon } from "./presence-beacon";
 import { Tour } from "./tour";
-import { SchoolAssistant } from "./assistant";
+import { SchoolAssistant, assistantEnabledFor } from "./assistant";
 
 const ICONS: Record<NavItem["icon"], React.ComponentType<{ size?: number; className?: string }>> = {
   home: Home, ask: Sparkles, branches: Building2, alert: AlertTriangle, users: Users, inbox: Inbox, calendar: CalendarDays,
@@ -116,7 +116,7 @@ export function PortalShell({
       </main>
 
       {/* Phone bottom bar */}
-      {nav.length > 0 && <SchoolAssistant role={role} personaId={personaId}/>}
+      {nav.length > 0 && assistantEnabledFor(role) && <SchoolAssistant role={role} personaId={personaId}/>}
       {menuOpen && <div className="fixed inset-x-3 bottom-16 z-40 max-h-[70dvh] overflow-y-auto rounded-2xl border border-line bg-surface p-4 shadow-xl md:hidden" role="dialog" aria-label="All sections"><div className="mb-3 flex items-center justify-between"><h2 className="font-semibold">All sections</h2><button className="btn-outline btn-sm" onClick={() => setMenuOpen(false)}>Close</button></div>{nav.map(item => <Link key={item.href} href={item.href} onClick={() => setMenuOpen(false)} className="block rounded-xl p-3 text-sm hover:bg-canvas">{item.label}</Link>)}</div>}
       <nav className="fixed inset-x-0 bottom-0 z-20 flex border-t border-line bg-surface md:hidden">
         {nav.slice(0, 4).map((item) => {

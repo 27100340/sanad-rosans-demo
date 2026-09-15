@@ -1,6 +1,6 @@
 /**
  * Assignment Designer: a teacher's brief in words becomes selection criteria
- * and a concrete question set from the bank (Gemini, with a deterministic
+ * and a concrete question set from the bank (Groq, with a deterministic
  * keyword fallback). Nothing is saved; the builder loads the result.
  */
 import { getViewer } from "@/lib/auth/viewer";
