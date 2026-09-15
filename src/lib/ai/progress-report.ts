@@ -1,11 +1,12 @@
 /**
  * Progress report email. Facts are gathered from the stores (tests, papers,
- * assignments, tasks, attendance, mastery, ranking); Gemini writes a short,
+ * assignments, tasks, attendance, mastery, ranking); Groq writes a short,
  * warm email in English or Urdu; the fallback is a slot-filled template so a
  * report is always produced. Used by the student page and the Saturday
  * parent-report automation. Ported from the reference progress-report.ts.
  */
-import { askGemini, VALUES_GUARDRAIL } from "./gemini";
+import { VALUES_GUARDRAIL } from "./gemini";
+import { askGroq } from "./groq";
 import { school } from "@/lib/config/school";
 import { kpiFor } from "@/lib/data/kpi";
 import { attemptsSubmittedBy } from "@/lib/data/mock/attempts-index";
@@ -164,7 +165,7 @@ export async function composeProgressEmail(i: ComposeInput): Promise<ComposedEma
   const s = i.stats;
   const audience = i.forParent ? "the student's parent or guardian: address them warmly and refer to the student by first name in the third person" : "the student directly, encouraging and in the second person";
   const languageLine = i.language === "ur" ? "Write in Urdu script (never Roman Urdu), warm and respectful." : "Write in plain, warm British English.";
-  const res = await askGemini({
+  const res = await askGroq({
     system: [
       `You are ${i.senderName}, a teacher at ${school.schoolName}. Write a short, professional progress-update email to ${audience}. 120 to 180 words. Plain text with short bullet lines using "• ". End with a sign-off.`,
       VALUES_GUARDRAIL,

@@ -2,7 +2,7 @@
  * Assessment orchestration: marks a whole attempt (mcq and numeric are
  * deterministic; short and structured go through the Mark-Scheme Marker with
  * its fallback), assembles a test from the bank, and picks a tutor mini-quiz.
- * No Gemini call is made here except through `marker.run`.
+ * No Groq call is made here except through `marker.run`.
  */
 import type { Question, QuestionMarking, StudentQuestion, TestMode } from "@/lib/domain/assessment";
 import type { SubjectSpace } from "@/lib/domain/types";

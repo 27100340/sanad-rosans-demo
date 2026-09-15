@@ -277,7 +277,7 @@ export interface RecitationResult {
   score: number; // 0..100
   passed: boolean;
   tajweedNotes: string[];
-  source: "gemini" | "browser-speech" | "simulated";
+  source: "gemini" | "whisper" | "browser-speech" | "simulated";
 }
 
 export interface RecitationAttempt extends RecitationResult {

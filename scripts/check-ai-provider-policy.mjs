@@ -1,3 +1,11 @@
+/**
+ * Approved providers, as agreed with JB on 2026-09-14:
+ *   Google Gemini — recitation audio (Live API) and handwriting vision.
+ *   Groq          — every text seat.
+ * Anything else is a policy violation. The `openai` package stays prohibited:
+ * Groq is reached with plain fetch over its OpenAI-compatible REST path, so no
+ * OpenAI SDK, account or endpoint is involved.
+ */
 import fs from "node:fs";
 import path from "node:path";
 
@@ -38,10 +46,10 @@ for (const file of filesUnder(path.join(root, "src"))) {
 }
 
 if (prohibitedPackages.length || violations.length) {
-  console.error("AI provider policy violation: website/portal AI must use Google Gemini only.");
+  console.error("AI provider policy violation: website/portal AI must use Google Gemini (audio and vision) or Groq (text) only.");
   for (const name of prohibitedPackages) console.error(`Prohibited package: ${name}`);
   for (const violation of violations) console.error(violation);
   process.exit(1);
 }
 
-console.log("AI provider policy OK: no Anthropic, OpenAI, Moonshot/Kimi, or OpenClaw connection.");
+console.log("AI provider policy OK: Gemini + Groq only; no Anthropic, OpenAI, Moonshot/Kimi, or OpenClaw connection.");

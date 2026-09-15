@@ -1,11 +1,12 @@
 /**
  * Question Studio. Drafts one bank-ready question from a syllabus topic, a
- * type and a difficulty. Gemini answers in a strict `KEY: value` block; the
+ * type and a difficulty. Groq answers in a strict `KEY: value` block; the
  * fallback builds a deterministic draft from the topic title and its
  * subtopics, so the studio works with no key configured. Nothing is written
  * to the bank here; the route does that once the teacher accepts.
  */
-import { askGemini, parseKeyLines, VALUES_GUARDRAIL } from "./gemini";
+import { parseKeyLines, VALUES_GUARDRAIL } from "./gemini";
+import { askGroq } from "./groq";
 import type { Difficulty, QuestionType } from "@/lib/domain/assessment";
 import type { SubjectSpace, SyllabusTopic } from "@/lib/domain/types";
 import { school } from "@/lib/config/school";
@@ -165,7 +166,7 @@ export async function draftQuestion(input: StudioInput): Promise<StudioDraft> {
     },
   ];
 
-  const res = await askGemini({ system, parts, temperature: 0.6, maxOutputTokens: 700 });
+  const res = await askGroq({ system, parts, temperature: 0.6, maxOutputTokens: 700 });
   if (!res.text) return fallback(input);
   return parseDraft(res.text, input) ?? fallback(input);
 }

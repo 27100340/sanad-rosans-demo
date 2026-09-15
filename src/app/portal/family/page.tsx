@@ -1,6 +1,6 @@
 import { PageHeader } from "@/components/ui/primitives";
 import { getViewer } from "@/lib/auth/viewer";
-import { aiIsLive } from "@/lib/ai/gemini";
+import { groqIsLive } from "@/lib/ai/groq";
 import { fallback } from "@/lib/ai/brief";
 import { classById, guardianById, studentById } from "@/lib/data/mock/people";
 import { Denied, isParent } from "@/components/teach/guard";
@@ -29,7 +29,7 @@ export default async function FamilyBriefPage() {
   return (
     <>
       <PageHeader eyebrow={guardian.name} title="Tonight's brief" description="One card per child, ending with one action for tonight." />
-      <BriefBoard cards={cards} aiLive={aiIsLive()} />
+      <BriefBoard cards={cards} aiLive={groqIsLive()} />
     </>
   );
 }

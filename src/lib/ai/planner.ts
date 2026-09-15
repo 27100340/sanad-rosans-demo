@@ -3,7 +3,8 @@
  * space's approved resources. Output is Markdown; the fallback is a
  * deterministic template filled with the topic and resource titles.
  */
-import { askGemini, VALUES_GUARDRAIL } from "./gemini";
+import { VALUES_GUARDRAIL } from "./gemini";
+import { askGroq } from "./groq";
 import type { Resource, SubjectSpace, SyllabusTopic } from "@/lib/domain/types";
 import { school } from "@/lib/config/school";
 import { spaceById } from "@/lib/data/mock/spaces";
@@ -100,7 +101,7 @@ export async function run(input: PlannerInput): Promise<PlannerOutput> {
   const parts = [
     { text: `TOPIC: ${topic.code} ${topic.title}\nSUBTOPIC: ${subtopic}\nKNOWN MISCONCEPTIONS:\n${space.misconceptions.map((m) => `- ${m.tag}: ${m.example}`).join("\n") || "- none recorded"}\nRESOURCES:\n${resources.map((r) => `- ${r.title} (${r.source}, ${r.kind})`).join("\n")}` },
   ];
-  const res = await askGemini({ system, parts, temperature: 0.5, maxOutputTokens: 900 });
+  const res = await askGroq({ system, parts, temperature: 0.5, maxOutputTokens: 900 });
   if (!res.text) return fallback(input);
   return { markdown: res.text, live: true };
 }

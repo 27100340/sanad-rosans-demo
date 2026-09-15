@@ -5,7 +5,7 @@ import { Camera, Check, Loader2, Lock, Maximize2, ShieldAlert, ShieldCheck } fro
 import { Chip } from "@/components/ui/primitives";
 import { MAX_CAMERA_WARNINGS } from "@/lib/domain/proctor";
 import { cn } from "@/lib/utils";
-import type { CameraStatus } from "./proctor-camera";
+import { CAMERA_BLOCK_COPY, type CameraStatus } from "./proctor-camera";
 
 /**
  * The three steps a student passes before a strict (proctored) test renders:
@@ -13,7 +13,9 @@ import type { CameraStatus } from "./proctor-camera";
  *    violation locks the test until the teacher unlocks it;
  * 2. camera — the floating preview runs until it reports `calibrated`;
  * 3. full screen — `requestFullscreen()` then the questions appear.
- * A denied camera offers "Continue with basic monitoring" instead of a dead end.
+ * A camera that cannot run is never reported as approved: the student is told
+ * the real reason and offered the explicit no-camera route, which is recorded
+ * on the session so the teacher knows this sitting was never watched.
  */
 
 type Step = 1 | 2 | 3;
@@ -40,24 +42,36 @@ function Steps({ current }: { current: Step }) {
   );
 }
 
+/**
+ * Says exactly what the camera is doing. A blocked camera gets the real reason
+ * — including the ones the student cannot fix, like an insecure origin or a site
+ * policy — rather than a generic "blocked" that sends them hunting for a prompt
+ * their browser will never show.
+ */
 function CameraState({ camera }: { camera: CameraStatus | null }) {
   const blocked = camera?.blocked ?? false;
   const calibrated = camera?.calibrated ?? false;
+  const block = camera?.block ?? "none";
   const tone = calibrated ? "chip-ok" : blocked ? "chip-danger" : "chip-warn";
   const text = calibrated
     ? camera?.degraded
-      ? "Approved under basic monitoring — the advanced models could not load on this device."
-      : "Position approved. You are ready to begin."
+      ? "Camera approved. The on-device analysis models are not running here, so this sitting is watched by the live camera and the window guard only — face and object checks are off."
+      : camera?.objects
+        ? "Position approved — face tracking and device detection are both running. You are ready to begin."
+        : "Position approved — face tracking is running. Device detection could not load, so phones and notes are not scanned for."
     : blocked
-      ? "Camera blocked. Allow access in your browser, or continue with basic monitoring."
+      ? CAMERA_BLOCK_COPY[block === "none" ? "unknown" : block].detail
       : camera?.ready
         ? "Camera on — hold still while your position is approved."
         : "Waiting for the camera. Allow access when your browser asks.";
   return (
-    <p className={cn(tone, "w-full justify-start whitespace-normal rounded-xl px-3 py-2 text-xs font-medium")}>
-      {calibrated ? <Check size={14} className="shrink-0" /> : blocked ? <ShieldAlert size={14} className="shrink-0" /> : <Loader2 size={14} className="shrink-0 animate-spin" />}
-      <span>{text}</span>
-    </p>
+    <div className={cn(tone, "w-full flex-col items-start gap-1 whitespace-normal rounded-xl px-3 py-2 text-xs font-medium")}>
+      <span className="flex items-start gap-1.5">
+        {calibrated ? <Check size={14} className="mt-0.5 shrink-0" /> : blocked ? <ShieldAlert size={14} className="mt-0.5 shrink-0" /> : <Loader2 size={14} className="mt-0.5 shrink-0 animate-spin" />}
+        <span>{text}</span>
+      </span>
+      {blocked ? <span className="pl-5 font-normal">Nothing is faked in its place: if the camera cannot run, the sitting is recorded as unmonitored by camera and your teacher sees that.</span> : null}
+    </div>
   );
 }
 
@@ -138,22 +152,26 @@ export function ProctorGate({
             </ol>
           </div>
           <CameraState camera={camera} />
+          {/* A camera that never started is never "approved", so a blocked
+              student gets one honest route on rather than a disabled button
+              beside a live-looking one. */}
           <div className="flex flex-wrap justify-end gap-2">
             {camera?.blocked ? (
               <button
                 type="button"
-                className="btn-outline"
+                className="btn-primary"
                 onClick={() => {
                   setBasic(true);
                   setStep(3);
                 }}
               >
-                Continue with basic monitoring
+                Continue without a camera
               </button>
-            ) : null}
-            <button type="button" className="btn-primary" disabled={!camera?.calibrated} onClick={() => setStep(3)}>
-              Continue
-            </button>
+            ) : (
+              <button type="button" className="btn-primary" disabled={!camera?.calibrated} onClick={() => setStep(3)}>
+                Continue
+              </button>
+            )}
           </div>
         </div>
       ) : null}
@@ -163,7 +181,11 @@ export function ProctorGate({
           <div className="rounded-xl bg-surface-2 p-4 text-sm text-ink-2">
             <p className="mb-1 font-medium text-ink">Last step</p>
             <p className="text-xs">The test opens in full screen. Leaving full screen at any point locks it, so close other windows and silence notifications before you begin.</p>
-            {basic ? <p className="mt-2 text-xs text-warn">Basic monitoring: the camera is unavailable, so only window and keyboard signals are recorded. Your teacher will see this on the session.</p> : null}
+            {basic ? (
+              <p className="mt-2 text-xs text-warn">
+                No camera — {CAMERA_BLOCK_COPY[camera?.block && camera.block !== "none" ? camera.block : "unknown"].short.toLowerCase()}. Only window and keyboard signals are recorded for this sitting, and your teacher sees it marked as not camera-monitored.
+              </p>
+            ) : null}
           </div>
           <div className="flex justify-end">
             <button type="button" className="btn-primary" disabled={entering} onClick={() => void begin()}>

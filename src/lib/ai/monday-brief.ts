@@ -1,9 +1,10 @@
 /**
  * Monday Brief for leadership: what moved, what to watch, three decisions.
- * The fallback is a template filled from the branch aggregates; Gemini,
+ * The fallback is a template filled from the branch aggregates; Groq,
  * when live, writes a better narrative from the same compact JSON.
  */
-import { askGemini, FAST_MODEL, VALUES_GUARDRAIL } from "./gemini";
+import { VALUES_GUARDRAIL } from "./gemini";
+import { askGroq } from "./groq";
 import { branchName, school, type BranchId } from "@/lib/config/school";
 import { ATTENDANCE_TREND, BRANCH_STATS, ENROLMENT_MOVEMENT, SUBJECT_COMPARISON, schoolTotals } from "@/lib/data/mock/stats";
 import { fmtPKR } from "@/lib/utils";
@@ -51,7 +52,7 @@ export async function run(): Promise<MondayBrief> {
   const system = `You write the Monday Brief for the chairman of ${school.schoolName}. Language: English. ${VALUES_GUARDRAIL}
 Use only the DATA block. Write three short Markdown paragraphs headed in bold: "What moved.", "What to watch.", and "Three decisions." (a numbered list of three). Cite exact figures; never invent any. Keep it under 180 words. Calm, factual tone.`;
   const data = { branches: BRANCH_STATS, attendanceSixWeeks: ATTENDANCE_TREND, enrolment: ENROLMENT_MOVEMENT, subjectsGrade8: SUBJECT_COMPARISON };
-  const res = await askGemini({ model: FAST_MODEL, system, parts: [{ text: `DATA:\n${JSON.stringify(data)}` }], maxOutputTokens: 450 });
+  const res = await askGroq({ system, parts: [{ text: `DATA:\n${JSON.stringify(data)}` }], maxOutputTokens: 450 });
   if (!res.text) return base;
   return { text: res.text, live: true };
 }

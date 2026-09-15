@@ -1,9 +1,10 @@
 /**
- * Mark-Scheme Marker. Gemini returns strict `AWARDED / POINT / FEEDBACK`
+ * Mark-Scheme Marker. Groq returns strict `AWARDED / POINT / FEEDBACK`
  * lines; the fallback is a keyword rubric scorer that looks for each mark
  * scheme line's evidence in the answer. The teacher overrides every mark.
  */
-import { askGemini, parseKeyLines, VALUES_GUARDRAIL } from "./gemini";
+import { parseKeyLines, VALUES_GUARDRAIL } from "./gemini";
+import { askGroq } from "./groq";
 import type { MarkPoint } from "@/lib/domain/types";
 import { school } from "@/lib/config/school";
 
@@ -112,7 +113,7 @@ export async function run(input: MarkInput): Promise<MarkOutput> {
     "POINT: earned|missed - <short label> - <quote from the answer, or why it is missing>   (one POINT line per mark scheme line, in the same order)",
     "FEEDBACK: <two sentences to the student, specific, encouraging, without restating the final answer>",
   ].join("\n");
-  const res = await askGemini({
+  const res = await askGroq({
     system,
     parts: [{ text: `QUESTION: ${input.question}\nMAX: ${input.maxMarks}\nMARK SCHEME:\n${input.markScheme.map((l) => `- ${l}`).join("\n")}\n\nANSWER:\n${input.answer}` }],
     temperature: 0.1,

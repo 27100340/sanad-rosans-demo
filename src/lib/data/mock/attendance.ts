@@ -74,8 +74,22 @@ function hash01(key: string): number {
   return ((h >>> 0) % 10000) / 10000;
 }
 
+/**
+ * Bands of the absent allowance, in the order they are tested. A bunk is rarer
+ * than a plain absence and never happens in the first period of the day, which
+ * is what makes it read as "signed in, then drifted".
+ */
+const BAND_ABSENT = 0.55;
+const BAND_BUNK = 0.7;
+const BAND_LATE = 0.85;
+const BAND_EXCUSED = 0.95;
+const FIRST_PERIOD = 1;
+
 function seedMarks(lessons: Lesson[]): AttendanceMark[] {
   const out: AttendanceMark[] = [];
+  // Local, because `lessonById` below is built from the same singleton this
+  // function seeds and does not exist yet while it runs.
+  const dateOf = new Map(lessons.map((l) => [l.id, l.date]));
   for (const lesson of lessons) {
     if (lesson.status !== "closed") continue;
     for (const s of studentsInClass(lesson.classId)) {
@@ -83,9 +97,14 @@ function seedMarks(lessons: Lesson[]): AttendanceMark[] {
       const absentBand = 1 - s.attendancePct / 100;
       let status: AttendanceStatus = "present";
       let note = "";
-      if (r < absentBand * 0.7) status = "absent";
-      else if (r < absentBand * 0.85) status = "late";
-      else if (r < absentBand * 0.95) status = "excused";
+      if (r < absentBand * BAND_ABSENT) status = "absent";
+      else if (r < absentBand * BAND_BUNK) {
+        // A student already recorded absent earlier today cannot also be bunking.
+        const bunkable = lesson.period > FIRST_PERIOD && !out.some((m) => m.studentId === s.id && m.status === "absent" && dateOf.get(m.lessonId) === lesson.date);
+        status = bunkable ? "bunk" : "absent";
+        if (bunkable) note = "Signed in this morning; not in the room";
+      } else if (r < absentBand * BAND_LATE) status = "late";
+      else if (r < absentBand * BAND_EXCUSED) status = "excused";
       else if (r < absentBand) {
         status = "leave";
         note = "Family travel, approved by the principal";
@@ -110,6 +129,15 @@ export function lessonsForClass(classId: string): Lesson[] {
 
 export function marksForLesson(lessonId: string): AttendanceMark[] {
   return ATTENDANCE.filter((m) => m.lessonId === lessonId);
+}
+
+/** One pass for a whole day or a whole branch; the per-lesson filter is O(marks) each time. */
+export function marksForLessons(lessonIds: Iterable<string>): Map<string, AttendanceMark[]> {
+  const wanted = new Set(lessonIds);
+  const out = new Map<string, AttendanceMark[]>();
+  for (const id of wanted) out.set(id, []);
+  for (const mark of ATTENDANCE) out.get(mark.lessonId)?.push(mark);
+  return out;
 }
 
 export function marksForStudent(studentId: string): AttendanceMark[] {

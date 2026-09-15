@@ -1,9 +1,10 @@
 /**
  * Parent inbox triage: classify a message and draft a reply for the
  * principal to edit. Keyword classifier and per-type templates are the
- * fallback; Gemini, when live, writes the reply from the same facts.
+ * fallback; Groq, when live, writes the reply from the same facts.
  */
-import { askGemini, FAST_MODEL, VALUES_GUARDRAIL } from "./gemini";
+import { VALUES_GUARDRAIL } from "./gemini";
+import { askGroq } from "./groq";
 import { school } from "@/lib/config/school";
 import type { ParentMessage } from "@/lib/domain/types";
 
@@ -56,7 +57,7 @@ export async function run(input: TriageInput): Promise<TriageResult> {
   const system = `You draft replies to parents on behalf of the principal of ${school.schoolName}, Gulberg campus. ${VALUES_GUARDRAIL}
 Write a warm, specific reply of at most 90 words in ${input.guardianLanguage === "ur" ? "Urdu script (not Roman Urdu)" : "English"}. Address the parent respectfully without using their name. Refer to the child only by first name. Commit to one concrete next step with a time. Never promise outcomes you cannot control and never discuss medical treatment. Sign off as "Mrs. Saima Qureshi, Principal, Gulberg". Output only the reply text.`;
   const facts = `TRIAGE: ${base.triage}\nCHILD_FIRST_NAMES: ${input.studentFirstNames.join(", ")}\nMESSAGE: ${input.message.text}`;
-  const res = await askGemini({ model: FAST_MODEL, system, parts: [{ text: facts }], maxOutputTokens: 260, temperature: 0.5 });
+  const res = await askGroq({ system, parts: [{ text: facts }], maxOutputTokens: 260, temperature: 0.5 });
   if (!res.text) return base;
   return { ...base, reply: res.text, live: true };
 }
