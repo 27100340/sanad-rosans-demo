@@ -7,7 +7,7 @@ import { guardianById, studentById } from "@/lib/data/mock/people";
 /** Parent inbox triage: drafts a reply for one message. Principals and leadership only. */
 export async function POST(req: Request) {
   const viewer = await getViewer();
-  if (viewer.role !== "chairman" && viewer.role !== "principal") {
+  if (!["chairman", "principal", "superadmin"].includes(viewer.role)) {
     return NextResponse.json({ error: "This seat cannot draft replies." }, { status: 403 });
   }
   const body = (await req.json().catch(() => ({}))) as { messageId?: string };

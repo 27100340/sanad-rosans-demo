@@ -16,6 +16,7 @@ import { NotificationBell } from "./notification-bell";
 import { PersonaSwitcher } from "./persona-switcher";
 import { PresenceBeacon } from "./presence-beacon";
 import { Tour } from "./tour";
+import { ExitViewAs, ViewAsBanner } from "./view-as-banner";
 import { SchoolAssistant, assistantEnabledFor } from "./assistant";
 
 const ICONS: Record<NavItem["icon"], React.ComponentType<{ size?: number; className?: string }>> = {
@@ -31,6 +32,7 @@ export function PortalShell({
   role,
   roleLine,
   aiLive,
+  viewingAs = null,
   children,
 }: {
   nav: NavItem[];
@@ -39,6 +41,8 @@ export function PortalShell({
   role: string;
   roleLine: string;
   aiLive: boolean;
+  /** Set only while the super admin is viewing the portal as someone else. */
+  viewingAs?: { label: string; role: string } | null;
   children: ReactNode;
 }) {
   const pathname = usePathname();
@@ -49,6 +53,7 @@ export function PortalShell({
   return (
     <div className="app-shell min-h-screen bg-canvas">
       <PresenceBeacon />
+      {viewingAs ? <ViewAsBanner label={viewingAs.label} role={viewingAs.role} /> : null}
       {/* Rail */}
       <aside className="theme-dark fixed inset-y-0 left-0 z-20 hidden w-60 flex-col border-r border-line bg-canvas md:flex">
         <Link href="/" className="flex items-center gap-3 px-5 py-5">
@@ -99,6 +104,7 @@ export function PortalShell({
             {school.schoolName} · {school.city}
           </p>
           <div className="flex items-center gap-2">
+            {viewingAs ? <ExitViewAs /> : null}
             <AiPill live={aiLive} />
             <NotificationBell inboxHref={inboxHref} />
             <Tour role={role} />

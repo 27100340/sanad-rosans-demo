@@ -10,9 +10,9 @@ import {
 import type { Persona } from "../auth/personas";
 
 export const canFinance = (p: Persona) =>
-  ["chairman", "principal", "finance"].includes(p.role);
+  ["superadmin", "chairman", "principal", "finance"].includes(p.role);
 export const canApprove = (p: Persona) =>
-  ["chairman", "principal"].includes(p.role);
+  ["superadmin", "chairman", "principal"].includes(p.role);
 export const inBranch = (p: Persona, branch: string) =>
   p.branchId === null || p.branchId === branch;
 export const EXPENSES = singleton<Expense[]>("finance-expenses-v1", () => [

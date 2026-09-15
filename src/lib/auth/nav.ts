@@ -21,6 +21,36 @@ function inboxBadge(p: Persona): number | undefined {
 
 export function navFor(p: Persona): NavItem[] {
   switch (p.role) {
+    // The owner seat: every school-level surface directly, and the control
+    // centre for the seat-specific ones it opens by viewing as a person.
+    case "superadmin":
+      return [
+        { href: "/portal/admin", label: "Control centre", icon: "home" },
+        { href: "/portal/admin/people", label: "People & view as", icon: "users" },
+        { href: "/portal/leadership", label: "Cockpit", icon: "branches" },
+        { href: "/portal/leadership/ask", label: "Ask the School", icon: "ask" },
+        { href: "/portal/leadership/branches", label: "Branches", icon: "branches" },
+        { href: "/portal/leadership/announcements", label: "Announcements", icon: "megaphone" },
+        { href: "/portal/principal", label: "Branch overview", icon: "home" },
+        { href: "/portal/principal/students", label: "Students", icon: "users" },
+        { href: "/portal/principal/teachers", label: "Teachers", icon: "users" },
+        { href: "/portal/principal/at-risk", label: "At-risk students", icon: "alert" },
+        { href: "/portal/principal/inbox", label: "Parent inbox", icon: "inbox" },
+        { href: "/portal/principal/attendance", label: "Attendance", icon: "calendar" },
+        { href: "/portal/principal/timetable", label: "Timetable", icon: "calendar" },
+        { href: "/portal/principal/subjects", label: "Subjects", icon: "book" },
+        { href: "/portal/principal/assessments", label: "Assessments", icon: "tasks" },
+        { href: "/portal/principal/rankings", label: "Rankings", icon: "progress" },
+        { href: "/portal/finance", label: "Finance", icon: "tasks" },
+        { href: "/portal/principal/fees", label: "Fees", icon: "tasks" },
+        { href: "/portal/hr", label: "People & appraisal", icon: "users" },
+        { href: "/portal/teaching", label: "Academic pathways", icon: "book" },
+        { href: "/portal/coordinator", label: "Coordinator desk", icon: "home" },
+        { href: "/portal/hifz/ustadh", label: "Halaqa board", icon: "hifz" },
+        { href: "/portal/principal/automations", label: "Automations", icon: "planner" },
+        { href: "/portal/principal/audit", label: "Audit log", icon: "rules" },
+        { href: "/portal/principal/access", label: "Access locks", icon: "rules" },
+      ];
     case "finance":
       return [{ href: "/portal/finance", label: "Finance", icon: "tasks" }, { href: "/portal/principal/fees", label: "Fees & receipts", icon: "tasks" }];
     case "chairman":

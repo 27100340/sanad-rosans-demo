@@ -3,7 +3,7 @@ import { addSpace, reassignSpace } from "@/lib/data/repo";
 import { classById } from "@/lib/data/mock/people";
 
 function canAdmin(role: string) {
-  return role === "principal" || role === "chairman";
+  return role === "principal" || role === "chairman" || role === "superadmin";
 }
 
 /** POST: assign a subject to a class and a teacher, creating a Subject Space. */

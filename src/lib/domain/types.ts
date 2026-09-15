@@ -6,6 +6,8 @@
 import type { BranchId } from "@/lib/config/school";
 
 export type Role =
+  /** Vendor/owner seat: every control in every branch, and may view the portal as any person. */
+  | "superadmin"
   | "chairman"
   | "principal"
   | "coordinator"

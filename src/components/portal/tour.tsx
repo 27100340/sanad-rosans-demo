@@ -20,6 +20,14 @@ export interface TourStep {
 const STORAGE_PREFIX = "sanad.tour.";
 
 export const TOURS: Record<string, TourStep[]> = {
+  superadmin: [
+    { title: "Control centre", body: "Every screen of every seat in one list. School-level views open directly; a view that belongs to one person opens as that person.", href: "/portal/admin" },
+    { title: "View as anyone", body: "Search any student, teacher, parent or leader and open the portal exactly as they see it. A banner keeps the way back.", href: "/portal/admin/people" },
+    { title: "Across the campuses", body: "The leadership cockpit, plain-language questions over live figures, and school-wide announcements.", href: "/portal/leadership" },
+    { title: "Inside one campus", body: "The principal's full branch: students, staff, attendance, assessment and the parent queue.", href: "/portal/principal" },
+    { title: "Money and people", body: "Fees, expenses, payroll and budgets, plus the appraisal rubric for teaching staff.", href: "/portal/finance" },
+    { title: "Controls", body: "Access locks, the audit trail of every staff action, and the scheduled jobs you can run on demand.", href: "/portal/principal/access" },
+  ],
   chairman: [
     { title: "The cockpit", body: "Every campus on one screen: attendance, marks, fees and the marking backlog, with the exceptions that need a decision today.", href: "/portal/leadership" },
     { title: "Ask the School", body: "Ask a plain question about any campus and get an answer grounded in the live figures, with the rows it used.", href: "/portal/leadership/ask" },

@@ -3,13 +3,15 @@
  * the chairman always bypass (they set the locks); a parent is blocked only
  * by a restriction on their own id or on every ward.
  */
-import type { Persona } from "./personas";
+import { isSuperAdmin, type Persona } from "./personas";
 import { restrictionFor } from "@/lib/data/mock/access";
 import { guardianById, studentById } from "@/lib/data/mock/people";
 import type { AccessRestriction } from "@/lib/domain/access";
 
 export function viewerRestriction(viewer: Persona): AccessRestriction | null {
-  if (viewer.role === "chairman" || viewer.role === "principal") return null;
+  // The owner seat is never locked out; while it views as someone else it
+  // deliberately sees that person's lock, and the banner still offers the way back.
+  if (isSuperAdmin(viewer) || viewer.role === "chairman" || viewer.role === "principal") return null;
   const branchId = viewer.branchId ?? "gulberg";
   if (viewer.role === "student" && viewer.studentId) {
     const s = studentById.get(viewer.studentId);

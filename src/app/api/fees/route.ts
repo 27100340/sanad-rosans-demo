@@ -15,7 +15,7 @@ const METHODS = ["bank", "cash", "card", "easypaisa"] as const;
 export async function POST(req: Request) {
   const viewer = await getViewer();
   if (viewerRestriction(viewer)) return Response.json({ error: "forbidden" }, { status: 403 });
-  if (!["principal", "chairman", "finance"].includes(viewer.role)) return Response.json({ error: "forbidden" }, { status: 403 });
+  if (!["principal", "chairman", "finance", "superadmin"].includes(viewer.role)) return Response.json({ error: "forbidden" }, { status: 403 });
   const body = (await req.json().catch(() => ({}))) as { action?: string; invoiceId?: string; amount?: number; method?: string };
   const inv = INVOICES.find((i) => i.id === body.invoiceId);
   if (!inv || (viewer.branchId && inv.branchId !== viewer.branchId)) return Response.json({ error: "unknown invoice" }, { status: 400 });

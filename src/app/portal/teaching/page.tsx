@@ -10,7 +10,7 @@ import { PathwayWorkspace } from "@/components/teach/pathway-workspace";
 import { SeatDenied } from "@/components/leadership/seat-guard";
 export default async function TeachingPage() {
   const p = await getViewer();
-  if (!["chairman", "principal", "coordinator", "teacher"].includes(p.role))
+  if (!["superadmin", "chairman", "principal", "coordinator", "teacher"].includes(p.role))
     return <SeatDenied home={p.home} />;
   const classes = teachingClasses(p);
   const ids = new Set(classes.map((c) => c.id));

@@ -13,7 +13,7 @@ import { classById, studentById, studentsInClass } from "@/lib/data/mock/people"
 import { DEFAULT_LOCK_MESSAGE, isAccessMode, isAccessScope, type AccessScope } from "@/lib/domain/access";
 
 function canManage(viewer: Persona): boolean {
-  return viewer.role === "chairman" || viewer.role === "principal";
+  return viewer.role === "chairman" || viewer.role === "principal" || viewer.role === "superadmin";
 }
 
 function labelFor(scope: AccessScope, key: string): string | null {

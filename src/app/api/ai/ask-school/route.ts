@@ -7,7 +7,7 @@ const MAX_QUESTION_LENGTH = 300;
 /** Ask the School: answers from aggregates only. Leadership and principals may ask. */
 export async function POST(req: Request) {
   const viewer = await getViewer();
-  if (viewer.role !== "chairman" && viewer.role !== "principal") {
+  if (!["chairman", "principal", "superadmin"].includes(viewer.role)) {
     return NextResponse.json({ error: "This seat cannot ask the school." }, { status: 403 });
   }
   const body = (await req.json().catch(() => ({}))) as { question?: string };

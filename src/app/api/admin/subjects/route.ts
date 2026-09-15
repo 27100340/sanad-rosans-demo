@@ -2,7 +2,7 @@ import { getViewer } from "@/lib/auth/viewer";
 import { addSubject, listSubjects, type NewSubjectInput } from "@/lib/data/repo";
 
 function canAdmin(role: string) {
-  return role === "principal" || role === "chairman";
+  return role === "principal" || role === "chairman" || role === "superadmin";
 }
 
 export async function GET() {

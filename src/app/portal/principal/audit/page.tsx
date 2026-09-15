@@ -31,6 +31,8 @@ const ACTION_LABEL: Record<string, string> = {
   "resource.approve": "Approved a resource",
   "access.lock": "Locked access",
   "access.unlock": "Restored access",
+  "viewas.start": "Viewed the portal as",
+  "viewas.end": "Stopped viewing as",
 };
 
 const HIDDEN_KEYS = new Set(["classId", "spaceId"]);

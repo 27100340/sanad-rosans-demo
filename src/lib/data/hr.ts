@@ -3,9 +3,9 @@ import { TEACHERS } from "./mock/people";
 import type { Appraisal } from "../domain/hr";
 import type { Persona } from "../auth/personas";
 export const canHr = (p: Persona) =>
-  ["chairman", "principal", "teacher", "ustadh"].includes(p.role);
+  ["superadmin", "chairman", "principal", "teacher", "ustadh"].includes(p.role);
 export const canReviewHr = (p: Persona) =>
-  ["chairman", "principal"].includes(p.role);
+  ["superadmin", "chairman", "principal"].includes(p.role);
 export const APPRAISALS = singleton<Appraisal[]>("appraisals-v1", () =>
   TEACHERS.map((t, i) => ({
     id: `review-${t.id}`,

@@ -1,5 +1,5 @@
 import { EmptyState, PageHeader } from "@/components/ui/primitives";
-import type { Persona } from "@/lib/auth/personas";
+import { isSuperAdmin, type Persona } from "@/lib/auth/personas";
 import type { SubjectSpace } from "@/lib/domain/types";
 import { spaceById } from "@/lib/data/mock/spaces";
 
@@ -12,11 +12,12 @@ export function Denied() {
   );
 }
 
-/** The teacher may only open a space assigned to them. */
+/** The teacher may only open a space assigned to them; the super admin may open any. */
 export function teacherSpace(viewer: Persona, spaceId: string): SubjectSpace | null {
-  if (viewer.role !== "teacher") return null;
   const space = spaceById.get(spaceId);
-  return space && space.teacherId === viewer.personId ? space : null;
+  if (!space) return null;
+  if (isSuperAdmin(viewer)) return space;
+  return viewer.role === "teacher" && space.teacherId === viewer.personId ? space : null;
 }
 
 /** Any student on the academic (non-Hifz) track. Hifz students use the /portal/hifz seat. */

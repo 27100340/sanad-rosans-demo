@@ -1,13 +1,13 @@
-import type { Persona } from "@/lib/auth/personas";
+import { isSuperAdmin, type Persona } from "@/lib/auth/personas";
 import { EmptyState, LinkButton } from "@/components/ui/primitives";
 
 /** Role predicates for the two management seats. Pages render `SeatDenied` when these fail. */
 export function canSeeLeadership(viewer: Persona): boolean {
-  return viewer.role === "chairman";
+  return viewer.role === "chairman" || isSuperAdmin(viewer);
 }
 
 export function canSeePrincipal(viewer: Persona): boolean {
-  return viewer.role === "chairman" || viewer.role === "principal";
+  return canSeeLeadership(viewer) || viewer.role === "principal";
 }
 
 /** Day-to-day branch operations: the principal's own screens, shared with the section coordinator. */

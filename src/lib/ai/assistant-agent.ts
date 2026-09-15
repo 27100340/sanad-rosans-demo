@@ -66,9 +66,9 @@ const SPACE_ROWS_MAX = 8;
  * views; neither gets this assistant or its tools. The route is the boundary —
  * the widget's own copy of this list (assistant.tsx) only hides the button.
  */
-const ASSISTANT_ROLES: Role[] = ["chairman", "principal", "coordinator", "teacher", "ustadh", "finance"];
+const ASSISTANT_ROLES: Role[] = ["superadmin", "chairman", "principal", "coordinator", "teacher", "ustadh", "finance"];
 /** Seats that read a whole campus rather than their own classes. */
-const BRANCH_SEAT_ROLES: Role[] = ["chairman", "principal", "coordinator"];
+const BRANCH_SEAT_ROLES: Role[] = ["superadmin", "chairman", "principal", "coordinator"];
 
 export interface AssistantLink {
   href: string;

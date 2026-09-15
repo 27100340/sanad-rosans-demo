@@ -6,6 +6,8 @@
 import type { Guardian, Person, SchoolClass, Student, Teacher } from "@/lib/domain/types";
 
 export const LEADERS: Person[] = [
+  // The vendor's own seat, so audit entries and "viewed as" records carry a name.
+  { id: "p-super-admin", name: "System administrator", role: "superadmin", branchId: null, title: "Super admin", avatarTone: "info" },
   { id: "p-chairman", name: "Mr. Tariq Rosan", role: "chairman", branchId: null, title: "Chairman", avatarTone: "gold" },
   { id: "p-principal-gulberg", name: "Mrs. Saima Qureshi", role: "principal", branchId: "gulberg", title: "Principal, Gulberg", avatarTone: "accent" },
   { id: "p-principal-lakecity", name: "Mr. Faisal Mirza", role: "principal", branchId: "lakecity", title: "Principal, Lake City", avatarTone: "accent" },

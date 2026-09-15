@@ -7,7 +7,7 @@ import { audit } from "@/lib/data/mock/notify";
 
 export async function POST(req: Request) {
   const viewer = await getViewer();
-  if (viewer.role !== "principal" && viewer.role !== "chairman") return Response.json({ error: "forbidden" }, { status: 403 });
+  if (!["principal", "chairman", "superadmin"].includes(viewer.role)) return Response.json({ error: "forbidden" }, { status: 403 });
   const body = (await req.json().catch(() => ({}))) as { jobId?: string; branchId?: string };
   if (!isJobId(body.jobId)) return Response.json({ error: "unknown job" }, { status: 400 });
   const branchId = (viewer.branchId ?? body.branchId ?? "gulberg") as BranchId;

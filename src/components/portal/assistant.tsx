@@ -9,7 +9,7 @@ import Link from "next/link";
  * which is the server-side gate; that module reads the mock stores, so it
  * cannot be imported into a client component. This copy only hides the button.
  */
-const ASSISTANT_ROLES = ["chairman", "principal", "coordinator", "teacher", "ustadh", "finance"];
+const ASSISTANT_ROLES = ["superadmin", "chairman", "principal", "coordinator", "teacher", "ustadh", "finance"];
 
 export function assistantEnabledFor(role: string): boolean {
   return ASSISTANT_ROLES.includes(role);
@@ -17,6 +17,7 @@ export function assistantEnabledFor(role: string): boolean {
 
 /** Openers that map to a tool this seat actually has. */
 const SUGGESTIONS: Record<string, string[]> = {
+  superadmin: ["Summarise finance", "Who is at risk?", "Marking backlog", "Attendance this term"],
   chairman: ["Summarise finance", "Who is at risk?", "Marking backlog"],
   // `canFinance` includes the principal, so the finance opener belongs here too:
   // dropping it hid a tool the seat actually has.
@@ -28,6 +29,7 @@ const SUGGESTIONS: Record<string, string[]> = {
 };
 
 const ASSISTANT_NAMES: Record<string, string> = {
+  superadmin: "Operations assistant",
   chairman: "Operations assistant",
   principal: "Operations assistant",
   finance: "Operations assistant",

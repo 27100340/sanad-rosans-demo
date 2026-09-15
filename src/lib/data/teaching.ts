@@ -12,7 +12,7 @@ export function teachingClasses(p: Persona) {
   return CLASSES.filter(
     (c) =>
       c.section !== "Hifz" &&
-      (["chairman", "principal", "coordinator"].includes(p.role)
+      (["superadmin", "chairman", "principal", "coordinator"].includes(p.role)
         ? !p.branchId || p.branchId === c.branchId
         : p.role === "teacher" &&
           (c.classTeacherId === p.personId ||

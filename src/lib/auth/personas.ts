@@ -18,7 +18,10 @@ export interface Persona {
   guardianId?: string;
 }
 
+export const SUPER_ADMIN_ID = "super-admin";
+
 export const PERSONAS: Persona[] = [
+  { id: SUPER_ADMIN_ID, personId: "p-super-admin", label: "Super admin · full access", role: "superadmin", branchId: null, home: "/portal/admin", blurb: "Every control in every campus, and can view the portal as any person in the school." },
   { id: "finance-gulberg", personId: "p-finance-gulberg", label: "Finance officer · Gulberg", role: "finance", branchId: "gulberg", home: "/portal/finance", blurb: "Records fees, expenses and payroll; leadership approves expenditure." },
   { id: "teacher-primary", personId: "t-primary", label: "Ms. Mariam Ahmed · Primary", role: "teacher", branchId: "gulberg", home: "/portal/teaching", blurb: "Plans age-appropriate lessons and tracks learning evidence for Grades 1–6." },
   { id: "teacher-montessori", personId: "t-montessori", label: "Ms. Amina Noor · Montessori", role: "teacher", branchId: "gulberg", home: "/portal/teaching", blurb: "Guides play-based learning and developmental observations." },
@@ -42,15 +45,19 @@ export function findPersona(id: string | undefined | null): Persona {
   return PERSONAS.find((p) => p.id === id) ?? PERSONAS.find(p => p.id === DEFAULT_PERSONA)!;
 }
 
+/** The owner seat. It is never scoped to a branch and passes every predicate below. */
+export function isSuperAdmin(p: Pick<Persona, "role">): boolean {
+  return p.role === "superadmin";
+}
 export function isLeadership(p: Persona): boolean {
-  return p.role === "chairman";
+  return p.role === "chairman" || isSuperAdmin(p);
 }
 export function isBranchStaff(p: Persona): boolean {
-  return p.role === "principal" || p.role === "coordinator" || p.role === "registrar" || p.role === "finance";
+  return isSuperAdmin(p) || p.role === "principal" || p.role === "coordinator" || p.role === "registrar" || p.role === "finance";
 }
 export function canSeeBranch(p: Persona, branchId: BranchId): boolean {
   return p.branchId === null || p.branchId === branchId;
 }
 export function isStaff(p: Persona): boolean {
-  return ["chairman", "principal", "coordinator", "teacher", "ustadh", "registrar", "finance"].includes(p.role);
+  return ["superadmin", "chairman", "principal", "coordinator", "teacher", "ustadh", "registrar", "finance"].includes(p.role);
 }

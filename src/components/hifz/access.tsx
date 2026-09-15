@@ -1,17 +1,17 @@
-import type { Persona } from "@/lib/auth/personas";
+import { isSuperAdmin, type Persona } from "@/lib/auth/personas";
 import { EmptyState } from "@/components/ui/primitives";
 
 export const HIFZ_STUDENT_ID = "s-zaid-hassan";
 
 /** Student Hifz pages: the Hifz student's own seat, or the ustadh looking over the shoulder. */
 export function canSeeStudentHifz(viewer: Persona): boolean {
-  if (viewer.role === "ustadh") return true;
+  if (viewer.role === "ustadh" || isSuperAdmin(viewer)) return true;
   return viewer.role === "student" && viewer.studentId === HIFZ_STUDENT_ID;
 }
 
 /** Ustadh pages: the ustadh and leadership seats. */
 export function canSeeUstadh(viewer: Persona): boolean {
-  return viewer.role === "ustadh" || viewer.role === "chairman" || viewer.role === "principal";
+  return viewer.role === "ustadh" || viewer.role === "chairman" || viewer.role === "principal" || isSuperAdmin(viewer);
 }
 
 export function DeniedState() {

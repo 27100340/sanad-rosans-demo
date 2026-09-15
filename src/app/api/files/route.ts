@@ -38,7 +38,7 @@ function mayRead(viewer: Persona, scope: string): boolean {
   const spaceId = spaceOfScope(scope);
   const space = spaceId ? spaceById.get(spaceId) : undefined;
   if (!space) return false;
-  if (viewer.role === "principal" || viewer.role === "chairman") return true;
+  if (["principal", "chairman", "superadmin"].includes(viewer.role)) return true;
   if (viewer.role === "student") return !scope.startsWith("submission:") && Boolean(viewer.studentId) && space.classId === (space.classId && spaceById.get(space.id)?.classId);
   return false;
 }

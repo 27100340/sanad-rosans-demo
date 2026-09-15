@@ -14,7 +14,7 @@ import { todayISO } from "@/lib/utils";
 export async function POST(req: Request) {
   const viewer = await getViewer();
   const branchOnly = viewer.role === "principal" || viewer.role === "coordinator";
-  if (viewer.role !== "chairman" && !branchOnly) return Response.json({ error: "forbidden" }, { status: 403 });
+  if (viewer.role !== "chairman" && viewer.role !== "superadmin" && !branchOnly) return Response.json({ error: "forbidden" }, { status: 403 });
   const body = (await req.json().catch(() => ({}))) as { title?: string; body?: string; scope?: string; audience?: { students?: boolean; guardians?: boolean; staff?: boolean }; email?: boolean };
   const title = (body.title ?? "").trim().slice(0, 140);
   const text = (body.body ?? "").trim().slice(0, 2000);
